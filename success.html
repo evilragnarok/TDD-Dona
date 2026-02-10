@@ -48,6 +48,11 @@
     button:hover {
       background: #27ae60;
     }
+    .countdown {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: #e74c3c;
+    }
   </style>
 </head>
 
@@ -64,9 +69,22 @@
       <button id="sendTelegram" onclick="sendToTelegram()" data-th="ส่งข้อมูล" data-en="Send data"></button>
       <button onclick="goBack()" data-th="กลับไปหน้าหลัก" data-en="Go back to the main page"></button>
     </div>
+
+    <!-- นับเวลาถอยหลัง -->
+    <div id="countdown" class="countdown" data-th="จะส่งข้อมูลใน..." data-en="Sending in..."></div>
   </div>
 
   <script>
+    // ตรวจสอบค่าภาษาใน localStorage
+    const lang = localStorage.getItem('lang') || 'th';  // ใช้ภาษาใน localStorage หรือ 'th' ถ้าไม่มี
+
+    // ฟังก์ชั่นการแสดงผลตามภาษา
+    function applyLang() {
+      document.querySelectorAll('[data-th]').forEach(el => {
+        el.innerText = el.dataset[lang];
+      });
+    }
+
     // ดึงข้อมูลที่เก็บไว้จาก localStorage
     const paymentDetails = {
       username: localStorage.getItem('user'),
@@ -76,16 +94,6 @@
       time: localStorage.getItem('time')
     };
 
-    // ตั้งค่าภาษาเริ่มต้นจาก localStorage หรือ ภาษาไทย
-    let lang = localStorage.lang || 'th';
-
-    // ฟังก์ชั่นการสลับภาษา
-    function applyLang() {
-      document.querySelectorAll('[data-th]').forEach(el => {
-        el.innerText = el.dataset[lang];
-      });
-    }
-
     // แสดงรายละเอียดการชำระเงิน
     let paymentInfoHTML = `
       <div><strong data-th="ชื่อผู้ใช้งาน:" data-en="Username:"></strong> ${paymentDetails.username}</div>
@@ -93,10 +101,10 @@
       <div><strong data-th="เวลาที่ส่ง:" data-en="Time Submitted:"></strong> ${paymentDetails.time}</div>
     `;
 
-    // เช็คว่าเลือกสลิปหรือเลข 4 ตัวท้าย
+    // แสดงเลข 4 ตัวท้าย หรือ สลิป
     if (paymentDetails.slip) {
-      paymentInfoHTML += `<div><strong data-th="มีสลิป:" data-en="Slip Uploaded:"></strong> <img src="${paymentDetails.slip}" class="slip-preview" /></div>`;
-    } else {
+      paymentInfoHTML += `<div><strong data-th="สลิปที่อัพโหลด:" data-en="Uploaded Slip:"></strong> <img src="${paymentDetails.slip}" class="slip-preview" /></div>`;
+    } else if (paymentDetails.last4) {
       paymentInfoHTML += `<div><strong data-th="เลข 4 ตัวท้าย:" data-en="Last 4 Digits:"></strong> ${paymentDetails.last4}</div>`;
     }
 
@@ -134,8 +142,9 @@
 
       try {
         await fetch(url, requestOptions);
-        alert(lang === 'th' ? 'ข้อมูลถูกส่งไปแล้ว!' : 'Data sent!');
+        // รีเซ็ตข้อมูลและกลับไปหน้าหลักโดยไม่แสดง alert
         resetForm();
+        window.location.href = 'index.html'; // เปลี่ยนกลับไปที่หน้าแรกทันที
       } catch (error) {
         console.error("Error sending message to Telegram:", error);
       }
@@ -152,10 +161,26 @@
       sessionStorage.removeItem('slip');
     }
 
-    // ส่งข้อมูลอัตโนมัติหลังจาก 15 วินาที
-    setTimeout(() => {
-      sendToTelegram();
-    }, 15000);
+    // นับเวลาถอยหลัง
+    let countdownTime = 15; // เวลาในวินาที
+    const countdownElement = document.getElementById('countdown');
+    countdownElement.innerText = `${countdownElement.dataset[lang]} ${countdownTime} ${lang === 'th' ? 'วินาที' : 'seconds'}`;
+
+    // ฟังก์ชั่นนับถอยหลัง
+    function startCountdown() {
+      const countdownInterval = setInterval(() => {
+        countdownTime--;
+        countdownElement.innerText = `${countdownElement.dataset[lang]} ${countdownTime} ${lang === 'th' ? 'วินาที' : 'seconds'}`;
+
+        if (countdownTime <= 0) {
+          clearInterval(countdownInterval); // หยุดนับถอยหลัง
+          sendToTelegram(); // ส่งข้อมูล
+        }
+      }, 1000);
+    }
+
+    // เริ่มนับถอยหลัง
+    startCountdown();
 
     // เรียกใช้งานฟังก์ชั่น applyLang() เพื่อแสดงข้อความตามภาษา
     applyLang();
