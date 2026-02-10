@@ -77,7 +77,9 @@ button {
   cursor: pointer;
 }
 
-button:disabled { background: #9ca3af; }
+button:disabled {
+  background: #9ca3af;
+}
 
 .payment-box {
   margin-top: 20px;
@@ -88,7 +90,9 @@ button:disabled { background: #9ca3af; }
   font-size: .9rem;
 }
 
-.payment-box b { color: var(--primary-dark); }
+.payment-box b {
+  color: var(--primary-dark);
+}
 
 .payment-img img,
 #preview {
@@ -137,7 +141,7 @@ button:disabled { background: #9ca3af; }
       <option>Coin 5,000 - 750 บาท</option>
       <option>Coin 9,000 - 1250 บาท</option>
       <option>Coin 15,000 - 2050 บาท</option>
-      <option>Donation</option>
+      <option>Donation (บริจาคค่าโหลดหนัง)</option>
     </select>
 
     <label>👤 User In TorrentDD (ถ้าไม่ตรงกรุณาแจ้งผู้ดูแลใน PM ด้านล่าง)</label>
@@ -150,7 +154,7 @@ button:disabled { background: #9ca3af; }
     <label>🔢 กรอก เลข 4 ตัวท้ายของเลขสลิป (ถ้าไม่มีสลิป)</label>
     <input type="text" name="last4" maxlength="4" pattern="[0-9]{4}" placeholder="เช่น 1234">
 
-    <button id="sendBtn">✅ แจ้งชำระเงิน</button>
+    <button id="sendBtn" type="submit">✅ แจ้งชำระเงิน</button>
   </form>
 
   <div class="payment-box">
@@ -162,7 +166,7 @@ button:disabled { background: #9ca3af; }
   </div>
 
   <div class="payment-img">
-    <img src="https://s1.imgbb.ws/file/storage-sv1/giVH2.png">
+    <img src="https://s1.imgbb.ws/file/storage-sv1/giVH2.png" alt="QR Code">
   </div>
 
   <div class="contact-box">
@@ -179,6 +183,7 @@ const CHAT_ID  = "6678480860";
 
 let locked = false;
 
+// preview slip
 document.querySelector('input[type=file]').addEventListener("change", e => {
   const file = e.target.files[0];
   if (!file) return;
@@ -207,13 +212,24 @@ document.getElementById("payForm").addEventListener("submit", async e => {
 
   const orderId = "ORD-" + Date.now();
 
+  // เวลาไทย
+  const thTime = new Date().toLocaleString("th-TH", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  });
+
   const text =
 `💎 แจ้งชำระเงิน
 ━━━━━━━━━━━━━━
 🆔 Order : ${orderId}
 👤 User : ${form.username.value}
 📦 Package : ${form.package.value}
-🔢 เลข 4 ตัวท้าย : ${last4 || "-"}`;
+🔢 เลข 4 ตัวท้าย : ${last4 || "-"}
+📅 วันที่ : ${thTime}`;
 
   try {
     let res;
@@ -242,7 +258,9 @@ document.getElementById("payForm").addEventListener("submit", async e => {
     if (res.ok) {
       localStorage.setItem("paid", "1");
       window.location.href = "success.html";
-    } else throw 1;
+    } else {
+      throw new Error();
+    }
 
   } catch {
     alert("❌ ส่งข้อมูลไม่สำเร็จ");
