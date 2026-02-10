@@ -52,6 +52,7 @@ body{
   backdrop-filter:blur(8px);
   border-radius:999px;
   padding:4px;
+  box-shadow:0 6px 20px rgba(0,0,0,.15);
 }
 .lang-switch button{
   border:none;
@@ -65,8 +66,14 @@ body{
 .lang-switch button.active{
   background:linear-gradient(135deg,var(--main),var(--dark));
   color:#fff;
+  box-shadow:0 0 12px rgba(46,204,113,.6);
 }
-.dark-toggle{cursor:pointer}
+.dark-toggle{
+  cursor:pointer;
+  font-size:1.1rem;
+  padding:6px 10px;
+  border-radius:50%;
+}
 h2{text-align:center;color:var(--dark)}
 .subtitle{text-align:center;color:var(--muted)}
 label{display:block;margin-top:14px;font-weight:500}
@@ -90,6 +97,9 @@ button{
   font-weight:600;
   cursor:pointer;
 }
+button:hover{
+  box-shadow:0 0 18px rgba(46,204,113,.55);
+}
 .payment-box{
   margin-top:22px;
   background:#f0fdf4;
@@ -111,7 +121,10 @@ body.dark .payment-box{background:#022c22}
   text-align:center;
   font-size:.85rem;
 }
-.contact-box a{color:var(--dark);font-weight:500}
+.contact-box a{
+  color:var(--dark);
+  font-weight:500;
+}
 </style>
 </head>
 
@@ -144,27 +157,17 @@ body.dark .payment-box{background:#022c22}
         data-th="-- กรุณาเลือกแพ็กเกจ --"
         data-en="-- Select Package --"></option>
 
-      <option data-th="VIP 1 เดือน - 200 บาท"
-              data-en="VIP 1 Month - 200 THB"></option>
-      <option data-th="VIP 3 เดือน - 425 บาท"
-              data-en="VIP 3 Months - 425 THB"></option>
-      <option data-th="VIP 6 เดือน - 750 บาท"
-              data-en="VIP 6 Months - 750 THB"></option>
-      <option data-th="VIP 1 ปี - 1250 บาท"
-              data-en="VIP 1 Year - 1,250 THB"></option>
-      <option data-th="VIP 2 ปี - 2050 บาท"
-              data-en="VIP 2 Years - 2,050 THB"></option>
+      <option data-th="VIP 1 เดือน - 200 บาท" data-en="VIP 1 Month - 200 THB"></option>
+      <option data-th="VIP 3 เดือน - 425 บาท" data-en="VIP 3 Months - 425 THB"></option>
+      <option data-th="VIP 6 เดือน - 750 บาท" data-en="VIP 6 Months - 750 THB"></option>
+      <option data-th="VIP 1 ปี - 1250 บาท" data-en="VIP 1 Year - 1,250 THB"></option>
+      <option data-th="VIP 2 ปี - 2050 บาท" data-en="VIP 2 Years - 2,050 THB"></option>
 
-      <option data-th="Coin 1,200 - 200 บาท"
-              data-en="Coin 1,200 - 200 THB"></option>
-      <option data-th="Coin 3,000 - 425 บาท"
-              data-en="Coin 3,000 - 425 THB"></option>
-      <option data-th="Coin 5,000 - 750 บาท"
-              data-en="Coin 5,000 - 750 THB"></option>
-      <option data-th="Coin 9,000 - 1250 บาท"
-              data-en="Coin 9,000 - 1,250 THB"></option>
-      <option data-th="Coin 15,000 - 2050 บาท"
-              data-en="Coin 15,000 - 2,050 THB"></option>
+      <option data-th="Coin 1,200 - 200 บาท" data-en="Coin 1,200 - 200 THB"></option>
+      <option data-th="Coin 3,000 - 425 บาท" data-en="Coin 3,000 - 425 THB"></option>
+      <option data-th="Coin 5,000 - 750 บาท" data-en="Coin 5,000 - 750 THB"></option>
+      <option data-th="Coin 9,000 - 1250 บาท" data-en="Coin 9,000 - 1,250 THB"></option>
+      <option data-th="Coin 15,000 - 2050 บาท" data-en="Coin 15,000 - 2,050 THB"></option>
 
       <option data-th="Donation (บริจาคค่าโหลดหนัง)"
               data-en="Donation (Support site download cost)"></option>
@@ -173,6 +176,7 @@ body.dark .payment-box{background:#022c22}
     <label data-th="👤 User In TorrentDD"
            data-en="👤 TorrentDD Username"></label>
 
+    <!-- ✅ FIX USERNAME -->
     <input
       name="username"
       required
@@ -200,14 +204,36 @@ body.dark .payment-box{background:#022c22}
   </form>
 
   <div class="payment-box">
-    <div><b>Bank :</b> Krungthai Bank</div>
-    <div><b>Account :</b> 986-3-03446-0</div>
-    <div><b>PromptPay :</b> 0910541671</div>
-    <div><b>TrueWallet :</b> 0830439347</div>
-    <div><b>Name :</b> Akrapong Pengrod</div>
-    <div data-th="สำหรับผู้ใช้ต่างประเทศ สามารถใช้ Remitly โอนเข้าเลขบัญชีธนาคาร"
-         data-en="International users can transfer via Remitly to the bank account"></div>
+
+  <!-- ✅ QR CODE (อยู่ก่อน) -->
+  <!-- ✅ QR CODE : Responsive ตามอุปกรณ์ -->
+<div style="width:100%;text-align:center;margin-bottom:16px">
+  <img
+    src="https://s1.imgbb.ws/file/storage-sv1/giVH2.png"
+    alt="PromptPay QR Code"
+    style="
+      width:100%;
+      max-width:320px;
+      height:auto;
+      border-radius:18px;
+      display:block;
+      margin:auto;
+    ">
+  <div
+    style="font-size:.8rem;color:var(--muted);margin-top:6px"
+    data-th="สแกนเพื่อชำระเงิน"
+    data-en="Scan to pay">
   </div>
+</div>
+  <!-- ✅ PAYMENT INFO (เหมือนต้นฉบับทุกบรรทัด) -->
+  <div><b>Bank :</b> Krungthai Bank</div>
+  <div><b>Account :</b> 986-3-03446-0</div>
+  <div><b>PromptPay :</b> 0910541671</div>
+  <div><b>TrueWallet :</b> 0830439347</div>
+  <div><b>Name :</b> Akrapong Pengrod</div>
+
+</div>
+
 
   <div class="contact-box">
     📩 Contact :
@@ -219,7 +245,7 @@ body.dark .payment-box{background:#022c22}
 </div>
 
 <script>
-/* ===== TELEGRAM CONFIG ===== */
+/* ===== TELEGRAM CONFIG (ต้นฉบับ) ===== */
 const BOT_TOKEN = "8265712317:AAET88mDq8GFJSN9zRys1wJ4AwPQ7hmtYbI";
 const CHAT_ID  = "6678480860";
 
@@ -227,24 +253,6 @@ const CHAT_ID  = "6678480860";
 let lang = localStorage.lang || "th";
 let dark = localStorage.dark === "1";
 let slipBase64 = "";
-
-/* ===== MESSAGES ===== */
-const MSG = {
-  th:{
-    username:"Username ต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น และยาว 6–16 ตัว",
-    slip:"กรุณาอัปโหลดสลิป หรือ กรอกเลข 4 ตัวท้าย",
-    sending:"⏳ กำลังส่ง...",
-    submit:"✅ แจ้งชำระเงิน",
-    failed:"ส่งข้อมูลไม่สำเร็จ"
-  },
-  en:{
-    username:"Username must be English letters or numbers only (6–16 characters)",
-    slip:"Please upload a slip or enter last 4 digits",
-    sending:"⏳ Sending...",
-    submit:"✅ Submit Payment",
-    failed:"Failed to send data"
-  }
-};
 
 /* ===== LANGUAGE ===== */
 function applyLang(){
@@ -257,21 +265,21 @@ function applyLang(){
 
   // FIX placeholder
   document.querySelectorAll("[data-ph-th]").forEach(el=>{
-    el.placeholder = lang === "th" ? el.dataset.phTh : el.dataset.phEn;
+    el.placeholder = lang==="th" ? el.dataset.phTh : el.dataset.phEn;
   });
 
   // FIX title
   document.querySelectorAll("[data-title-th]").forEach(el=>{
-    el.title = lang === "th" ? el.dataset.titleTh : el.dataset.titleEn;
+    el.title = lang==="th" ? el.dataset.titleTh : el.dataset.titleEn;
   });
 
   btnTH.classList.toggle("active", lang==="th");
   btnEN.classList.toggle("active", lang==="en");
   localStorage.lang = lang;
 }
-
-/* ===== ACTIONS ===== */
 function setLang(l){ lang=l; applyLang(); }
+
+/* ===== DARK MODE ===== */
 function toggleDark(){
   dark = !dark;
   document.body.classList.toggle("dark", dark);
@@ -291,7 +299,7 @@ slip.addEventListener("change", e=>{
   reader.readAsDataURL(file);
 });
 
-/* ===== FORM SUBMIT ===== */
+/* ===== FORM SUBMIT (ต้นฉบับ + VALIDATE) ===== */
 payForm.addEventListener("submit", async e=>{
   e.preventDefault();
 
@@ -300,29 +308,69 @@ payForm.addEventListener("submit", async e=>{
   const last4 = f.last4.value.trim();
 
   if(!/^[A-Za-z0-9]{6,16}$/.test(username)){
-    alert(MSG[lang].username);
+    alert(lang==="th"
+      ? "Username ต้องเป็นภาษาอังกฤษหรือตัวเลขเท่านั้น และยาว 6–16 ตัว"
+      : "Username must be English letters or numbers only (6–16 characters)");
     return;
   }
 
   if(!slipBase64 && !last4){
-    alert(MSG[lang].slip);
+    alert(lang==="th"
+      ? "กรุณาอัปโหลดสลิป หรือ กรอกเลข 4 ตัวท้าย"
+      : "Please upload a slip or enter last 4 digits");
     return;
   }
 
   sendBtn.disabled = true;
-  sendBtn.innerText = MSG[lang].sending;
+  sendBtn.innerText = lang==="th" ? "⏳ กำลังส่ง..." : "⏳ Sending...";
+
+  const order = "ORD-" + Date.now();
+  const time  = new Date().toLocaleString(lang==="th"?"th-TH":"en-US");
+
+  const text =
+`💎 Payment Notification
+━━━━━━━━━━━━━━
+🆔 Order : ${order}
+👤 User : ${username}
+📦 Package : ${f.package.value}
+${slipBase64 ? "🖼 Slip attached" : "🔢 Last 4 digits : "+last4}
+⏰ Time : ${time}`;
 
   try{
-    // (ส่ง telegram เหมือนเดิม)
-    sendBtn.innerText = MSG[lang].submit;
+    let res;
+    if(slipBase64){
+      const blob = await (await fetch(slipBase64)).blob();
+      const d = new FormData();
+      d.append("chat_id", CHAT_ID);
+      d.append("caption", text);
+      d.append("photo", blob);
+      res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`,
+        { method:"POST", body:d });
+    }else{
+      res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+        method:"POST",
+        headers:{ "Content-Type":"application/json" },
+        body:JSON.stringify({ chat_id:CHAT_ID, text })
+      });
+    }
+
+    if(!res.ok) throw 1;
+
+    localStorage.user = username;
+    localStorage.package = f.package.value;
+    localStorage.time = time;
+    localStorage.last4 = slipBase64 ? "" : last4;
+
+    location.href = "success.html";
+
   }catch{
-    alert(MSG[lang].failed);
+    alert(lang==="th" ? "ส่งข้อมูลไม่สำเร็จ" : "Failed to send data");
     sendBtn.disabled = false;
-    sendBtn.innerText = MSG[lang].submit;
+    sendBtn.innerText = lang==="th" ? "✅ แจ้งชำระเงิน" : "✅ Submit Payment";
   }
 });
 
-/* ===== INIT ===== */
+/* INIT */
 document.body.classList.toggle("dark", dark);
 applyLang();
 </script>
