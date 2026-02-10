@@ -37,6 +37,17 @@ body{
   line-height:1.8;
   font-size:.95rem;
 }
+.slip-box{
+  margin-top:18px;
+  text-align:center;
+}
+.slip-box img{
+  width:100%;
+  max-width:360px;
+  height:auto;
+  border-radius:18px;
+  border:1px dashed #334155;
+}
 .notice{
   margin-top:20px;
   background:#064e3b;
@@ -69,11 +80,15 @@ body{
   <div class="success" id="title"></div>
 
   <div class="info">
-    <div><b id="lblOrder"></b> <span id="order">-</span></div>
     <div><b id="lblUser"></b> <span id="user">-</span></div>
     <div><b id="lblPackage"></b> <span id="package">-</span></div>
     <div><b id="lblTime"></b> <span id="time">-</span></div>
     <div><b id="lblPayment"></b> <span id="payment">-</span></div>
+  </div>
+
+  <!-- SLIP IMAGE -->
+  <div class="slip-box" id="slipBox" style="display:none">
+    <img id="slipImg" alt="Payment Slip">
   </div>
 
   <div class="notice" id="notice"></div>
@@ -97,11 +112,12 @@ document.documentElement.lang = lang;
 const i18n = {
   th:{
     title:"✅ ส่งข้อมูลเรียบร้อยแล้ว",
-    order:"Order :",
     user:"User :",
     package:"Package :",
     time:"Time :",
     payment:"Payment :",
+    slip:"สลิปการโอน",
+    last4:"เลข 4 ตัวท้าย",
     notice:`ระบบได้รับข้อมูลเรียบร้อยแล้ว  
 กรุณารอทีมงานตรวจสอบ และระบบจะอัปเดตสถานะกลับในเว็บไซต์  
 หากข้อมูลผิดพลาด กรุณาแจ้ง PM ผู้ดูแล`,
@@ -110,11 +126,12 @@ const i18n = {
   },
   en:{
     title:"✅ Payment submitted successfully",
-    order:"Order :",
     user:"User :",
     package:"Package :",
     time:"Time :",
     payment:"Payment :",
+    slip:"Slip uploaded",
+    last4:"Last 4 digits",
     notice:`Your payment information has been received.  
 Please wait for verification. Status will be updated on the website.  
 If there is any issue, please contact the administrator.`,
@@ -127,7 +144,6 @@ const t = i18n[lang];
 
 /* ===== APPLY TEXT ===== */
 title.innerText = t.title;
-lblOrder.innerText = t.order;
 lblUser.innerText = t.user;
 lblPackage.innerText = t.package;
 lblTime.innerText = t.time;
@@ -137,11 +153,23 @@ backBtn.innerText = t.back;
 autoText.innerText = t.auto;
 
 /* ===== LOAD DATA ===== */
-order.innerText   = localStorage.order   || "-";
 user.innerText    = localStorage.user    || "-";
 package.innerText = localStorage.package || "-";
 time.innerText    = localStorage.time    || "-";
-payment.innerText = localStorage.payment || "-";
+
+/* ===== PAYMENT DISPLAY LOGIC ===== */
+const slip = localStorage.slip;
+const last4 = localStorage.last4;
+
+if(slip){
+  payment.innerText = t.slip;
+  slipImg.src = slip;
+  slipBox.style.display = "block";
+}else if(last4){
+  payment.innerText = `${t.last4} : ${last4}`;
+}else{
+  payment.innerText = "-";
+}
 
 /* ===== CLEAR DATA ===== */
 function clearData(){
