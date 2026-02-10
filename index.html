@@ -150,19 +150,16 @@
 
     <select name="package" required>
       <option disabled selected data-th="-- กรุณาเลือกแพ็กเกจ --" data-en="-- Select Package --"></option>
-
       <option data-th="VIP 1 เดือน - 200 บาท" data-en="VIP 1 Month - 200 THB"></option>
       <option data-th="VIP 3 เดือน - 425 บาท" data-en="VIP 3 Months - 425 THB"></option>
       <option data-th="VIP 6 เดือน - 750 บาท" data-en="VIP 6 Months - 750 THB"></option>
       <option data-th="VIP 1 ปี - 1250 บาท" data-en="VIP 1 Year - 1,250 THB"></option>
       <option data-th="VIP 2 ปี - 2050 บาท" data-en="VIP 2 Years - 2,050 THB"></option>
-
       <option data-th="Coin 1,200 - 200 บาท" data-en="Coin 1,200 - 200 THB"></option>
       <option data-th="Coin 3,000 - 425 บาท" data-en="Coin 3,000 - 425 THB"></option>
       <option data-th="Coin 5,000 - 750 บาท" data-en="Coin 5,000 - 750 THB"></option>
       <option data-th="Coin 9,000 - 1250 บาท" data-en="Coin 9,000 - 1,250 THB"></option>
       <option data-th="Coin 15,000 - 2050 บาท" data-en="Coin 15,000 - 2,050 THB"></option>
-
       <option data-th="Donation (บริจาคค่าโหลดหนัง)" data-en="Donation (Support site download cost)"></option>
     </select>
 
@@ -314,7 +311,7 @@ payForm.addEventListener("submit", async e=>{
     slipBase64 = ""; // ล้างค่าของ slipBase64
     preview.style.display = "none"; // ซ่อน preview ของสลิป
 
-    location.href = "success.html";
+    location.href = "success.html"; // เปลี่ยนไปที่หน้าสำเร็จ
 
   }catch{
     alert("Error");
