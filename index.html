@@ -1,18 +1,125 @@
-<form id="payForm">
-  <label>📦 เลือกแพ็กเกจ</label>
-  <select name="package" required>
-    <option>VIP 1 เดือน - 200 บาท</option>
-    <option>VIP 3 เดือน - 425 บาท</option>
-    <option>VIP 6 เดือน - 750 บาท</option>
-    <option>VIP 1 ปี - 1250 บาท</option>
-    <option>VIP 2 ปี - 2050 บาท</option>
-  </select>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>แจ้งชำระเงิน VIP</title>
 
-  <label>👤 User In TorrentDD</label>
-  <input type="text" name="username" required>
+<style>
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: linear-gradient(135deg, #e9f7ef, #fdfefe);
+  padding: 20px;
+}
+.box {
+  max-width: 420px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0,0,0,.15);
+}
+label { font-weight: bold; margin-top: 12px; display: block; }
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+button {
+  background: #28a745;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  margin-top: 15px;
+}
+button:disabled {
+  background: #aaa;
+}
+</style>
+</head>
 
-  <label>🖼 อัปโหลดสลิปโอนเงิน</label>
-  <input type="file" name="slip" accept="image/*" required>
+<body>
+<div class="box">
+  <h2>💎 แจ้งชำระเงิน VIP</h2>
 
-  <button type="submit">✅ แจ้งชำระเงิน</button>
-</form>
+  <form id="payForm">
+    <label>📦 แพ็กเกจ</label>
+    <select name="package" required>
+      <option>VIP 1 เดือน - 200 บาท</option>
+      <option>VIP 3 เดือน - 425 บาท</option>
+      <option>VIP 6 เดือน - 750 บาท</option>
+      <option>VIP 1 ปี - 1250 บาท</option>
+    </select>
+
+    <label>👤 Username</label>
+    <input name="username" required>
+
+    <label>🖼 อัปโหลดสลิป</label>
+    <input type="file" name="slip" accept="image/*" required>
+
+    <button id="btn" type="submit">✅ ส่งข้อมูล</button>
+  </form>
+</div>
+
+<script>
+/* =========================
+   ⚠️ ตั้งค่า Telegram
+========================= */
+const BOT_TOKEN = "ใส่_BOT_TOKEN";
+const CHAT_ID  = "ใส่_CHAT_ID";
+
+/* =========================
+   🛑 ป้องกันกดซ้ำ (Client)
+========================= */
+let locked = false;
+
+document.getElementById("payForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  if (locked) return;
+
+  locked = true;
+  document.getElementById("btn").disabled = true;
+
+  const form = e.target;
+  const file = form.slip.files[0];
+
+  if (!file || !file.type.startsWith("image/")) {
+    alert("กรุณาอัปโหลดรูปสลิป");
+    locked = false;
+    return;
+  }
+
+  const caption =
+`💎 แจ้งชำระเงิน
+━━━━━━━━━━━━━━
+👤 User : ${form.username.value}
+📦 Package : ${form.package.value}
+⏰ เวลา : ${new Date().toLocaleString("th-TH")}`;
+
+  const tgForm = new FormData();
+  tgForm.append("chat_id", CHAT_ID);
+  tgForm.append("caption", caption);
+  tgForm.append("photo", file);
+
+  try {
+    const res = await fetch(
+      `https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`,
+      { method: "POST", body: tgForm }
+    );
+
+    if (res.ok) {
+      window.location.href = "success.html";
+    } else {
+      alert("ส่งข้อมูลไม่สำเร็จ");
+    }
+  } catch (err) {
+    alert("เกิดข้อผิดพลาด");
+  }
+
+  locked = false;
+});
+</script>
+</body>
+</html>
