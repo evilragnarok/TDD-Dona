@@ -8,67 +8,67 @@
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    body{
-      margin:0;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:#0f172a;
-      font-family:"Prompt",sans-serif;
-      color:#e5e7eb;
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f172a;
+      font-family: "Prompt", sans-serif;
+      color: #e5e7eb;
     }
-    .card{
-      max-width:560px;
-      width:100%;
-      background:#111827;
-      border-radius:28px;
-      padding:28px;
-      box-shadow:0 30px 60px rgba(0,0,0,.45);
+    .card {
+      max-width: 560px;
+      width: 100%;
+      background: #111827;
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, .45);
     }
-    .success{
-      text-align:center;
-      color:#4ade80;
-      font-size:1.3rem;
-      font-weight:600;
+    .success {
+      text-align: center;
+      color: #4ade80;
+      font-size: 1.3rem;
+      font-weight: 600;
     }
-    .info{
-      margin-top:18px;
-      line-height:1.8;
-      font-size:.95rem;
+    .info {
+      margin-top: 18px;
+      line-height: 1.8;
+      font-size: .95rem;
     }
-    .slip-box{
-      margin-top:18px;
-      text-align:center;
+    .slip-box {
+      margin-top: 18px;
+      text-align: center;
     }
-    .slip-box img{
-      width:100%;
-      max-width:360px;
-      height:auto;
-      border-radius:18px;
-      border:1px dashed #334155;
+    .slip-box img {
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+      border-radius: 18px;
+      border: 1px dashed #334155;
     }
-    .notice{
-      margin-top:20px;
-      background:#064e3b;
-      padding:14px;
-      border-radius:14px;
-      font-size:.85rem;
+    .notice {
+      margin-top: 20px;
+      background: #064e3b;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: .85rem;
     }
-    .back{
-      margin-top:22px;
-      text-align:center;
+    .back {
+      margin-top: 22px;
+      text-align: center;
     }
-    .back a{
-      color:#4ade80;
-      text-decoration:none;
-      font-weight:500;
+    .back a {
+      color: #4ade80;
+      text-decoration: none;
+      font-weight: 500;
     }
-    .timer{
-      text-align:center;
-      margin-top:6px;
-      font-size:.75rem;
-      color:#9ca3af;
+    .timer {
+      text-align: center;
+      margin-top: 6px;
+      font-size: .75rem;
+      color: #9ca3af;
     }
   </style>
 </head>
@@ -110,33 +110,33 @@ document.documentElement.lang = lang;
 
 /* ===== TRANSLATION ===== */
 const i18n = {
-  th:{
-    title:"✅ ส่งข้อมูลเรียบร้อยแล้ว",
-    user:"User :",
-    package:"Package :",
-    time:"Time :",
-    payment:"Payment :",
-    slip:"",
-    last4:"",
-    notice:`ระบบได้รับข้อมูลเรียบร้อยแล้ว  
+  th: {
+    title: "✅ ส่งข้อมูลเรียบร้อยแล้ว",
+    user: "User :",
+    package: "Package :",
+    time: "Time :",
+    payment: "Payment :",
+    slip: "",
+    last4: "",
+    notice: `ระบบได้รับข้อมูลเรียบร้อยแล้ว  
 กรุณารอทีมงานตรวจสอบ และระบบจะอัปเดตสถานะกลับในเว็บไซต์  
 หากข้อมูลผิดพลาด กรุณาแจ้ง PM ผู้ดูแล`,
-    back:"← กลับหน้าแรก",
-    auto:"กลับอัตโนมัติใน"
+    back: "← กลับหน้าแรก",
+    auto: "กลับอัตโนมัติใน"
   },
-  en:{
-    title:"✅ Payment submitted successfully",
-    user:"User :",
-    package:"Package :",
-    time:"Time :",
-    payment:"Payment :",
-    slip:"",
-    last4:"",
-    notice:`Your payment information has been received.  
+  en: {
+    title: "✅ Payment submitted successfully",
+    user: "User :",
+    package: "Package :",
+    time: "Time :",
+    payment: "Payment :",
+    slip: "",
+    last4: "",
+    notice: `Your payment information has been received.  
 Please wait for verification. Status will be updated on the website.  
 If there is any issue, please contact the administrator.`,
-    back:"← Back to homepage",
-    auto:"Auto redirect in"
+    back: "← Back to homepage",
+    auto: "Auto redirect in"
   }
 };
 
@@ -153,9 +153,9 @@ backBtn.innerText = t.back;
 autoText.innerText = t.auto;
 
 /* ===== LOAD DATA ===== */
-user.innerText    = localStorage.user    || "-";
+user.innerText = localStorage.user || "-";
 package.innerText = localStorage.package || "-";
-time.innerText    = localStorage.time    || "-";
+time.innerText = localStorage.time || "-";
 
 /* ===== PAYMENT DISPLAY LOGIC (REAL FIX) ===== */
 const slip =
@@ -164,18 +164,18 @@ const slip =
 
 const last4 = localStorage.last4;
 
-if(slip){
+if (slip) {
   payment.innerText = t.slip;
   slipImg.src = slip;
   slipBox.style.display = "block";
-}else if(last4){
+} else if (last4) {
   payment.innerText = `${t.last4} : ${last4}`;
-}else{
+} else {
   payment.innerText = "-";
 }
 
 /* ===== CLEAR DATA ===== */
-function clearData(){
+function clearData() {
   // Clear Local Storage
   localStorage.removeItem("user");
   localStorage.removeItem("package");
@@ -185,23 +185,23 @@ function clearData(){
 
   // Clear Session Storage
   sessionStorage.removeItem("slip");
-  
+
   // Clear the slip image display for future page reloads
   slipBox.style.display = "none"; // Hide the slip box
   payment.innerText = "-"; // Reset payment display
 }
 
 /* ===== AUTO REDIRECT ===== */
-let s = 15;
-const timer = setInterval(()=>{
+let s = 10;
+const timer = setInterval(() => {
   s--;
   sec.innerText = s;
-  if(s <= 0){
+  if (s <= 0) {
     clearData();
     clearInterval(timer);
     location.href = "index.html";
   }
-},1000);
+}, 1000);
 </script>
 
 </body>
