@@ -2,15 +2,20 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>สำเร็จ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ส่งข้อมูลสำเร็จ</title>
 
-<meta http-equiv="refresh" content="5;url=index.html">
+<!-- redirect อัตโนมัติ 10 วิ -->
+<meta http-equiv="refresh" content="10;url=index.html">
+
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 body {
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  margin: 0;
+  padding: 1.5rem;
+  font-family: "Prompt", sans-serif;
   background: linear-gradient(135deg, #e9f7ef, #fdfefe);
-  padding: 40px;
 }
 
 .box {
@@ -18,26 +23,94 @@ body {
   margin: auto;
   background: #fff;
   padding: 30px;
-  border-radius: 16px;
+  border-radius: 20px;
   text-align: center;
   box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+h2 {
+  margin-top: 0;
+  color: #27ae60;
+}
+
+p {
+  font-size: 0.95rem;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.notice {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.time {
+  margin-top: 16px;
+  font-size: 0.9rem;
+}
+
+a {
+  color: #27ae60;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
 }
 </style>
 
 <script>
-let t = 5;
+let t = 10;
+
 setInterval(() => {
   t--;
-  document.getElementById("time").innerText = t;
+  const el = document.getElementById("time");
+  if (el) el.innerText = t;
 }, 1000);
 </script>
 </head>
 
 <body>
+
 <div class="box">
-  <h2>✅ ส่งข้อมูลเรียบร้อย</h2>
-  <p>กรุณารอทีมงานตรวจสอบ</p>
-  <p>กลับสู่หน้าแรกใน <b><span id="time">5</span></b> วินาที</p>
+  <h2>✅ ส่งข้อมูลเรียบร้อยแล้ว</h2>
+
+  <p>
+    ระบบได้รับข้อมูลของคุณเรียบร้อยแล้ว  
+    กรุณารอทีมงานตรวจสอบ และตอบกลับทางเว็บไซต์
+  </p>
+
+  <p class="notice">
+    หากใช้เวลานานผิดปกติ หรือกรอกข้อมูลผิดพลาด  
+    กรุณาแจ้งใน <b>PM ผู้ดูแล</b> เพื่อให้ตรวจสอบได้รวดเร็วขึ้น
+  </p>
+
+  <div class="time">
+    กลับสู่หน้าแรกใน <b><span id="time">10</span></b> วินาที
+  </div>
+
+  <a class="btn" href="index.html">⬅ กลับหน้าแรกทันที</a>
+
+  <p class="notice" style="margin-top:12px;">
+    ติดต่อผู้ดูแล :
+    <a href="https://www.torrentdd.com/userdetails.php?id=973308" target="_blank">
+      3vilr4gn4r0k
+    </a>
+  </p>
 </div>
+
 </body>
 </html>
