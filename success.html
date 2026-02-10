@@ -3,206 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Success</title>
-
+  <title data-th="Success - Payment Submitted" data-en="Success - Payment Submitted"></title>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
-
   <style>
     body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #0f172a;
       font-family: "Prompt", sans-serif;
-      color: #e5e7eb;
+      background: #e6f7f0;
+      color: #1f2937;
+      padding: 2rem;
+      text-align: center;
     }
-    .card {
+    .box {
       max-width: 560px;
-      width: 100%;
-      background: #111827;
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, .45);
+      margin: auto;
+      background: #ffffff;
+      padding: 1.8rem;
+      border-radius: 26px;
+      box-shadow: 0 25px 45px rgba(0, 0, 0, .18);
     }
-    .success {
-      text-align: center;
-      color: #4ade80;
-      font-size: 1.3rem;
-      font-weight: 600;
+    h2 {
+      color: #27ae60;
     }
-    .info {
-      margin-top: 18px;
-      line-height: 1.8;
-      font-size: .95rem;
-    }
-    .slip-box {
-      margin-top: 18px;
-      text-align: center;
-    }
-    .slip-box img {
-      width: 100%;
-      max-width: 360px;
-      height: auto;
-      border-radius: 18px;
-      border: 1px dashed #334155;
-    }
-    .notice {
+    .payment-info {
       margin-top: 20px;
-      background: #064e3b;
-      padding: 14px;
-      border-radius: 14px;
-      font-size: .85rem;
+      font-size: 1.1rem;
     }
-    .back {
-      margin-top: 22px;
-      text-align: center;
+    .slip-preview {
+      margin-top: 20px;
+      display: none;
+      max-width: 320px;
+      margin: auto;
     }
-    .back a {
-      color: #4ade80;
-      text-decoration: none;
-      font-weight: 500;
+    .buttons {
+      margin-top: 20px;
     }
-    .timer {
-      text-align: center;
-      margin-top: 6px;
-      font-size: .75rem;
-      color: #9ca3af;
+    button {
+      padding: 10px 20px;
+      background: #2ecc71;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #27ae60;
     }
   </style>
 </head>
 
 <body>
+  <div class="box">
+    <h2 data-th="✅ การชำระเงินถูกส่งแล้ว" data-en="✅ Payment has been submitted"></h2>
+    <p class="payment-info" data-th="ข้อมูลการชำระเงินของคุณ:" data-en="Your payment details:"></p>
+    <div id="paymentDetails"></div>
 
-<div class="card">
+    <!-- รูปสลิป -->
+    <img id="slipPreview" class="slip-preview" />
 
-  <div class="success" id="title"></div>
-
-  <div class="info">
-    <div><b id="lblUser"></b> <span id="user">-</span></div>
-    <div><b id="lblPackage"></b> <span id="package">-</span></div>
-    <div><b id="lblTime"></b> <span id="time">-</span></div>
-    <div><b id="lblPayment"></b> <span id="payment">-</span></div>
+    <div class="buttons">
+      <button id="sendTelegram" onclick="sendToTelegram()" data-th="ส่งข้อมูล" data-en="Send data"></button>
+      <button onclick="goBack()" data-th="กลับไปหน้าหลัก" data-en="Go back to the main page"></button>
+    </div>
   </div>
 
-  <!-- SLIP IMAGE -->
-  <div class="slip-box" id="slipBox" style="display:none">
-    <img id="slipImg" alt="Payment Slip">
-  </div>
+  <script>
+    // ดึงข้อมูลที่เก็บไว้จาก localStorage
+    const paymentDetails = {
+      username: localStorage.getItem('user'),
+      package: localStorage.getItem('package'),
+      last4: localStorage.getItem('last4'),
+      slip: sessionStorage.getItem('slip'),
+      time: localStorage.getItem('time')
+    };
 
-  <div class="notice" id="notice"></div>
+    // ตั้งค่าภาษาเริ่มต้นจาก localStorage หรือ ภาษาไทย
+    let lang = localStorage.lang || 'th';
 
-  <div class="back">
-    <a href="index.html" onclick="clearData()" id="backBtn"></a>
-  </div>
+    // ฟังก์ชั่นการสลับภาษา
+    function applyLang() {
+      document.querySelectorAll('[data-th]').forEach(el => {
+        el.innerText = el.dataset[lang];
+      });
+    }
 
-  <div class="timer">
-    <span id="autoText"></span> <span id="sec">10</span>
-  </div>
+    // แสดงรายละเอียดการชำระเงิน
+    let paymentInfoHTML = `
+      <div><strong data-th="ชื่อผู้ใช้งาน:" data-en="Username:"></strong> ${paymentDetails.username}</div>
+      <div><strong data-th="แพ็กเกจที่เลือก:" data-en="Selected Package:"></strong> ${paymentDetails.package}</div>
+      <div><strong data-th="เวลาที่ส่ง:" data-en="Time Submitted:"></strong> ${paymentDetails.time}</div>
+    `;
 
-</div>
+    // เช็คว่าเลือกสลิปหรือเลข 4 ตัวท้าย
+    if (paymentDetails.slip) {
+      paymentInfoHTML += `<div><strong data-th="มีสลิป:" data-en="Slip Uploaded:"></strong> <img src="${paymentDetails.slip}" class="slip-preview" /></div>`;
+    } else {
+      paymentInfoHTML += `<div><strong data-th="เลข 4 ตัวท้าย:" data-en="Last 4 Digits:"></strong> ${paymentDetails.last4}</div>`;
+    }
 
-<script>
-/* ===== LANGUAGE LOCK ===== */
-const lang = localStorage.lang || "th";
-document.documentElement.lang = lang;
+    // แสดงข้อมูลทั้งหมด
+    document.getElementById('paymentDetails').innerHTML = paymentInfoHTML;
 
-/* ===== TRANSLATION ===== */
-const i18n = {
-  th: {
-    title: "✅ ส่งข้อมูลเรียบร้อยแล้ว",
-    user: "User :",
-    package: "Package :",
-    time: "Time :",
-    payment: "Payment :",
-    slip: "",
-    last4: "",
-    notice: `ระบบได้รับข้อมูลเรียบร้อยแล้ว  
-กรุณารอทีมงานตรวจสอบ และระบบจะอัปเดตสถานะกลับในเว็บไซต์  
-หากข้อมูลผิดพลาด กรุณาแจ้ง PM ผู้ดูแล`,
-    back: "← กลับหน้าแรก",
-    auto: "กลับอัตโนมัติใน"
-  },
-  en: {
-    title: "✅ Payment submitted successfully",
-    user: "User :",
-    package: "Package :",
-    time: "Time :",
-    payment: "Payment :",
-    slip: "",
-    last4: "",
-    notice: `Your payment information has been received.  
-Please wait for verification. Status will be updated on the website.  
-If there is any issue, please contact the administrator.`,
-    back: "← Back to homepage",
-    auto: "Auto redirect in"
-  }
-};
+    // ถ้ามีสลิปให้แสดง
+    if (paymentDetails.slip) {
+      const slipPreview = document.getElementById('slipPreview');
+      slipPreview.src = paymentDetails.slip;
+      slipPreview.style.display = 'block';
+    }
 
-const t = i18n[lang];
+    // ส่งข้อมูลไปยัง Telegram
+    async function sendToTelegram() {
+      const message = `New Payment:
+        Username: ${paymentDetails.username}
+        Package: ${paymentDetails.package}
+        Last 4 Digits: ${paymentDetails.last4 || "No slip uploaded"}
+        Time: ${paymentDetails.time}`;
 
-/* ===== APPLY TEXT ===== */
-title.innerText = t.title;
-lblUser.innerText = t.user;
-lblPackage.innerText = t.package;
-lblTime.innerText = t.time;
-lblPayment.innerText = t.payment;
-notice.innerText = t.notice;
-backBtn.innerText = t.back;
-autoText.innerText = t.auto;
+      const BOT_TOKEN = "8265712317:AAET88mDq8GFJSN9zRys1wJ4AwPQ7hmtYbI";
+      const CHAT_ID = "6678480860";
+      const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+      const body = {
+        chat_id: CHAT_ID,
+        text: message
+      };
 
-/* ===== LOAD DATA ===== */
-user.innerText = localStorage.user || "-";
-package.innerText = localStorage.package || "-";
-time.innerText = localStorage.time || "-";
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      };
 
-/* ===== PAYMENT DISPLAY LOGIC (REAL FIX) ===== */
-const slip =
-  sessionStorage.getItem("slip") ||
-  localStorage.getItem("slip");   // ⭐ fallback กัน session หลุด
+      try {
+        await fetch(url, requestOptions);
+        alert(lang === 'th' ? 'ข้อมูลถูกส่งไปแล้ว!' : 'Data sent!');
+        resetForm();
+      } catch (error) {
+        console.error("Error sending message to Telegram:", error);
+      }
+    }
 
-const last4 = localStorage.last4;
+    // ล้างข้อมูลและย้อนกลับไปหน้าหลัก
+    function goBack() {
+      resetForm();
+      window.location.href = 'index.html';
+    }
 
-if (slip) {
-  payment.innerText = t.slip;
-  slipImg.src = slip;
-  slipBox.style.display = "block";
-} else if (last4) {
-  payment.innerText = `${t.last4} : ${last4}`;
-} else {
-  payment.innerText = "-";
-}
+    function resetForm() {
+      localStorage.clear();
+      sessionStorage.removeItem('slip');
+    }
 
-/* ===== CLEAR DATA ===== */
-function clearData() {
-  // Clear Local Storage
-  localStorage.removeItem("user");
-  localStorage.removeItem("package");
-  localStorage.removeItem("time");
-  localStorage.removeItem("last4");
-  localStorage.removeItem("slip");
+    // ส่งข้อมูลอัตโนมัติหลังจาก 15 วินาที
+    setTimeout(() => {
+      sendToTelegram();
+    }, 15000);
 
-  // Clear Session Storage
-  sessionStorage.removeItem("slip");
-
-  // Clear the slip image display for future page reloads
-  slipBox.style.display = "none"; // Hide the slip box
-  payment.innerText = "-"; // Reset payment display
-}
-
-/* ===== AUTO REDIRECT ===== */
-let s = 10;
-const timer = setInterval(() => {
-  s--;
-  sec.innerText = s;
-  if (s <= 0) {
-    clearData();
-    clearInterval(timer);
-    location.href = "index.html";
-  }
-}, 1000);
-</script>
+    // เรียกใช้งานฟังก์ชั่น applyLang() เพื่อแสดงข้อความตามภาษา
+    applyLang();
+  </script>
 
 </body>
 </html>
