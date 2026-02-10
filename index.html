@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buy VIP / Coin TorrentDD</title>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
-
   <style>
+    /* Styling for the page */
     :root {
       --bg: #e6f7f0;
       --card: #ffffff;
@@ -140,7 +140,6 @@
 <body>
 
 <div class="box">
-
   <div class="topbar">
     <div class="lang-switch">
       <button id="btnTH" onclick="setLang('th')">🇹🇭 TH</button>
@@ -154,9 +153,7 @@
   <p class="subtitle" data-th="อัปโหลดสลิป หรือ กรอกเลข 4 ตัวท้าย" data-en="Upload payment slip or enter last 4 digits"></p>
 
   <form id="payForm">
-
     <label data-th="📦 เลือกแพ็กเกจ" data-en="📦 Select Package"></label>
-
     <select name="package" required>
       <option disabled selected data-th="-- กรุณาเลือกแพ็กเกจ --" data-en="-- Select Package --"></option>
       <option data-th="VIP 1 เดือน - 200 บาท" data-en="VIP 1 Month - 200 THB"></option>
@@ -173,7 +170,6 @@
     </select>
 
     <label data-th="👤 User In TorrentDD" data-en="👤 TorrentDD Username"></label>
-
     <input name="username" required minlength="6" maxlength="16" pattern="[A-Za-z0-9]{6,16}" data-ph-th="ภาษาอังกฤษหรือตัวเลขเท่านั้น (6–16 ตัว)" data-ph-en="English letters & numbers only (6–16 chars)" data-title-th="กรอกได้เฉพาะภาษาอังกฤษและตัวเลข ความยาว 6–16 ตัว" data-title-en="Use English letters and numbers only (6–16 characters)">
 
     <label data-th="🖼 อัปโหลดสลิป (ถ้ามี)" data-en="🖼 Upload payment slip (optional)"></label>
@@ -184,7 +180,6 @@
     <input name="last4" maxlength="4" pattern="[0-9]{4}">
 
     <button id="sendBtn" data-th="✅ แจ้งชำระเงิน" data-en="✅ Submit Payment"></button>
-
   </form>
 
   <div class="payment-box">
@@ -201,100 +196,143 @@
 
   <div class="contact-box">
     📩 Contact :
-    <a href="https://www.torrentdd.com/userdetails.php?id=973308" target="_blank">
-      3vilr4gn4r0k
-    </a>
+    <a href="https://www.torrentdd.com/userdetails.php?id=973308" target="_blank">3vilr4gn4r0k</a>
   </div>
 
 </div>
 
 <script>
-  // Language and Dark Mode
-  let lang = localStorage.lang || "th";
-  let dark = localStorage.dark === "1";
-  let slipBase64 = "";
+// Bot Telegram Configuration
+const BOT_TOKEN = "8265712317:AAET88mDq8GFJSN9zRys1wJ4AwPQ7hmtYbI";
+const CHAT_ID = "6678480860";
 
-  // ⭐ ป้องกันสลิปเก่าค้าง
-  sessionStorage.removeItem("slip");
+// Language and Dark Mode
+let lang = localStorage.lang || "th";
+let dark = localStorage.dark === "1";
+let slipFile = null;
 
-  function applyLang() {
-    document.querySelectorAll("[data-th]").forEach(el => {
-      el.innerText = el.dataset[lang];
-    });
-    document.querySelectorAll("option[data-th]").forEach(opt => {
-      opt.text = opt.dataset[lang];
-    });
-    document.querySelectorAll("[data-ph-th]").forEach(el => {
-      el.placeholder = lang === "th" ? el.dataset.phTh : el.dataset.phEn;
-    });
-    document.querySelectorAll("[data-title-th]").forEach(el => {
-      el.title = lang === "th" ? el.dataset.titleTh : el.dataset.titleEn;
-    });
-    btnTH.classList.toggle("active", lang === "th");
-    btnEN.classList.toggle("active", lang === "en");
-    localStorage.lang = lang;
-  }
-
-  function setLang(l) {
-    lang = l;
-    applyLang();
-  }
-
-  function toggleDark() {
-    dark = !dark;
-    document.body.classList.toggle("dark", dark);
-    localStorage.dark = dark ? "1" : "0";
-  }
-
-  slip.addEventListener("change", e => {
-    const file = e.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      slipBase64 = reader.result;
-      preview.src = slipBase64;
-      preview.style.display = "block";
-    };
-    reader.readAsDataURL(file);
+function applyLang() {
+  document.querySelectorAll("[data-th]").forEach(el => {
+    el.innerText = el.dataset[lang];
   });
-
-  payForm.addEventListener("submit", async e => {
-    e.preventDefault();
-    const f = e.target;
-    const username = f.username.value.trim();
-    const last4 = f.last4.value.trim();
-
-    if (!slipBase64 && !last4) {
-      alert(lang === "th"
-        ? "กรุณาอัปโหลดสลิป หรือ กรอกเลข 4 ตัวท้าย"
-        : "Please upload a slip or enter last 4 digits");
-      return;
-    }
-
-    sendBtn.disabled = true;
-
-    const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
-
-    try {
-      if (slipBase64) {
-        sessionStorage.setItem("slip", slipBase64); // ✅ สำคัญที่สุด
-      }
-
-      localStorage.user = username;
-      localStorage.package = f.package.value;
-      localStorage.time = time;
-      localStorage.last4 = slipBase64 ? "" : last4;
-
-      location.href = "success.html"; // เปลี่ยนไปที่หน้าสำเร็จ
-
-    } catch {
-      alert("Error");
-      sendBtn.disabled = false;
-    }
+  document.querySelectorAll("option[data-th]").forEach(opt => {
+    opt.text = opt.dataset[lang];
   });
+  document.querySelectorAll("[data-ph-th]").forEach(el => {
+    el.placeholder = lang === "th" ? el.dataset.phTh : el.dataset.phEn;
+  });
+  document.querySelectorAll("[data-title-th]").forEach(el => {
+    el.title = lang === "th" ? el.dataset.titleTh : el.dataset.titleEn;
+  });
+  btnTH.classList.toggle("active", lang === "th");
+  btnEN.classList.toggle("active", lang === "en");
+  localStorage.lang = lang;
+}
 
-  document.body.classList.toggle("dark", dark);
+function setLang(l) {
+  lang = l;
   applyLang();
+}
+
+function toggleDark() {
+  dark = !dark;
+  document.body.classList.toggle("dark", dark);
+  localStorage.dark = dark ? "1" : "0";
+}
+
+slip.addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  slipFile = file;
+  const reader = new FileReader();
+  reader.onload = () => {
+    preview.src = reader.result;
+    preview.style.display = "block";
+  };
+  reader.readAsDataURL(file);
+});
+
+async function sendToTelegram(message, slipFile) {
+  const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+  const body = {
+    chat_id: CHAT_ID,
+    text: message,
+    parse_mode: "Markdown"
+  };
+
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  };
+
+  try {
+    await fetch(url, requestOptions);
+
+    if (slipFile) {
+      const sendPhotoUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`;
+      const formData = new FormData();
+      formData.append('chat_id', CHAT_ID);
+      formData.append('photo', slipFile);
+      await fetch(sendPhotoUrl, {
+        method: 'POST',
+        body: formData
+      });
+    }
+  } catch (error) {
+    console.error("Error sending message to Telegram:", error);
+  }
+}
+
+payForm.addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target;
+  const username = f.username.value.trim();
+  const last4 = f.last4.value.trim();
+  const package = f.package.options[f.package.selectedIndex].text;
+  const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
+
+  if (!slipFile && !last4) {
+    alert("กรุณาอัปโหลดสลิป หรือ กรอกเลข 4 ตัวท้าย");
+    return;
+  }
+
+  let message = `
+*💎 New Payment Request:*
+
+👤 *Username*: ${username}
+📦 *Package*: ${package}
+🕰️ *Time*: ${time}
+`;
+
+  if (slipFile) {
+    message += `🖼️ *Payment Slip Attached*`;
+  } else {
+    message += `🔢 *Last 4 Digits*: ${last4}`;
+  }
+
+  try {
+    await sendToTelegram(message, slipFile);
+
+    // Show alert with countdown message
+    alert("ข้อมูลของคุณได้ถูกส่งเรียบร้อยแล้ว!!");
+
+    // Reset the form and page after 1 seconds
+    setTimeout(() => {
+      payForm.reset();
+      preview.style.display = "none";
+      slipFile = null;
+      applyLang();
+      document.body.classList.toggle("dark", dark);
+    }, 1000);
+
+  } catch (error) {
+    alert("Error sending payment data");
+  }
+});
+
+document.body.classList.toggle("dark", dark);
+applyLang();
 </script>
 
 </body>
