@@ -234,6 +234,9 @@ let lang = localStorage.lang || "th";
 let dark = localStorage.dark === "1";
 let slipBase64 = "";
 
+/* ⭐ ป้องกันสลิปเก่าค้าง */
+sessionStorage.removeItem("slip");
+
 function applyLang(){
   document.querySelectorAll("[data-th]").forEach(el=>{
     el.innerText = el.dataset[lang];
@@ -290,7 +293,7 @@ payForm.addEventListener("submit", async e=>{
 
   try{
     if(slipBase64){
-      sessionStorage.slip = slipBase64; // ⭐ FIX สำคัญ
+      sessionStorage.setItem("slip", slipBase64); // ✅ สำคัญที่สุด
     }
 
     localStorage.user = username;
