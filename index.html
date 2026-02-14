@@ -289,8 +289,6 @@
 const BOT_TOKEN = "8265712317:AAET88mDq8GFJSN9zRys1wJ4AwPQ7hmtYbI";
 const CHAT_ID = "6678480860";
 
-<script>
-
 // Language and Dark Mode
 let lang = localStorage.lang || "th";
 let dark = localStorage.dark === "1";
@@ -340,90 +338,75 @@ slip.addEventListener("change", e => {
 payForm.addEventListener("submit", async e => {
   e.preventDefault();
   const f = e.target;
-
   const username = f.username.value.trim();
-  const last4 = f.last4.value.trim();
-  const packageText = f.package.options[f.package.selectedIndex].text;
-  const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
+const profileLink = `https://www.torrentdd.com/userdetails.php?username=${username}`;
+const last4 = f.last4.value.trim();
+const package = f.package.options[f.package.selectedIndex].text;
+const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
 
+  // Ensure either a slip or last 4 digits are provided
   if (!slipFile && !last4) {
     alert(getMessage("pleaseUploadOrEnter"));
     return;
   }
 
-  try {
+  let message = `
+*💎 New Payment Request:*
 
-    // 🔥 ดึง USER ID จาก server
-    const res = await fetch(`getid.php?username=${username}`);
-    const data = await res.json();
-
-    if (!data.id) {
-      alert("ไม่พบ Username นี้ในระบบ");
-      return;
-    }
-
-    const userId = data.id;
-
-    // 🔥 สร้างลิงก์ sendmessage แทน userdetails
-    const profileLink = `https://www.torrentdd.net/sendmessage.php?receiver=${userId}`;
-
-    let message = `
-💎 New Payment Request
-
-👤 Username: ${username}
-🔗 Message Link: ${profileLink}
-📦 Package: ${packageText}
-🕰️ Time: ${time}
+👤 *Username*: ${username}
+🔗 *Profile*: ${profileLink}
+📦 *Package*: ${package}
+🕰️ *Time*: ${time}
 `;
 
-    if (slipFile) {
-      message += "\n🖼️ Payment Slip Attached";
-    } else {
-      message += `\n🔢 Last 4 Digits: ${last4}`;
-    }
-
-    alert(getMessage("submittedSuccess"));
-
-    // 🔥 ส่งไป API backend (ไม่ใช้ BOT TOKEN หน้าเว็บแล้ว)
-    const formData = new FormData();
-    formData.append("message", message);
-
-    if (slipFile) {
-      formData.append("slip", slipFile);
-    }
-
-    await fetch("api.php", {
-      method: "POST",
-      body: formData
-    });
-
-    window.location.href = "https://www.torrentdd.com/inbox.php";
-
-  } catch (err) {
-    console.error(err);
-    alert(getMessage("error"));
+  if (slipFile) {
+    message += `🖼️ *Payment Slip Attached*`;
+  } else {
+    message += `🔢 *Last 4 Digits*: ${last4}`;
+    message += "\n=============================="; // Add line only if slip is uploaded
   }
 
+  // Show the "submitted" alert immediately
+  alert(getMessage("submittedSuccess"));
+
+  try {
+  // Send the payment information to Telegram
+  await sendToTelegram(message, slipFile);
+
+  // 👉 เพิ่มบรรทัดนี้
+  window.location.href = "https://www.torrentdd.com/inbox.php";
+
+  // Reset the form and page after a short delay
+  setTimeout(() => {
+    payForm.reset();
+    preview.style.display = "none";
+    slipFile = null;
+    applyLang();
+    document.body.classList.toggle("dark", dark);
+  }, 1000);
+
+} catch (error) {
+  alert(getMessage("error"));
+}
+  
 });
 
+// Function to get alert messages based on language
 function getMessage(key) {
   const messages = {
     th: {
       pleaseUploadOrEnter: "กรุณาอัปโหลดสลิป หรือ กรอกเลข 4 ตัวท้าย",
-      submittedSuccess: "ข้อมูลของคุณได้ถูกส่งเรียบร้อยแล้ว !!!",
+      submittedSuccess: "ข้อมูลของคุณได้ถูกส่งเรียบร้อยแล้ว  !!!",
       error: "เกิดข้อผิดพลาดในการส่งข้อมูล"
     },
     en: {
       pleaseUploadOrEnter: "Please upload the slip or enter the last 4 digits",
-      submittedSuccess: "Your information has been submitted successfully !!!",
+      submittedSuccess: "Your information has been submitted successfully. !!!",
       error: "Error submitting data"
     }
   };
   return messages[lang][key];
 }
-
-document.body.classList.toggle("dark", dark);
-applyLang();
 
 async function sendToTelegram(message, slipFile) {
   try {
