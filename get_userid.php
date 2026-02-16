@@ -1,26 +1,23 @@
 <?php
-require_once 'connect.php'; // ไฟล์เชื่อมฐานข้อมูล
+header("Content-Type: application/json");
+require_once 'config.php'; // ไฟล์เชื่อมต่อ DB
 
-header('Content-Type: application/json');
+$username = $_GET['username'] ?? '';
 
-if (!isset($_GET['username'])) {
-    echo json_encode(["status" => "error", "message" => "No username"]);
+if (!$username) {
+    echo json_encode(["status"=>"error"]);
     exit;
 }
 
-$username = mysqli_real_escape_string($conn, $_GET['username']);
+$stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
+$stmt->execute([$username]);
+$user = $stmt->fetch();
 
-$sql = "SELECT id FROM users WHERE username = '$username' LIMIT 1";
-$res = mysqli_query($conn, $sql);
-
-if ($row = mysqli_fetch_assoc($res)) {
+if ($user) {
     echo json_encode([
         "status" => "success",
-        "id" => $row['id']
+        "id" => $user['id']
     ]);
 } else {
-    echo json_encode([
-        "status" => "error",
-        "message" => "User not found"
-    ]);
+    echo json_encode(["status"=>"error"]);
 }
