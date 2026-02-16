@@ -1,141 +1,275 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buy VIP / Coin - TorrentDD</title>
+<title>Buy VIP / Coin TorrentDD</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
+*{box-sizing:border-box}
+
 body{
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#1a0f2e,#2b1457);
-  color:white;
-  display:flex;
-  justify-content:center;
-  padding:30px 15px;
+margin:0;
+padding:1rem;
+font-family:'Prompt',sans-serif;
+background:radial-gradient(circle at 50% 30%,#2b0036,#0a0014 70%);
+color:#fff;
+overflow-x:hidden;
 }
 
-.wrapper{
-  max-width:900px;
-  width:100%;
+/* CLOUDS */
+.cloud{
+position:fixed;
+width:600px;
+height:300px;
+background:radial-gradient(ellipse at center,rgba(255,255,255,.08),transparent 70%);
+border-radius:50%;
+animation:floatCloud 60s linear infinite;
+filter:blur(60px);
+pointer-events:none;
 }
 
-.banner{
-  width:100%;
-  border-radius:25px;
-  box-shadow:0 25px 60px rgba(0,0,0,.6);
-  margin-bottom:40px;
+.cloud:nth-child(1){top:10%;left:-20%}
+.cloud:nth-child(2){top:60%;left:-30%;animation-duration:80s}
+
+@keyframes floatCloud{
+from{transform:translateX(0)}
+to{transform:translateX(200vw)}
 }
 
-.form-card{
-  background:#2e1a5f;
-  padding:30px;
-  border-radius:25px;
-  box-shadow:0 20px 40px rgba(0,0,0,.5);
+/* WINGS */
+.wings{
+position:fixed;
+top:50%;
+left:50%;
+width:900px;
+height:600px;
+background:url('https://i.imgur.com/7Qp8ZsR.png') no-repeat center;
+background-size:contain;
+transform:translate(-50%,-50%);
+opacity:.15;
+animation:flap 3s ease-in-out infinite;
+filter:drop-shadow(0 0 40px #a020f0);
+pointer-events:none;
 }
 
-.form-card h2{
-  text-align:center;
-  color:#ff7ac6;
-  margin-bottom:25px;
+@keyframes flap{
+0%{transform:translate(-50%,-50%) scaleX(1)}
+50%{transform:translate(-50%,-50%) scaleX(1.05)}
+100%{transform:translate(-50%,-50%) scaleX(1)}
 }
 
+/* CARD */
+.box{
+max-width:700px;
+margin:auto;
+background:rgba(20,0,30,.85);
+backdrop-filter:blur(20px);
+padding:2rem;
+border-radius:30px;
+box-shadow:0 0 40px rgba(160,32,240,.7),
+0 0 80px rgba(255,0,150,.4);
+border:1px solid rgba(255,255,255,.1);
+position:relative;
+z-index:10;
+}
+
+/* HEADINGS */
+h2{
+text-align:center;
+background:linear-gradient(90deg,#ff00cc,#a020f0);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 15px rgba(255,0,200,.6);
+}
+
+/* FORM */
 label{
-  display:block;
-  margin-top:15px;
-  font-weight:500;
+display:block;
+margin-top:14px;
+font-weight:500;
+color:#ddd;
 }
 
-input, select{
-  width:100%;
-  padding:14px;
-  margin-top:6px;
-  border-radius:14px;
-  border:none;
-  background:#3d257a;
-  color:white;
-  font-size:14px;
+input,select{
+width:100%;
+padding:14px;
+margin-top:6px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,.2);
+background:rgba(255,255,255,.05);
+color:#fff;
 }
 
-input::placeholder{
-  color:#cbb8ff;
-}
-
+/* BUTTON */
 button{
-  width:100%;
-  margin-top:25px;
-  padding:16px;
-  border:none;
-  border-radius:18px;
-  background:linear-gradient(135deg,#ff7ac6,#a78bfa);
-  color:white;
-  font-weight:600;
-  font-size:16px;
-  cursor:pointer;
-  transition:.3s;
+width:100%;
+margin-top:20px;
+padding:16px;
+border:none;
+border-radius:20px;
+background:linear-gradient(135deg,#a020f0,#ff00aa);
+color:#fff;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 0 20px #a020f0;
+transition:.3s;
 }
 
 button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 15px 25px rgba(255,122,198,.4);
+box-shadow:0 0 30px #ff00aa,
+0 0 60px #a020f0;
+transform:scale(1.05);
 }
 
-.footer{
-  text-align:center;
-  margin-top:25px;
-  font-size:14px;
-  opacity:.8;
+/* PAYMENT BOX */
+.payment-box{
+margin-top:22px;
+background:rgba(255,255,255,.05);
+padding:16px;
+border-left:4px solid #a020f0;
+border-radius:20px;
+font-size:.9rem;
 }
+
+/* PREVIEW */
+#preview{
+width:100%;
+margin-top:14px;
+border-radius:18px;
+display:none;
+border:1px dashed rgba(255,255,255,.3);
+}
+
+.contact-box{
+margin-top:20px;
+text-align:center;
+font-size:.85rem;
+color:#ccc;
+}
+
+a{color:#ff00cc}
+
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="cloud"></div>
+<div class="cloud"></div>
+<div class="wings"></div>
 
-<!-- 👇 ใส่รูปโปสเตอร์ตรงนี้ -->
-<img src="https://s2.imgbb.ws/file/storage-sv2/jw4vs.png" class="banner" alt="Fallen Angel TorrentDD Banner">
+<div class="box">
 
-<div class="form-card">
-<h2>Notify Transfer</h2>
+<h2>💎 Fallen Angel VIP Portal 😈</h2>
 
-<form>
+<div class="payment-box">
+<b>💳 Bank:</b> Krungthai Bank<br>
+<b>🏦 Account:</b> 986-3-03446-0<br>
+<b>📱 PromptPay:</b> 0910541671<br>
+<b>💸 TrueWallet:</b> 0830439347<br>
+<b>📝 Name:</b> Akrapong Pengrod
+</div>
 
-<label>Select Package</label>
-<select required>
-<option disabled selected>-- Select Package --</option>
-<option>VIP 1 Month - 200 THB</option>
-<option>VIP 3 Months - 425 THB</option>
-<option>VIP 6 Months - 750 THB</option>
-<option>VIP 1 Year - 1,250 THB</option>
-<option>Coin 1,200 - 200 THB</option>
-<option>Coin 3,000 - 425 THB</option>
-<option>Donation</option>
+<h2>💎 แจ้งชำระเงิน</h2>
+
+<form id="payForm">
+<label>📦 เลือกแพ็กเกจ</label>
+<select name="package" required>
+<option disabled selected>-- เลือกแพ็กเกจ --</option>
+<option disabled selected data-th="-- กรุณาเลือกแพ็กเกจ --" data-en="-- Select Package --"></option>
+      <option data-th="VIP 1 เดือน - ยอดโอน 200 บาท" data-en="VIP 1 Month - Transfer Amount 200 THB"></option>
+      <option data-th="VIP 3 เดือน - ยอดโอน 425 บาท" data-en="VIP 3 Months - Transfer Amount 425 THB"></option>
+      <option data-th="VIP 6 เดือน - ยอดโอน 750 บาท" data-en="VIP 6 Months - Transfer Amount 750 THB"></option>
+      <option data-th="VIP 1 ปี - ยอดโอน 1,250 บาท" data-en="VIP 1 Year - Transfer Amount 1,250 THB"></option>
+      <option data-th="VIP 2 ปี - ยอดโอน 2,050 บาท" data-en="VIP 2 Years - Transfer Amount 2,050 THB"></option>
+      <option data-th="Coin 1,200 - ยอดโอน 200 บาท" data-en="Coin 1,200 - Transfer Amount 200 THB"></option>
+      <option data-th="Coin 3,000 - ยอดโอน 425 บาท" data-en="Coin 3,000 - Transfer Amount 425 THB"></option>
+      <option data-th="Coin 5,000 - ยอดโอน 750 บาท" data-en="Coin 5,000 - Transfer Amount 750 THB"></option>
+      <option data-th="Coin 9,000 - ยอดโอน 1,250 บาท" data-en="Coin 9,000 - Transfer Amount 1,250 THB"></option>
+      <option data-th="Coin 15,000 - ยอดโอน 2,050 บาท" data-en="Coin 15,000 - Transfer Amount 2,050 THB"></option>
+      <option data-th="Donation (บริจาคค่าโหลดหนัง) จะไม่ได้อะไรเลย" data-en="Donation (Support site download cost) Will not get you anything."></option>
 </select>
 
-<label>TorrentDD Username</label>
-<input type="text" placeholder="Enter username" required>
+<label>👤 Username</label>
+<input name="username" required>
 
-<label>Upload Payment Slip (optional)</label>
-<input type="file" accept="image/*">
+<label>🖼 Upload Slip</label>
+<input type="file" id="slip" accept="image/*">
+<img id="preview">
 
-<label>Last 4 Digits (if no slip)</label>
-<input type="text" maxlength="4" pattern="[0-9]{4}" placeholder="1234">
+<label>🔢 เลขบัญชีที่ใช้โอน 4 ตัวท้าย (ถ้าไม่มีสลิป)"</label>
+<input name="last4" maxlength="4">
 
-<button type="submit">Submit Payment</button>
-
+<button>🔥 Submit Payment</button>
 </form>
-</div>
 
-<div class="footer">
-Working Hours: 8:00 AM – Midnight (Thailand Time)<br>
-After Midnight, if unavailable, processed next day.
+<div class="contact-box">
+✨ Fallen Angel Processing System ✨
 </div>
 
 </div>
+
+<script>
+const BOT_TOKEN="YOUR_BOT_TOKEN";
+const CHAT_ID="YOUR_CHAT_ID";
+let slipFile=null;
+
+slip.addEventListener("change",e=>{
+const file=e.target.files[0];
+if(!file)return;
+slipFile=file;
+const reader=new FileReader();
+reader.onload=()=>{
+preview.src=reader.result;
+preview.style.display="block";
+};
+reader.readAsDataURL(file);
+});
+
+payForm.addEventListener("submit",async e=>{
+e.preventDefault();
+const f=e.target;
+const username=f.username.value.trim();
+const last4=f.last4.value.trim();
+const package=f.package.value;
+
+if(!slipFile&&!last4){
+alert("กรุณาแนบสลิป หรือ กรอกเลข 4 ตัวท้าย");
+return;
+}
+
+let message=`💎 New Fallen Angel Payment\n\n👤 ${username}\n📦 ${package}\n`;
+
+if(slipFile){
+message+="🖼 Slip Attached";
+}else{
+message+=`🔢 Last4: ${last4}`;
+}
+
+await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,{
+method:"POST",
+body:new URLSearchParams({chat_id:CHAT_ID,text:message})
+});
+
+if(slipFile){
+const fd=new FormData();
+fd.append("chat_id",CHAT_ID);
+fd.append("document",slipFile);
+await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`,{
+method:"POST",
+body:fd
+});
+}
+
+alert("😈 ส่งข้อมูลเรียบร้อยแล้ว");
+f.reset();
+preview.style.display="none";
+slipFile=null;
+});
+</script>
 
 </body>
 </html>
