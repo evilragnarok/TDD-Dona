@@ -363,19 +363,21 @@ const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
   }
 
   let message = `
-*💎 New Payment Request:*
+╔══════════════════════════════════╗ 
+   💎 NEW VIP PAYMENT REQUEST 💎 
+╚══════════════════════════════════╝
 
-👤 *Username*: ${username}
-🔗 *Profile*: ${profileLink}
-📦 *Package*: ${package}
-🕰️ *Time*: ${time}
+👤 *Username*  : ${username}
+🔗 *Profile*   : ${profileLink}
+📦 *Package*   : ${package}
+🕰️ *Time*      : ${time}
 `;
 
   if (slipFile) {
-    message += `🖼️ *Payment Slip Attached*`;
+    message += `📎 *Payment Slip Attached*`;
   } else {
-    message += `🔢 *Last 4 Digits*: ${last4}`;
-    message += "\n=============================="; // Add line only if slip is uploaded
+    message += `🔢 *Last 4 Digits* : ${last4}`;
+    message += "\n═══════════════════════════════════════════"; // Add line only if slip is uploaded
   }
 
   // Show the "submitted" alert immediately
