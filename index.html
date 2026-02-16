@@ -8,51 +8,39 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg1:#1a0f2e;
-  --bg2:#2b1457;
-  --card:#2e1a5f;
-  --accent:#ff7ac6;
-  --accent2:#a78bfa;
-  --text:#ffffff;
-}
-
-*{box-sizing:border-box;}
-
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,var(--bg1),var(--bg2));
-  color:var(--text);
+  background:linear-gradient(135deg,#1a0f2e,#2b1457);
+  color:white;
   display:flex;
   justify-content:center;
-  padding:20px;
+  padding:30px 15px;
 }
 
-.container{
+.wrapper{
   max-width:900px;
   width:100%;
 }
 
 .banner{
   width:100%;
-  border-radius:20px;
+  border-radius:25px;
+  box-shadow:0 25px 60px rgba(0,0,0,.6);
+  margin-bottom:40px;
+}
+
+.form-card{
+  background:#2e1a5f;
+  padding:30px;
+  border-radius:25px;
   box-shadow:0 20px 40px rgba(0,0,0,.5);
-  margin-bottom:30px;
 }
 
-.card{
-  background:var(--card);
-  padding:25px;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.4);
-  margin-bottom:20px;
-}
-
-h2{
+.form-card h2{
   text-align:center;
-  margin-top:0;
-  color:var(--accent);
+  color:#ff7ac6;
+  margin-bottom:25px;
 }
 
 label{
@@ -63,48 +51,55 @@ label{
 
 input, select{
   width:100%;
-  padding:12px;
-  margin-top:5px;
-  border-radius:12px;
+  padding:14px;
+  margin-top:6px;
+  border-radius:14px;
   border:none;
   background:#3d257a;
   color:white;
+  font-size:14px;
+}
+
+input::placeholder{
+  color:#cbb8ff;
 }
 
 button{
   width:100%;
-  margin-top:20px;
-  padding:15px;
+  margin-top:25px;
+  padding:16px;
   border:none;
-  border-radius:15px;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:18px;
+  background:linear-gradient(135deg,#ff7ac6,#a78bfa);
   color:white;
   font-weight:600;
-  cursor:pointer;
   font-size:16px;
+  cursor:pointer;
+  transition:.3s;
 }
 
 button:hover{
-  opacity:0.9;
+  transform:translateY(-2px);
+  box-shadow:0 15px 25px rgba(255,122,198,.4);
 }
 
 .footer{
   text-align:center;
+  margin-top:25px;
   font-size:14px;
   opacity:.8;
-  margin-top:20px;
 }
 </style>
 </head>
 
 <body>
-<div class="container">
 
-<!-- Fallen Angel Banner Image -->
-<img src="https://imgbb.ws/jw4vs.png" class="banner" alt="Buy VIP TorrentDD Banner">
+<div class="wrapper">
 
-<!-- Payment Form -->
-<div class="card">
+<!-- 👇 ใส่รูปโปสเตอร์ตรงนี้ -->
+<img src="https://s2.imgbb.ws/file/storage-sv2/jw4vs.png" class="banner" alt="Fallen Angel TorrentDD Banner">
+
+<div class="form-card">
 <h2>Notify Transfer</h2>
 
 <form>
@@ -141,5 +136,6 @@ After Midnight, if unavailable, processed next day.
 </div>
 
 </div>
+
 </body>
 </html>
