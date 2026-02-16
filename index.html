@@ -353,8 +353,30 @@ payForm.addEventListener("submit", async e => {
   const username = f.username.value.trim();
 
 // เรียก backend หา id
-const res = await fetch(`get_userid.php?username=${username}`);
-const data = await res.json();
+let userId;
+
+try {
+
+  const res = await fetch(`get_userid.php?username=${username}`);
+
+  if (!res.ok) {
+    throw new Error("Server error");
+  }
+
+  const data = await res.json();
+
+  if (data.status !== "success") {
+    alert("ไม่พบ username");
+    return;
+  }
+
+  userId = data.id;
+
+} catch (err) {
+  alert("เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์");
+  console.log(err);
+  return;
+}
 
 if (data.status !== "success") {
   alert("ไม่พบ username");
