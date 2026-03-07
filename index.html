@@ -9,6 +9,37 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+  
+  #pokemon-world{
+position:fixed;
+inset:0;
+pointer-events:none;
+overflow:hidden;
+z-index:9999;
+}
+
+.pokemon{
+position:absolute;
+pointer-events:auto;
+transition:transform .15s linear;
+}
+
+.pokemon img{
+width:100%;
+height:100%;
+object-fit:contain;
+filter:drop-shadow(0 6px 6px rgba(0,0,0,.35));
+}
+
+.pokemon.fly img{
+filter:drop-shadow(0 10px 12px rgba(0,0,0,.25));
+}
+
+.pokemon:hover{
+transform:scale(1.2);
+cursor:pointer;
+}
+
 .logo-top {
   display:block;
   margin:0 auto 20px auto;
@@ -503,5 +534,130 @@ document.body.classList.toggle("dark", dark);
 applyLang();
 </script>
 
+<div id="pokemon-world"></div>
+<script>
+
+(function(){
+
+const world=document.getElementById("pokemon-world");
+if(!world) return;
+
+const MAX=20;
+
+function randomPokemon(){
+
+const id=Math.floor(Math.random()*150)+1;
+
+return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${id}.gif`;
+
+}
+
+let mouseX=0;
+let mouseY=0;
+
+document.addEventListener("mousemove",e=>{
+mouseX=e.clientX;
+mouseY=e.clientY;
+});
+
+function rand(min,max){
+return Math.random()*(max-min)+min;
+}
+
+function spawn(){
+
+if(world.children.length>=MAX) return;
+
+const div=document.createElement("div");
+div.className="pokemon";
+
+const img=document.createElement("img");
+img.src=randomPokemon();
+
+div.appendChild(img);
+
+const size=rand(30,60);
+div.style.width=size+"px";
+div.style.height=size+"px";
+
+let x=rand(0,window.innerWidth);
+let y=rand(0,window.innerHeight);
+
+div.style.left=x+"px";
+div.style.top=y+"px";
+
+if(Math.random()<0.01){
+vx=rand(-0.8,0.8);
+vy=rand(-0.8,0.8);
+}
+
+world.appendChild(div);
+
+let vx=rand(-2,2);
+let vy=rand(-2,2);
+let speed=rand(0.2,0.6);
+
+function runAway(){
+
+vx+=(Math.random()-0.5)*12;
+vy+=(Math.random()-0.5)*12;
+speed=1;
+
+}
+
+div.addEventListener("click",runAway);
+div.addEventListener("touchstart",runAway);
+
+function move(){
+
+// สุ่มเปลี่ยนทิศเป็นระยะ
+if(Math.random()<0.02){
+vx=rand(-2,2);
+vy=rand(-2,2);
+}
+
+x+=vx*speed;
+y+=vy*speed;
+
+// ชนขอบจอแล้วเด้งกลับ
+if(x<0){
+x=0;
+vx=Math.abs(vx);
+}
+
+if(x>window.innerWidth-60){
+x=window.innerWidth-60;
+vx=-Math.abs(vx);
+}
+
+if(y<0){
+y=0;
+vy=Math.abs(vy);
+}
+
+if(y>window.innerHeight-60){
+y=window.innerHeight-60;
+vy=-Math.abs(vy);
+}
+
+// หันหน้าตามทิศ
+div.style.transform=`scaleX(${vx<0?-1:1})`;
+
+div.style.left=x+"px";
+div.style.top=y+"px";
+
+requestAnimationFrame(move);
+
+}
+
+move();
+
+}
+
+setInterval(spawn,rand(2000,5000));
+
+})();
+
+</script>
 </body>
 </html>
