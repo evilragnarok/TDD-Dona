@@ -237,14 +237,14 @@
     <div style="text-align:center;margin-bottom:10px">
       <img src="https://s2.imgbb.ws/file/storage-sv2/jG4rJ.png" style="width:100%;max-width:400px;border-radius:15px"> <br>
       ˚₊‧꒰ა ♪💿♪ ໒꒱ ‧₊˚
-    <div>
-      <b>💳 Bank:</b> Krungthai Bank <br>
-      <b>🏦 Account:</b> 986-3-03446-0 <br>
-      <b>📱 PromptPay:</b> 0910541671 <br>
-      <b>💸 TrueWallet:</b> 0830439347 <br>
-      <b>📝 Name:</b> Akrapong Pengrod <br>
-      ˚₊‧꒰ა ♪💿♪ ໒꒱ ‧₊˚
-    </div>
+<div>
+  <b>💳 Bank:</b> Krungthai Bank <br>
+  <b>🏦 Account:</b> <span class="copyable" data-text="9863034460">986-3-03446-0 📋</span><br>
+  <b>📱 PromptPay:</b> <span class="copyable" data-text="0910541671">0910541671 📋</span><br>
+  <b>💸 TrueWallet:</b> <span class="copyable" data-text="0830439347">0830439347 📋</span><br>
+  <b>📝 Name:</b> Akrapong Pengrod <br>
+  ˚₊‧꒰ა ♪💿♪ ໒꒱ ‧₊˚
+</div>
   </div>
   <h2 data-th="💎 แจ้งโอน และ ดูราคาแพ็กเกจ" 
       data-en="💎 Notify Transfer and View Package Prices"></h2>
@@ -420,6 +420,43 @@ const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
 });
 
 // Function to get alert messages based on language
+const messages = {
+  th: {
+    tooltip: "คลิกเพื่อคัดลอก",
+    copied: "คัดลอกเรียบร้อย: "
+  },
+  en: {
+    tooltip: "Click to copy",
+    copied: "Copied: "
+  }
+};
+
+document.querySelectorAll('.copyable').forEach(el => {
+  el.style.cursor = 'pointer';
+  
+  // อัปเดต tooltip ตามภาษา
+  el.title = messages[lang].tooltip;
+
+  el.addEventListener('click', () => {
+    const text = el.dataset.text;
+    navigator.clipboard.writeText(text).then(() => {
+      alert(messages[lang].copied + text + " 📋");
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  });
+});
+
+// ถ้าเปลี่ยนภาษา ให้เรียกอัปเดต tooltip ใหม่
+function updateCopyTooltips() {
+  document.querySelectorAll('.copyable').forEach(el => {
+    el.title = messages[lang].tooltip;
+  });
+}
+
+// เรียกตอนเปลี่ยนภาษา
+// ตัวอย่าง: setLang('en'); updateCopyTooltips();
+
 function copyText(text) {
   navigator.clipboard.writeText(text).then(() => {
     alert("คัดลอกแล้ว: " + text);
