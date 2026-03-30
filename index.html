@@ -239,9 +239,15 @@
       ˚₊‧꒰ა ♪💿♪ ໒꒱ ‧₊˚
     <div>
       <b>💳 Bank:</b> Krungthai Bank <br>
-      <b>🏦 Account:</b> 986-3-03446-0 <br>
-      <b>📱 PromptPay:</b> 0910541671 <br>
-      <b>💸 TrueWallet:</b> 0830439347 <br>
+      <b>🏦 Account:</b> 986-3-03446-0 
+      <button onclick="copyText('9863034460')">Copy</button><br>
+    
+      <b>📱 PromptPay:</b> 0910541671 
+      <button onclick="copyText('0910541671')">Copy</button><br>
+    
+      <b>💸 TrueWallet:</b> 0830439347 
+      <button onclick="copyText('0830439347')">Copy</button><br>
+    
       <b>📝 Name:</b> Akrapong Pengrod <br>
       ˚₊‧꒰ა ♪💿♪ ໒꒱ ‧₊˚
     </div>
@@ -420,6 +426,12 @@ const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
 });
 
 // Function to get alert messages based on language
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    alert("คัดลอกแล้ว: " + text);
+  });
+}
+  
 function getMessage(key) {
   const messages = {
     th: {
