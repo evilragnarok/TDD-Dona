@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy VIP / Coin TorrentDD</title>
+  <link rel="icon" type="image/png" href="https://s2.imgbb.ws/file/storage-sv2/jG4wV.png">
+<link rel="apple-touch-icon" href="tdd-donation.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+.logo-top {
+  display:block;
+  margin:0 auto 20px auto;
+  max-width:260px;
+  width:100%;
+  filter: drop-shadow(0 0 15px rgba(46,204,113,.5));
+}
+
+    /* Styling for the page */
+    :root {
+      --bg: #e6f7f0;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --main: #2ecc71;
+      --dark: #27ae60;
+      --border: #d1d5db;
+    }
+
+    body.dark {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: #1f2937;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 1rem;
+      font-family: "Prompt", sans-serif;
+      background: linear-gradient(135deg, var(--bg), #ffffff);
+      color: var(--text);
+      transition: .3s;
+    }
+
+    .box {
+      max-width: 700px;
+      width: 100%;
+      margin: auto;
+      background: var(--card);
+      padding: 2rem;
+      border-radius: 26px;
+      box-shadow: 0 25px 45px rgba(0, 0, 0, .18);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, .65);
+      backdrop-filter: blur(8px);
+      border-radius: 999px;
+      padding: 4px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .15);
+      gap: 6px;
+    }
+
+    .lang-switch button {
+      border: none;
+      background: transparent;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: .75rem;
+      cursor: pointer;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lang-switch button.active {
+      background: linear-gradient(135deg, var(--main), var(--dark));
+      color: #fff;
+      box-shadow: 0 0 12px rgba(46, 204, 113, .6);
+    }
+
+    .dark-toggle {
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 6px 10px;
+      border-radius: 50%;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--dark);
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+    }
+
+    label {
+      display: block;
+      margin-top: 14px;
+      font-weight: 500;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      margin-top: 6px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 16px;
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--main), var(--dark));
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button:hover {
+      box-shadow: 0 0 18px rgba(46, 204, 113, .55);
+    }
+
+    .payment-box {
+      margin-top: 22px;
+      background: #f0fdf4;
+      padding: 16px;
+      border-left: 6px solid var(--main);
+      border-radius: 18px;
+      font-size: .9rem;
+    }
+
+    body.dark .payment-box { background: #022c22; }
+
+    #preview {
+      width: 100%;
+      margin-top: 14px;
+      border-radius: 18px;
+      display: none;
+      border: 1px dashed var(--border);
+    }
+
+    .contact-box {
+      margin-top: 14px;
+      text-align: center;
+      font-size: .85rem;
+    }
+
+    .contact-box a {
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    .contact-box div {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .box {
+        padding: 1.5rem;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      .lang-switch button {
+        font-size: .65rem;
+      }
+
+      button {
+        padding: 14px;
+      }
+
+      .payment-box {
+        font-size: .8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .box {
+        padding: 1rem;
+      }
+
+      h2 {
+        font-size: 1rem;
+      }
+
+      button {
+        padding: 12px;
+      }
+
+      .payment-box {
+        font-size: .7rem;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+<div class="box">
+  <div class="topbar">
+    <div class="lang-switch">
+      <button id="btnTH" onclick="setLang('th')">🇹🇭</button>
+      <button id="btnEN" onclick="setLang('en')">🇺🇸</button>
+    </div>
+    <div class="dark-toggle" onclick="toggleDark()">🌙</div>
+  </div>
+  <div class="payment-box">
+     <h2 data-th="💎 ซื้อ VIP / Coin TorrentDD" 
+         data-en="💎 Buy VIP / Coin TorrentDD"></h2>
+    <div style="text-align:center;margin-bottom:10px">
+      <img src="https://s2.imgbb.ws/file/storage-sv2/jG4rJ.png" style="width:100%;max-width:400px;border-radius:15px"> <br>
+      ˚₊‧꒰ა ♪💿♪ ໒꒱ ‧₊˚
+<div>
+  <b>💳 Bank:</b> Krungthai Bank <br>
+  <b data-th="🏦 Account:" data-en="🏦 Account:">🏦 Account:</b> 
+  <span class="copyable" data-text="9863034460" 
+        data-th="986-3-03446-0 📋(กดเพื่อก็อป)" 
+        data-en="986-3-03446-0 📋(Click to copy)">
+    986-3-03446-0 📋(กดเพื่อก็อป)
+  </span><br>
+
+  <b data-th="📱 PromptPay:" data-en="📱 PromptPay:">📱 PromptPay:</b> 
+  <span class="copyable" data-text="0910541671" 
+        data-th="0910541671 📋(กดเพื่อก็อป)" 
+        data-en="0910541671 📋(Click to copy)">
+    0910541671 📋(กดเพื่อก็อป)
+  </span><br>
+
+  <b data-th="💸 TrueWallet:" data-en="💸 TrueWallet:">💸 TrueWallet:</b> 
+  <span class="copyable" data-text="0830439347" 
+        data-th="0830439347 📋(กดเพื่อก็อป)" 
+        data-en="0830439347 📋(Click to copy)">
+    0830439347 📋(กดเพื่อก็อป)
+  </span><br>
+  <b>📝 Name:</b> Akrapong Pengrod <br>
+  ˚₊‧꒰ა ♪💿♪ ໒꒱ ‧₊˚
+</div>
+  </div>
+  <h2 data-th="💎 แจ้งโอน และ ดูราคาแพ็กเกจ" 
+      data-en="💎 Notify Transfer and View Package Prices"></h2>
+
+  <form id="payForm">
+    <label data-th="📦 เลือกแพ็กเกจ และ ดูยอดโอน" data-en="📦 Select package and view the transfer amount"></label>
+<select name="package" required>
+  <option disabled selected>-- กรุณาเลือกแพ็กเกจ / Select Package --</option>
+
+  <!-- VIP Packages -->
+  <optgroup label="🎉 VIP Packages">
+    <option data-th="VIP 1 เดือน - ยอดโอน 200 บาท" data-en="VIP 1 Month - Transfer Amount 200 THB">VIP 1 เดือน - 200 บาท</option>
+    <option data-th="VIP 3 เดือน - ยอดโอน 425 บาท" data-en="VIP 3 Months - Transfer Amount 425 THB">VIP 3 เดือน - 425 บาท</option>
+    <option data-th="VIP 6 เดือน - ยอดโอน 750 บาท" data-en="VIP 6 Months - Transfer Amount 750 THB">VIP 6 เดือน - 750 บาท</option>
+    <option data-th="VIP 1 ปี - ยอดโอน 1,250 บาท" data-en="VIP 1 Year - Transfer Amount 1,250 THB">VIP 1 ปี - 1,250 บาท</option>
+    <option data-th="VIP 2 ปี - ยอดโอน 2,050 บาท" data-en="VIP 2 Years - Transfer Amount 2,050 THB">VIP 2 ปี - 2,050 บาท</option>
+  </optgroup>
+
+  <!-- Coin Packages -->
+  <optgroup label="💰 Coin Packages">
+    <option data-th="Coin 1,200 - ยอดโอน 200 บาท" data-en="Coin 1,200 - Transfer Amount 200 THB">Coin 1,200 - 200 บาท</option>
+    <option data-th="Coin 3,000 - ยอดโอน 425 บาท" data-en="Coin 3,000 - Transfer Amount 425 THB">Coin 3,000 - 425 บาท</option>
+    <option data-th="Coin 5,000 - ยอดโอน 750 บาท" data-en="Coin 5,000 - Transfer Amount 750 THB">Coin 5,000 - 750 บาท</option>
+    <option data-th="Coin 9,000 - ยอดโอน 1,250 บาท" data-en="Coin 9,000 - Transfer Amount 1,250 THB">Coin 9,000 - 1,250 บาท</option>
+    <option data-th="Coin 15,000 - ยอดโอน 2,050 บาท" data-en="Coin 15,000 - Transfer Amount 2,050 THB">Coin 15,000 - 2,050 บาท</option>
+  </optgroup>
+
+  <!-- Donation -->
+  <optgroup label="🙏 Donation">
+    <option data-th="Donation (บริจาคค่าโหลดหนัง) จะไม่ได้อะไรเลย" data-en="Donation (Support site download cost) Will not get you anything.">Donation - จะไม่ได้อะไรเลย</option>
+  </optgroup>
+</select>
+
+    <label data-th="👤 User In TorrentDD" data-en="👤 TorrentDD Username"></label>
+    <input name="username" required minlength="6" maxlength="16" pattern="[A-Za-z0-9]{6,16}" data-ph-th="ภาษาอังกฤษหรือตัวเลขเท่านั้น (6–16 ตัว)" data-ph-en="English letters & numbers only (6–16 chars)" data-title-th="กรอกได้เฉพาะภาษาอังกฤษและตัวเลข ความยาว 6–16 ตัว" data-title-en="Use English letters and numbers only (6–16 characters)">
+
+    <label data-th="🖼 อัปโหลดสลิป (ถ้ามี)" data-en="🖼 Upload payment slip (optional)"></label>
+    <input type="file" id="slip" accept="image/*">
+    <img id="preview">
+
+    <label data-th="🔢 เลขบัญชีที่ใช้โอน 4 ตัวท้าย (ถ้าไม่มีสลิป)" 
+           data-en="🔢 Last 4 digits (if no slip)"></label>
+    <input name="last4" maxlength="4" pattern="[0-9]{4}">
+
+    <button id="sendBtn" data-th="✅ แจ้งชำระเงิน" data-en="✅ Submit Payment"></button>
+  </form>
+
+<div class="contact-box">
+
+<div 
+    data-en="<h3>📩 Contact Information</h3>"
+    data-th="<h3>📩 ช่องทางติดต่อ</h3>">
+</div>
+
+<div 
+    data-en='📩 Contact TorrentDD Website : <a href="https://www.torrentdd.net/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a>'
+    data-th='📩 ช่องทางติดต่อของเว็บไซร์ TorrentDD : <a href="https://www.torrentdd.net/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a>'>
+</div>
+
+<div 
+    data-en='📩 The LINE group is open for contact if you haven&#39;t received your code key yet. <br>
+    <img src="https://s2.imgbb.ws/file/storage-sv2/FKSuk.jpg" alt="Line Open Chat QR">'
+    data-th='📩 กลุ่มไลน์ เปิด ใช้เพื่อติดต่อถ้ายังไม่ได้ Code Key <br>
+    <img src="https://s2.imgbb.ws/file/storage-sv2/FKSuk.jpg" alt="Line Open Chat QR">'>
+</div>
+
+<div 
+    data-th="🕰️ เวลาทำการ: 8:00 น. - 00:00 น. (เวลาไทย)<br>
+    ⏰ หลังเวลา 00:01 น. - 7:59 น. หากอยู่ จะส่งให้ทันที<br>
+    ⏰ ถ้าไม่อยู่ จะส่งให้ในเวลาทำการ"
+    data-en="🕰️ Working Hours: 8:00 AM - 00:00 AM (Thailand Time)<br>
+    ⏰ After 00:01 AM - 7:59 AM, if you are available, we will send it to you.<br>
+    If not, we will process it during working hours.<br>
+    ⏰ We will send it to you. If not, we will process it during working hours.">
+</div>
+
+</div>
+<script>
+// Bot Telegram Configuration
+const BOT_TOKEN = "8265712317:AAET88mDq8GFJSN9zRys1wJ4AwPQ7hmtYbI";
+const CHAT_ID = "6678480860";
+
+// Language and Dark Mode
+let lang = localStorage.lang || "th";
+let dark = localStorage.dark === "1";
+let slipFile = null;
+
+function applyLang() {
+  document.querySelectorAll("[data-th]").forEach(el => {
+    el.innerHTML = el.dataset[lang];
+  });
+  document.querySelectorAll("option[data-th]").forEach(opt => {
+    opt.text = opt.dataset[lang];
+  });
+  document.querySelectorAll("[data-ph-th]").forEach(el => {
+    el.placeholder = lang === "th" ? el.dataset.phTh : el.dataset.phEn;
+  });
+  document.querySelectorAll("[data-title-th]").forEach(el => {
+    el.title = lang === "th" ? el.dataset.titleTh : el.dataset.titleEn;
+  });
+  btnTH.classList.toggle("active", lang === "th");
+  btnEN.classList.toggle("active", lang === "en");
+  localStorage.lang = lang;
+}
+
+function setLang(l) {
+  lang = l;
+  applyLang();
+}
+
+function toggleDark() {
+  dark = !dark;
+  document.body.classList.toggle("dark", dark);
+  localStorage.dark = dark ? "1" : "0";
+}
+
+slip.addEventListener("change", e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  slipFile = file;
+  const reader = new FileReader();
+  reader.onload = () => {
+    preview.src = reader.result;
+    preview.style.display = "block";
+  };
+  reader.readAsDataURL(file);
+});
+
+payForm.addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.target;
+  const username = f.username.value.trim();
+const profileLink = `https://www.torrentdd.net/userdetails.php?username=${username}`;
+const last4 = f.last4.value.trim();
+const package = f.package.options[f.package.selectedIndex].text;
+const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
+
+  // Ensure either a slip or last 4 digits are provided
+  if (!slipFile && !last4) {
+    alert(getMessage("pleaseUploadOrEnter"));
+    return;
+  }
+
+  let message = `
+╔═════════════════════╗ 
+💎 NEW VIP PAYMENT REQUEST 💎 
+╚═════════════════════╝  
+
+👤 *Username*  : ${username}
+🔗 *Profile*   : ${profileLink}
+📦 *Package*   : ${package}
+🕰️ *Time*      : ${time}
+`;
+
+  if (slipFile) {
+    message += `📎 *Payment Slip Attached*`;
+  } else {
+    message += `🔢 *Last 4 Digits* : ${last4}`;
+    message += "\n══════════════════════"; // Add line only if slip is uploaded
+  }
+
+  // Show the "submitted" alert immediately
+  alert(getMessage("submittedSuccess"));
+
+  try {
+  // Send the payment information to Telegram
+  await sendToTelegram(message, slipFile);
+
+  // 👉 เพิ่มบรรทัดนี้
+  window.location.href = "https://www.torrentdd.net/inbox.php";
+
+  // Reset the form and page after a short delay
+  setTimeout(() => {
+    payForm.reset();
+    preview.style.display = "none";
+    slipFile = null;
+    applyLang();
+    document.body.classList.toggle("dark", dark);
+  }, 1000);
+
+} catch (error) {
+  alert(getMessage("error"));
+}
+  
+});
+
+// Function to get alert messages based on language
+const messages = {
+  th: {
+    tooltip: "คลิกเพื่อคัดลอก",
+    copied: "คัดลอกเรียบร้อย: "
+  },
+  en: {
+    tooltip: "Click to copy",
+    copied: "Copied: "
+  }
+};
+
+document.querySelectorAll('.copyable').forEach(el => {
+  el.style.cursor = 'pointer';
+  
+  // อัปเดต tooltip ตามภาษา
+  el.title = messages[lang].tooltip;
+
+  el.addEventListener('click', () => {
+    const text = el.dataset.text;
+    navigator.clipboard.writeText(text).then(() => {
+      alert(messages[lang].copied + text + " 📋");
+    }).catch(err => {
+      console.error('Failed to copy: ', err);
+    });
+  });
+});
+
+// ถ้าเปลี่ยนภาษา ให้เรียกอัปเดต tooltip ใหม่
+function updateCopyTooltips() {
+  document.querySelectorAll('.copyable').forEach(el => {
+    el.title = messages[lang].tooltip;
+  });
+}
+
+// เรียกตอนเปลี่ยนภาษา
+// ตัวอย่าง: setLang('en'); updateCopyTooltips();
+
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    alert("คัดลอกแล้ว: " + text);
+  });
+}
+  
+function getMessage(key) {
+  const messages = {
+    th: {
+  pleaseUploadOrEnter: "กรุณาอัปโหลดสลิป หรือ กรอกเลข 4 ตัวท้าย",
+  submittedSuccess: "ข้อมูลของคุณได้ถูกส่งเรียบร้อยแล้ว !!!\n\nกรุณารอ 2-5 นาทีเพื่อรับ Key เพื่อนำไปเติมในช่อง VIP ของเว็บ\nระบบจะทำการส่งไปที่ช่อง Inbox ของเว็บเพื่อตรวจสอบ Key ที่ทีมงานส่งให้\n\nกด OK เพื่อไปที่หน้า Inbox",
+  error: "เกิดข้อผิดพลาดในการส่งข้อมูล"
+},
+en: {
+  pleaseUploadOrEnter: "Please upload the slip or enter the last 4 digits",
+  submittedSuccess: "Your information has been submitted successfully !!!\n\nPlease wait 2-5 minutes to receive your Key to use in the VIP section.\nThe system will send it to your Inbox so you can check the Key sent by the team.\n\nClick OK to go to the Inbox page",
+  error: "Error submitting data"
+}
+  };
+  return messages[lang][key];
+}
+
+async function sendToTelegram(message, slipFile) {
+  try {
+    // Send message to Telegram
+    const formDataMessage = new FormData();
+    formDataMessage.append('chat_id', CHAT_ID);
+    formDataMessage.append('text', message);
+
+    const responseMessage = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      body: formDataMessage,
+    });
+
+    const dataMessage = await responseMessage.json();
+    console.log('Telegram response (message):', dataMessage);
+    
+    if (!dataMessage.ok) {
+      throw new Error(`Error: ${dataMessage.description}`);
+    }
+
+    // If there is a slip, send the file
+    if (slipFile) {
+      const formDataFile = new FormData();
+      formDataFile.append('chat_id', CHAT_ID);
+      formDataFile.append('document', slipFile);
+
+      const responseFile = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
+        method: 'POST',
+        body: formDataFile,
+      });
+
+      const dataFile = await responseFile.json();
+      console.log('Telegram response (file):', dataFile);
+
+      if (!dataFile.ok) {
+        throw new Error(`Error: ${dataFile.description}`);
+      }
+
+      // Add the line separator after sending the slip
+      const separatorMessage = '\n==============================\n';
+      
+      // Send the separator message
+      const formDataSeparator = new FormData();
+      formDataSeparator.append('chat_id', CHAT_ID);
+      formDataSeparator.append('text', separatorMessage);
+
+      const responseSeparator = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        body: formDataSeparator,
+      });
+
+      const dataSeparator = await responseSeparator.json();
+      console.log('Telegram response (separator):', dataSeparator);
+
+      if (!dataSeparator.ok) {
+        throw new Error(`Error: ${dataSeparator.description}`);
+      }
+    }
+  } catch (error) {
+    console.error('Error sending to Telegram:', error);  // Log the error
+    throw error;
+  }
+}
+
+document.body.classList.toggle("dark", dark);
+applyLang();
+</script>
+
+</body>
+</html>
