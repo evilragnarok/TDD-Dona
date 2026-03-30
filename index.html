@@ -390,20 +390,6 @@ slip.addEventListener("change", e => {
   reader.readAsDataURL(file);
 });
 
-function getAlertWaitKey() {
-  const alerts = {
-    th: `กรุณารอ 2-5 นาทีเพื่อรับ Key เพื่อนำไปเติมในช่อง VIP ของเว็บ
-ระบบจะทำการส่งไปที่ช่อง Inbox ของเว็บเพื่อตรวจสอบ Key ที่ทีมงานส่งให้
-
-กด OK เพื่อไปที่หน้า Inbox`,
-    en: `Please wait 2-5 minutes to receive your Key to use in the VIP section.
-The system will send it to your Inbox so you can check the Key sent by the team.
-
-Click OK to go to the Inbox page`
-  };
-  return alerts[lang];
-}
-
 payForm.addEventListener("submit", async e => {
   e.preventDefault();
   const f = e.target;
@@ -439,16 +425,13 @@ const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
 
   // Show the "submitted" alert immediately
   alert(getMessage("submittedSuccess"));
-  
-  // แจ้งให้รอ Key (TH/EN)
-  alert(getAlertWaitKey());
-  
-  // Redirect ไปหน้า Inbox
-  window.location.href = "https://www.torrentdd.net/inbox.php";
 
   try {
   // Send the payment information to Telegram
   await sendToTelegram(message, slipFile);
+
+  // 👉 เพิ่มบรรทัดนี้
+  window.location.href = "https://www.torrentdd.net/inbox.php";
 
   // Reset the form and page after a short delay
   setTimeout(() => {
@@ -512,15 +495,15 @@ function copyText(text) {
 function getMessage(key) {
   const messages = {
     th: {
-      pleaseUploadOrEnter: "กรุณาอัปโหลดสลิป หรือ กรอกเลข 4 ตัวท้าย",
-      submittedSuccess: "ข้อมูลของคุณได้ถูกส่งเรียบร้อยแล้ว  !!!",
-      error: "เกิดข้อผิดพลาดในการส่งข้อมูล"
-    },
-    en: {
-      pleaseUploadOrEnter: "Please upload the slip or enter the last 4 digits",
-      submittedSuccess: "Your information has been submitted successfully. !!!",
-      error: "Error submitting data"
-    }
+  pleaseUploadOrEnter: "กรุณาอัปโหลดสลิป หรือ กรอกเลข 4 ตัวท้าย",
+  submittedSuccess: "ข้อมูลของคุณได้ถูกส่งเรียบร้อยแล้ว !!!\n\nกรุณารอ 2-5 นาทีเพื่อรับ Key เพื่อนำไปเติมในช่อง VIP ของเว็บ\nระบบจะทำการส่งไปที่ช่อง Inbox ของเว็บเพื่อตรวจสอบ Key ที่ทีมงานส่งให้\n\nกด OK เพื่อไปที่หน้า Inbox",
+  error: "เกิดข้อผิดพลาดในการส่งข้อมูล"
+},
+en: {
+  pleaseUploadOrEnter: "Please upload the slip or enter the last 4 digits",
+  submittedSuccess: "Your information has been submitted successfully !!!\n\nPlease wait 2-5 minutes to receive your Key to use in the VIP section.\nThe system will send it to your Inbox so you can check the Key sent by the team.\n\nClick OK to go to the Inbox page",
+  error: "Error submitting data"
+}
   };
   return messages[lang][key];
 }
