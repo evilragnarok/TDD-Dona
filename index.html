@@ -265,23 +265,30 @@
   </div>
   <h2 data-th="💎 แจ้งโอน และ ดูราคาแพ็กเกจ" 
       data-en="💎 Notify Transfer and View Package Prices"></h2>
+    
+<select name="package" required>
+  <option disabled selected data-th="-- กรุณาเลือกแพ็กเกจ --" data-en="-- Select Package --"></option>
 
-  <form id="payForm">
-    <label data-th="📦 เลือกแพ็กเกจ และ ดูยอดโอน" data-en="📦 Select package and view the transfer amount"></label>
-    <select name="package" required>
-      <option disabled selected data-th="-- กรุณาเลือกแพ็กเกจ --" data-en="-- Select Package --"></option>
-      <option data-th="VIP 1 เดือน - ยอดโอน 200 บาท" data-en="VIP 1 Month - Transfer Amount 200 THB"></option>
-      <option data-th="VIP 3 เดือน - ยอดโอน 425 บาท" data-en="VIP 3 Months - Transfer Amount 425 THB"></option>
-      <option data-th="VIP 6 เดือน - ยอดโอน 750 บาท" data-en="VIP 6 Months - Transfer Amount 750 THB"></option>
-      <option data-th="VIP 1 ปี - ยอดโอน 1,250 บาท" data-en="VIP 1 Year - Transfer Amount 1,250 THB"></option>
-      <option data-th="VIP 2 ปี - ยอดโอน 2,050 บาท" data-en="VIP 2 Years - Transfer Amount 2,050 THB"></option>
-      <option data-th="Coin 1,200 - ยอดโอน 200 บาท" data-en="Coin 1,200 - Transfer Amount 200 THB"></option>
-      <option data-th="Coin 3,000 - ยอดโอน 425 บาท" data-en="Coin 3,000 - Transfer Amount 425 THB"></option>
-      <option data-th="Coin 5,000 - ยอดโอน 750 บาท" data-en="Coin 5,000 - Transfer Amount 750 THB"></option>
-      <option data-th="Coin 9,000 - ยอดโอน 1,250 บาท" data-en="Coin 9,000 - Transfer Amount 1,250 THB"></option>
-      <option data-th="Coin 15,000 - ยอดโอน 2,050 บาท" data-en="Coin 15,000 - Transfer Amount 2,050 THB"></option>
-      <option data-th="Donation (บริจาคค่าโหลดหนัง) จะไม่ได้อะไรเลย" data-en="Donation (Support site download cost) Will not get you anything."></option>
-    </select>
+  <optgroup label="💎 VIP Packages" data-th="💎 แพ็กเกจ VIP" data-en="💎 VIP Packages">
+    <option data-th="VIP 1 เดือน - ยอดโอน 200 บาท" data-en="VIP 1 Month - Transfer Amount 200 THB"></option>
+    <option data-th="VIP 3 เดือน - ยอดโอน 425 บาท" data-en="VIP 3 Months - Transfer Amount 425 THB"></option>
+    <option data-th="VIP 6 เดือน - ยอดโอน 750 บาท" data-en="VIP 6 Months - Transfer Amount 750 THB"></option>
+    <option data-th="VIP 1 ปี - ยอดโอน 1,250 บาท" data-en="VIP 1 Year - Transfer Amount 1,250 THB"></option>
+    <option data-th="VIP 2 ปี - ยอดโอน 2,050 บาท" data-en="VIP 2 Years - Transfer Amount 2,050 THB"></option>
+  </optgroup>
+
+  <optgroup label="🪙 Coin Packages" data-th="🪙 แพ็กเกจ Coin" data-en="🪙 Coin Packages">
+    <option data-th="Coin 1,200 - ยอดโอน 200 บาท" data-en="Coin 1,200 - Transfer Amount 200 THB"></option>
+    <option data-th="Coin 3,000 - ยอดโอน 425 บาท" data-en="Coin 3,000 - Transfer Amount 425 THB"></option>
+    <option data-th="Coin 5,000 - ยอดโอน 750 บาท" data-en="Coin 5,000 - Transfer Amount 750 THB"></option>
+    <option data-th="Coin 9,000 - ยอดโอน 1,250 บาท" data-en="Coin 9,000 - Transfer Amount 1,250 THB"></option>
+    <option data-th="Coin 15,000 - ยอดโอน 2,050 บาท" data-en="Coin 15,000 - Transfer Amount 2,050 THB"></option>
+  </optgroup>
+
+  <optgroup label="🎁 Donation" data-th="🎁 บริจาค" data-en="🎁 Donation">
+    <option data-th="Donation (บริจาคค่าโหลดหนัง) จะไม่ได้อะไรเลย" data-en="Donation (Support site download cost) Will not get you anything."></option>
+  </optgroup>
+</select>
 
     <label data-th="👤 User In TorrentDD" data-en="👤 TorrentDD Username"></label>
     <input name="username" required minlength="6" maxlength="16" pattern="[A-Za-z0-9]{6,16}" data-ph-th="ภาษาอังกฤษหรือตัวเลขเท่านั้น (6–16 ตัว)" data-ph-en="English letters & numbers only (6–16 chars)" data-title-th="กรอกได้เฉพาะภาษาอังกฤษและตัวเลข ความยาว 6–16 ตัว" data-title-en="Use English letters and numbers only (6–16 characters)">
