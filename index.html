@@ -234,7 +234,6 @@ color:var(--dark);
 }
 
 .price-card.popular {border-color:#2ecc71;}
-
 .price-card.popular::before {
 content:"HOT";
 position:absolute;
@@ -248,6 +247,15 @@ border-radius:20px;
 }
 
 .price-card.donate {border-color:#f59e0b;}
+button:disabled {
+background:#9ca3af;
+cursor:not-allowed;
+box-shadow:none;
+opacity:.7;
+}
+button:disabled:hover {
+box-shadow:none;
+}
 @media(max-width:768px){
 
 .box {padding:1.5rem;}
@@ -577,6 +585,7 @@ data-ph-en="Enter last 4 digits"
 
 <button
 id="sendBtn"
+disabled
 data-th="✅ แจ้งชำระเงิน"
 data-en="✅ Submit Payment">
 </button>
@@ -660,17 +669,16 @@ function toggleDark() {
   }}
 
 function selectPackage(card, value) {
-
-  // ล้างตัวที่เลือกก่อนหน้า
+  // ล้างตัวเก่า
   document.querySelectorAll(".price-card")
     .forEach(c => c.classList.remove("active"));
-
-  // ทำให้ตัวที่กดเป็นสีเขียว
+  // เพิ่ม Active
   card.classList.add("active");
-
-  // เก็บค่า package
+  // เก็บ Package
   document.getElementById("package").value = value;
-}   
+  // เปิดปุ่มส่ง
+  document.getElementById("sendBtn").disabled = false;
+}
    
 slip.addEventListener("change", e => {
   const file = e.target.files[0];
@@ -691,6 +699,9 @@ payForm.addEventListener("submit", async e => {
 const profileLink = `https://www.torrentdd.net/userdetails.php?username=${username}`;
 const last4 = f.last4.value.trim();
 const package = f.package.value;
+if (!package) {alert(getMessage("selectPackage"));
+  return;
+}
 const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
 
   // Ensure either a slip or last 4 digits are provided
@@ -732,6 +743,12 @@ const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
     payForm.reset();
     preview.style.display = "none";
     slipFile = null;
+    document.getElementById("sendBtn").disabled = true;
+    document.querySelectorAll(".price-card")
+     .forEach(card=>{
+    card.classList.remove("active");
+});
+    document.getElementById("package").value="";
     applyLang();
     document.body.classList.toggle("dark", dark);
   }, 1000);
@@ -790,11 +807,13 @@ function getMessage(key) {
   const messages = {
     th: {
   pleaseUploadOrEnter: "กรุณาอัปโหลดสลิป หรือ กรอกเลข 4 ตัวท้าย",
+  selectPackage: "กรุณาเลือก Package ก่อน",
   submittedSuccess: "ข้อมูลของคุณได้ถูกส่งเรียบร้อยแล้ว !!!\n\nกรุณารอ 2-5 นาทีเพื่อรับ Key เพื่อนำไปเติมในช่อง VIP ของเว็บ\nระบบจะทำการส่งไปที่ช่อง Inbox ของเว็บเพื่อตรวจสอบ Key ที่ทีมงานส่งให้\n\nกด OK เพื่อไปที่หน้า Inbox",
   error: "เกิดข้อผิดพลาดในการส่งข้อมูล"
 },
 en: {
   pleaseUploadOrEnter: "Please upload the slip or enter the last 4 digits",
+  selectPackage: "Please select a Package first",
   submittedSuccess: "Your information has been submitted successfully !!!\n\nPlease wait 2-5 minutes to receive your Key to use in the VIP section.\nThe system will send it to your Inbox so you can check the Key sent by the team.\n\nClick OK to go to the Inbox page",
   error: "Error submitting data"
 }
