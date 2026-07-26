@@ -942,33 +942,20 @@ onclick="selectPackage(this,'Donation Support')">
 Support
 </span>
 
-
 </div>
-
-
 </div>
-
-
-
-
-
+   
 <input
 type="hidden"
 name="package"
 id="package"
+value=""
 required>
-
-
-
-
-
-
 
 <label
 data-th="👤 User In TorrentDD"
 data-en="👤 TorrentDD Username">
 </label>
-
 
 <input
 
@@ -1128,6 +1115,19 @@ function toggleDark() {
   localStorage.dark = dark ? "1" : "0";
 }
 
+function selectPackage(card, value) {
+
+  // ล้างตัวที่เลือกก่อนหน้า
+  document.querySelectorAll(".price-card")
+    .forEach(c => c.classList.remove("active"));
+
+  // ทำให้ตัวที่กดเป็นสีเขียว
+  card.classList.add("active");
+
+  // เก็บค่า package
+  document.getElementById("package").value = value;
+}   
+   
 slip.addEventListener("change", e => {
   const file = e.target.files[0];
   if (!file) return;
@@ -1146,7 +1146,7 @@ payForm.addEventListener("submit", async e => {
   const username = f.username.value.trim();
 const profileLink = `https://www.torrentdd.net/userdetails.php?username=${username}`;
 const last4 = f.last4.value.trim();
-const package = f.package.options[f.package.selectedIndex].text;
+const package = f.package.value;
 const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
 
   // Ensure either a slip or last 4 digits are provided
@@ -1323,6 +1323,20 @@ async function sendToTelegram(message, slipFile) {
 
 document.body.classList.toggle("dark", dark);
 applyLang();
+
+// ล้าง package หลังเปิดหน้าใหม่
+window.addEventListener("load", () => {
+
+  document.getElementById("payForm").reset();
+
+  document.getElementById("package").value = "";
+
+  document.querySelectorAll(".price-card")
+    .forEach(card => {
+      card.classList.remove("active");
+    });
+
+});
 </script>
 
 </body>
