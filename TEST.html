@@ -1,443 +1,1063 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buy VIP / Coin TorrentDD</title>
-  <link rel="icon" type="image/png" href="https://s2.imgbb.ws/file/storage-sv2/jG4wV.png">
-<link rel="apple-touch-icon" href="tdd-donation.png">
 
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-.logo-top {
-  display:block;
-  margin:0 auto 20px auto;
-  max-width:260px;
-  width:100%;
-  filter: drop-shadow(0 0 15px rgba(46,204,113,.5));
-}
+<meta charset="UTF-8">
 
-    /* Styling for the page */
-    :root {
-      --bg: #e6f7f0;
-      --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --main: #2ecc71;
-      --dark: #27ae60;
-      --border: #d1d5db;
-    }
-
-    body.dark {
-      --bg: #0f172a;
-      --card: #111827;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --border: #1f2937;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      padding: 1rem;
-      font-family: "Prompt", sans-serif;
-      background: linear-gradient(135deg, var(--bg), #ffffff);
-      color: var(--text);
-      transition: .3s;
-    }
-
-    .box {
-      max-width: 700px;
-      width: 100%;
-      margin: auto;
-      background: var(--card);
-      padding: 2rem;
-      border-radius: 26px;
-      box-shadow: 0 25px 45px rgba(0, 0, 0, .18);
-    }
-
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .lang-switch {
-      display: flex;
-      align-items: center;
-      background: rgba(255, 255, 255, .65);
-      backdrop-filter: blur(8px);
-      border-radius: 999px;
-      padding: 4px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, .15);
-      gap: 6px;
-    }
-
-    .lang-switch button {
-      border: none;
-      background: transparent;
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: .75rem;
-      cursor: pointer;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .lang-switch button.active {
-      background: linear-gradient(135deg, var(--main), var(--dark));
-      color: #fff;
-      box-shadow: 0 0 12px rgba(46, 204, 113, .6);
-    }
-
-    .dark-toggle {
-      cursor: pointer;
-      font-size: 1.1rem;
-      padding: 6px 10px;
-      border-radius: 50%;
-    }
-
-    h2 {
-      text-align: center;
-      color: var(--dark);
-    }
-
-    .subtitle {
-      text-align: center;
-      color: var(--muted);
-    }
-
-    label {
-      display: block;
-      margin-top: 14px;
-      font-weight: 500;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 14px;
-      margin-top: 6px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-    }
-
-    button {
-      width: 100%;
-      margin-top: 20px;
-      padding: 16px;
-      border: none;
-      border-radius: 18px;
-      background: linear-gradient(135deg, var(--main), var(--dark));
-      color: #fff;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    button:hover {
-      box-shadow: 0 0 18px rgba(46, 204, 113, .55);
-    }
-
-    .payment-box {
-      margin-top: 22px;
-      background: #f0fdf4;
-      padding: 16px;
-      border-left: 6px solid var(--main);
-      border-radius: 18px;
-      font-size: .9rem;
-    }
-
-    body.dark .payment-box { background: #022c22; }
-
-    #preview {
-      width: 100%;
-      margin-top: 14px;
-      border-radius: 18px;
-      display: none;
-      border: 1px dashed var(--border);
-    }
-
-    .contact-box {
-      margin-top: 14px;
-      text-align: center;
-      font-size: .85rem;
-    }
-
-    .contact-box a {
-      color: var(--dark);
-      font-weight: 500;
-    }
-
-    .contact-box div {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-top: 12px;
-      text-align: center;
-    }
-
-    @media (max-width: 768px) {
-      .box {
-        padding: 1.5rem;
-      }
-
-      h2 {
-        font-size: 1.25rem;
-      }
-
-      .lang-switch button {
-        font-size: .65rem;
-      }
-
-      button {
-        padding: 14px;
-      }
-
-      .payment-box {
-        font-size: .8rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .box {
-        padding: 1rem;
-      }
-
-      h2 {
-        font-size: 1rem;
-      }
-
-      button {
-        padding: 12px;
-      }
-
-      .payment-box {
-        font-size: .7rem;
-      }
-    }
-
-.package-title{
-  margin-top:25px;
-  margin-bottom:10px;
-  font-weight:600;
-  color:var(--dark);
-}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-.pricing-grid.small{
+<title>
+Buy VIP / Coin TorrentDD
+</title>
 
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
-  gap:10px;
+
+<link rel="icon" type="image/png"
+href="https://s2.imgbb.ws/file/storage-sv2/jG4wV.png">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+
+
+<style>
+
+
+/* =====================
+   ORIGINAL THEME
+===================== */
+
+
+:root {
+
+--bg:#e6f7f0;
+
+--card:#ffffff;
+
+--text:#1f2937;
+
+--muted:#6b7280;
+
+--main:#2ecc71;
+
+--dark:#27ae60;
+
+--border:#d1d5db;
 
 }
 
-.price-card.small{
 
-  padding:14px 8px;
-  border-radius:16px;
-  text-align:center;
-  border:1px solid var(--border);
-  cursor:pointer;
-  background:var(--card);
 
-  transition:.2s;
+body.dark {
 
-}
+--bg:#0f172a;
 
-.price-card.small b{
+--card:#111827;
 
-  display:block;
-  font-size:14px;
+--text:#e5e7eb;
+
+--muted:#9ca3af;
+
+--border:#1f2937;
 
 }
 
-.price-card.small span{
 
-  display:block;
-  margin-top:6px;
-  font-size:13px;
-  color:var(--dark);
-  font-weight:600;
 
-}
 
-.price-card.small:hover{
+* {
 
- transform:translateY(-3px);
+box-sizing:border-box;
 
 }
 
-.price-card.active{
 
- border:2px solid #2ecc71;
 
- background:#ecfdf5;
+
+body {
+
+margin:0;
+
+padding:1rem;
+
+font-family:"Prompt",sans-serif;
+
+background:
+linear-gradient(135deg,var(--bg),#ffffff);
+
+color:var(--text);
+
+transition:.3s;
+
+}
+
+
+
+
+.box {
+
+max-width:700px;
+
+width:100%;
+
+margin:auto;
+
+background:var(--card);
+
+padding:2rem;
+
+border-radius:26px;
+
+box-shadow:
+0 25px 45px rgba(0,0,0,.18);
 
 }
 
-body.dark .price-card.active{
 
- background:#064e3b;
+
+
+.topbar {
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+
+
+
+.lang-switch {
+
+display:flex;
+
+align-items:center;
+
+background:
+rgba(255,255,255,.65);
+
+backdrop-filter:blur(8px);
+
+border-radius:999px;
+
+padding:4px;
+
+gap:6px;
+
+box-shadow:
+0 6px 20px rgba(0,0,0,.15);
 
 }
 
-.popular{
 
- box-shadow:0 0 12px rgba(46,204,113,.4);
+
+
+.lang-switch button {
+
+
+width:auto;
+
+margin:0;
+
+border:none;
+
+background:transparent;
+
+padding:6px 14px;
+
+border-radius:999px;
+
+font-size:.75rem;
+
+cursor:pointer;
+
+color:var(--muted);
 
 }
 
-.donate{
 
- border-color:#f59e0b;
+
+
+.lang-switch button.active {
+
+
+background:
+linear-gradient(135deg,var(--main),var(--dark));
+
+
+color:white;
+
+
+box-shadow:
+0 0 12px rgba(46,204,113,.6);
+
 
 }
-    
-  </style>
-</head>
+
+
+
+
+
+.dark-toggle {
+
+cursor:pointer;
+
+font-size:1.1rem;
+
+padding:6px 10px;
+
+border-radius:50%;
+
+}
+
+
+
+
+h2 {
+
+text-align:center;
+
+color:var(--dark);
+
+}
+
+
+
+
+
+label {
+
+display:block;
+
+margin-top:14px;
+
+font-weight:500;
+
+}
+
+
+
+
+input {
+
+width:100%;
+
+padding:14px;
+
+margin-top:6px;
+
+border-radius:16px;
+
+border:1px solid var(--border);
+
+background:var(--card);
+
+color:var(--text);
+
+}
+
+
+
+
+button {
+
+
+width:100%;
+
+margin-top:20px;
+
+padding:16px;
+
+border:none;
+
+border-radius:18px;
+
+background:
+linear-gradient(135deg,var(--main),var(--dark));
+
+color:#fff;
+
+font-weight:600;
+
+cursor:pointer;
+
+
+}
+
+
+
+
+button:hover {
+
+
+box-shadow:
+0 0 18px rgba(46,204,113,.55);
+
+
+}
+
+
+
+
+.payment-box {
+
+
+margin-top:22px;
+
+background:#f0fdf4;
+
+padding:16px;
+
+border-left:
+6px solid var(--main);
+
+border-radius:18px;
+
+font-size:.9rem;
+
+
+}
+
+
+
+body.dark .payment-box {
+
+
+background:#022c22;
+
+
+}
+
+
+
+
+#preview {
+
+
+width:100%;
+
+margin-top:14px;
+
+border-radius:18px;
+
+display:none;
+
+border:
+1px dashed var(--border);
+
+
+}
+
+
+
+
+.contact-box {
+
+
+margin-top:14px;
+
+text-align:center;
+
+font-size:.85rem;
+
+
+}
+
+
+
+.contact-box a {
+
+color:var(--dark);
+
+font-weight:500;
+}
+
+.contact-box div {
+
+
+font-size:.9rem;
+
+color:var(--muted);
+
+margin-top:12px;
+
+text-align:center;
+
+}
+
+/* =====================
+   NEW PRICING CARD
+===================== */
+
+.package-title {
+
+margin-top:18px;
+
+margin-bottom:10px;
+
+font-weight:600;
+
+color:var(--dark);
+}
+
+.pricing-grid {
+
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(110px,1fr));
+
+gap:10px;
+}
+
+.price-card {
+
+background:var(--card);
+
+border:
+1px solid var(--border);
+
+border-radius:16px;
+
+padding:12px 6px;
+
+text-align:center;
+
+cursor:pointer;
+
+transition:.2s;
+
+position:relative;
+}
+
+.price-card:hover {
+
+transform:translateY(-3px);
+
+box-shadow:
+0 8px 18px rgba(0,0,0,.08);
+}
+
+.price-card.active {
+
+border:
+2px solid var(--main);
+
+box-shadow:
+0 0 15px rgba(46,204,113,.5);
+}
+
+.price-card b {
+
+display:block;
+
+font-size:13px;
+}
+
+.price-card span {
+
+display:block;
+
+margin-top:5px;
+
+font-size:13px;
+
+font-weight:600;
+
+color:var(--dark);
+}
+
+.price-card.popular {
+
+border-color:#2ecc71;
+}
+
+.price-card.popular::before {
+
+content:"HOT";
+
+position:absolute;
+
+top:-9px;
+
+right:10px;
+
+font-size:10px;
+
+background:#2ecc71;
+
+color:white;
+
+padding:2px 8px;
+
+border-radius:20px;
+}
+
+.price-card.donate {
+
+border-color:#f59e0b;
+}
+
+@media(max-width:768px){
+
+.box {
+
+padding:1.5rem;
+
+}
+
+h2 {
+
+font-size:1.25rem;
+
+}
+
+button {
+
+padding:14px;
+
+}}
+
+@media(max-width:480px){
+
+.box {
+
+padding:1rem;
+
+}
+h2 {
+
+font-size:1rem;
+
+}
+.price-card b {
+
+font-size:12px;
+
+}
+.price-card span {
+
+font-size:12px;
+
+}}
+
+</style>
 
 <body>
+
 <div class="box">
-  <div class="topbar">
-    <div class="lang-switch">
-      <button id="btnTH" onclick="setLang('th')">🇹🇭</button>
-      <button id="btnEN" onclick="setLang('en')">🇺🇸</button>
-    </div>
-    <div class="dark-toggle" onclick="toggleDark()">🌙</div>
-  </div>
-  <div class="payment-box">
-     <h2 data-th="💎 ซื้อ VIP / Coin TorrentDD" 
-         data-en="💎 Buy VIP / Coin TorrentDD"></h2>
-    <div style="text-align:center;margin-bottom:10px">
-      <img src="https://s2.imgbb.ws/file/storage-sv2/jG4rJ.png" style="width:100%;max-width:400px;border-radius:15px"> <br>
-      ˚₊‧꒰ა ♪💿♪ ໒꒱ ‧₊˚
-<div>
-  <b>💳 Bank:</b> Krungthai Bank <br>
-  <b data-th="🏦 Account:" data-en="🏦 Account:">🏦 Account:</b> 
-  <span class="copyable" data-text="9863034460" 
-        data-th="986-3-03446-0 📋(กดเพื่อก็อป)" 
-        data-en="986-3-03446-0 📋(Click to copy)">
-    986-3-03446-0 📋(กดเพื่อก็อป)
-  </span><br>
 
-  <b data-th="📱 PromptPay:" data-en="📱 PromptPay:">📱 PromptPay:</b> 
-  <span class="copyable" data-text="0910541671" 
-        data-th="0910541671 📋(กดเพื่อก็อป)" 
-        data-en="0910541671 📋(Click to copy)">
-    0910541671 📋(กดเพื่อก็อป)
-  </span><br>
 
-  <b data-th="💸 TrueWallet:" data-en="💸 TrueWallet:">💸 TrueWallet:</b> 
-  <span class="copyable" data-text="0830439347" 
-        data-th="0830439347 📋(กดเพื่อก็อป)" 
-        data-en="0830439347 📋(Click to copy)">
-    0830439347 📋(กดเพื่อก็อป)
-  </span><br>
-  <b>📝 Name:</b> Akrapong Pengrod <br>
-  ˚₊‧꒰ა ♪💿♪ ໒꒱ ‧₊˚ <br>
-  <t data-th="" data-en="For international users 🌍<br>
-  Remitly can also be used to transfer <br>
-  Funds to a Krung Thai Bank account 🔑<br>"></t> 
-</div>
-  </div>
-  <h2 data-th="💎 แจ้งโอน และ ดูราคาแพ็กเกจ" 
-      data-en="💎 Notify Transfer and View Package Prices"></h2>
+<div class="topbar">
 
-<div class="package-title">🎉 VIP Packages</div>
+<div class="lang-switch">
 
-<div class="pricing-grid small">
+<button id="btnTH" onclick="setLang('th')">
+🇹🇭
+</button>
 
-  <div class="price-card small" onclick="selectPackage(this,'VIP 1 Month - 200 THB')">
-    <b>VIP 1M</b>
-    <span>200฿</span>
-  </div>
 
-  <div class="price-card small popular" onclick="selectPackage(this,'VIP 3 Months - 425 THB')">
-    <b>VIP 3M</b>
-    <span>425฿</span>
-  </div>
+<button id="btnEN" onclick="setLang('en')">
+🇺🇸
+</button>
 
-  <div class="price-card small" onclick="selectPackage(this,'VIP 6 Months - 750 THB')">
-    <b>VIP 6M</b>
-    <span>750฿</span>
-  </div>
-
-  <div class="price-card small" onclick="selectPackage(this,'VIP 1 Year - 1250 THB')">
-    <b>VIP 1Y</b>
-    <span>1250฿</span>
-  </div>
-
-  <div class="price-card small" onclick="selectPackage(this,'VIP 2 Years - 2050 THB')">
-    <b>VIP 2Y</b>
-    <span>2050฿</span>
-  </div>
 
 </div>
 
-<div class="package-title">💰 Coin Packages</div>
 
-<div class="pricing-grid small">
+<div class="dark-toggle" onclick="toggleDark()">
+🌙
+</div>
 
-  <div class="price-card small" onclick="selectPackage(this,'Coin 1200 - 200 THB')">
-    <b>1200 Coin</b>
-    <span>200฿</span>
-  </div>
-
-  <div class="price-card small" onclick="selectPackage(this,'Coin 3000 - 425 THB')">
-    <b>3000 Coin</b>
-    <span>425฿</span>
-  </div>
-
-  <div class="price-card small" onclick="selectPackage(this,'Coin 5000 - 750 THB')">
-    <b>5000 Coin</b>
-    <span>750฿</span>
-  </div>
-
-  <div class="price-card small" onclick="selectPackage(this,'Coin 9000 - 1250 THB')">
-    <b>9000 Coin</b>
-    <span>1250฿</span>
-  </div>
-
-  <div class="price-card small" onclick="selectPackage(this,'Coin 15000 - 2050 THB')">
-    <b>15000 Coin</b>
-    <span>2050฿</span>
-  </div>
 
 </div>
 
-<div class="package-title">🙏 Donation</div>
 
-<div class="pricing-grid small">
 
-  <div class="price-card small donate"
-  onclick="selectPackage(this,'Donation Support')">
 
-    <b>❤️ Donation</b>
-    <span>Support</span>
 
-  </div>
+<div class="payment-box">
+
+
+<h2
+data-th="💎 ซื้อ VIP / Coin TorrentDD"
+data-en="💎 Buy VIP / Coin TorrentDD">
+</h2>
+
+
+
+<div style="text-align:center;margin-bottom:10px">
+
+
+<img
+src="https://s2.imgbb.ws/file/storage-sv2/jG4rJ.png"
+style="
+width:100%;
+max-width:400px;
+border-radius:15px;
+">
+
+
+<br>
+
+˚₊‧꒰ა ♪💿♪ ໒꒱ ‧₊˚
+
+
+<br><br>
+
+
+
+<b>💳 Bank:</b>
+Krungthai Bank
+
+
+<br>
+
+
+
+<b data-th="🏦 Account:"
+data-en="🏦 Account:">
+🏦 Account:
+</b>
+
+
+<span class="copyable"
+data-text="9863034460">
+
+986-3-03446-0 📋
+
+</span>
+
+
+<br>
+
+
+
+<b data-th="📱 PromptPay:"
+data-en="📱 PromptPay:">
+📱 PromptPay:
+</b>
+
+
+<span class="copyable"
+data-text="0910541671">
+
+0910541671 📋
+
+</span>
+
+
+
+<br>
+
+
+
+<b data-th="💸 TrueWallet:"
+data-en="💸 TrueWallet:">
+💸 TrueWallet:
+</b>
+
+
+<span class="copyable"
+data-text="0830439347">
+
+0830439347 📋
+
+</span>
+
+
+
+<br>
+
+
+<b>📝 Name:</b>
+Akrapong Pengrod
+
+
+<br>
+
+
+˚₊‧꒰ა ♪💿♪ ໒꒱ ‧₊˚
+
 
 </div>
 
-<input type="hidden" name="package" id="package" required>
 
-    <label data-th="👤 User In TorrentDD" data-en="👤 TorrentDD Username"></label>
-    <input name="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9]{3,20}" data-ph-th="ภาษาอังกฤษหรือตัวเลขเท่านั้น (3–20 ตัว)" data-ph-en="English letters & numbers only (3–20 chars)" data-title-th="กรอกได้เฉพาะภาษาอังกฤษและตัวเลข ความยาว 3–20 ตัว" data-title-en="Use English letters and numbers only (3–20 characters)">
 
-    <label data-th="🖼 อัปโหลดสลิป (ถ้ามี)" data-en="🖼 Upload payment slip (optional)"></label>
-    <input type="file" id="slip" accept="image/*">
-    <img id="preview">
+</div>
 
-    <label data-th="🔢 เลขบัญชีที่ใช้โอน 4 ตัวท้าย (ถ้าไม่มีสลิป)" 
-           data-en="🔢 Last 4 digits (if no slip)"></label>
-    <input name="last4" maxlength="4" pattern="[0-9]{4}">
 
-    <button id="sendBtn" data-th="✅ แจ้งชำระเงิน" data-en="✅ Submit Payment"></button>
-  </form>
+
+
+
+
+
+<h2
+data-th="💎 แจ้งโอน และ ดูราคาแพ็กเกจ"
+data-en="💎 Notify Transfer and View Package Prices">
+</h2>
+
+
+
+
+
+
+<form id="payForm">
+
+
+<label
+data-th="📦 เลือกแพ็กเกจ"
+data-en="📦 Select Package">
+</label>
+
+
+
+
+
+<!-- ================= VIP ================= -->
+
+<div class="package-title">
+
+🎉 VIP Packages
+
+</div>
+
+
+
+
+<div class="pricing-grid">
+
+
+
+<div class="price-card"
+onclick="selectPackage(this,'VIP 1 เดือน - 200 บาท')">
+
+<b>
+VIP 1 เดือน
+</b>
+
+<span>
+200 บาท
+</span>
+
+</div>
+
+
+
+
+<div class="price-card popular"
+onclick="selectPackage(this,'VIP 3 เดือน - 425 บาท')">
+
+<b>
+VIP 3 เดือน
+</b>
+
+<span>
+425 บาท
+</span>
+
+</div>
+
+
+
+
+
+<div class="price-card"
+onclick="selectPackage(this,'VIP 6 เดือน - 750 บาท')">
+
+<b>
+VIP 6 เดือน
+</b>
+
+<span>
+750 บาท
+</span>
+
+</div>
+
+
+
+
+<div class="price-card"
+onclick="selectPackage(this,'VIP 1 ปี - 1,250 บาท')">
+
+<b>
+VIP 1 ปี
+</b>
+
+<span>
+1,250 บาท
+</span>
+
+</div>
+
+
+
+
+<div class="price-card"
+onclick="selectPackage(this,'VIP 2 ปี - 2,050 บาท')">
+
+<b>
+VIP 2 ปี
+</b>
+
+<span>
+2,050 บาท
+</span>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- ================= COIN ================= -->
+
+<div class="package-title">
+
+💰 Coin Packages
+
+</div>
+
+
+
+<div class="pricing-grid">
+
+
+
+<div class="price-card"
+onclick="selectPackage(this,'Coin 1,200 - 200 บาท')">
+
+<b>
+Coin 1,200
+</b>
+
+<span>
+200 บาท
+</span>
+
+</div>
+
+
+
+<div class="price-card"
+onclick="selectPackage(this,'Coin 3,000 - 425 บาท')">
+
+<b>
+Coin 3,000
+</b>
+
+<span>
+425 บาท
+</span>
+
+</div>
+
+
+
+<div class="price-card"
+onclick="selectPackage(this,'Coin 5,000 - 750 บาท')">
+
+<b>
+Coin 5,000
+</b>
+
+<span>
+750 บาท
+</span>
+
+</div>
+
+
+
+<div class="price-card"
+onclick="selectPackage(this,'Coin 9,000 - 1,250 บาท')">
+
+<b>
+Coin 9,000
+</b>
+
+<span>
+1,250 บาท
+</span>
+
+</div>
+
+
+
+<div class="price-card"
+onclick="selectPackage(this,'Coin 15,000 - 2,050 บาท')">
+
+<b>
+Coin 15,000
+</b>
+
+<span>
+2,050 บาท
+</span>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- ================= DONATION ================= -->
+
+
+<div class="package-title">
+
+🙏 Donation
+
+</div>
+
+
+
+<div class="pricing-grid">
+
+
+<div class="price-card donate"
+onclick="selectPackage(this,'Donation Support')">
+
+<b>
+❤️ Donation
+</b>
+
+
+<span>
+Support
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<input
+type="hidden"
+name="package"
+id="package"
+required>
+
+
+
+
+
+
+
+<label
+data-th="👤 User In TorrentDD"
+data-en="👤 TorrentDD Username">
+</label>
+
+
+<input
+
+name="username"
+
+required
+
+minlength="3"
+
+maxlength="20"
+
+pattern="[A-Za-z0-9]{3,20}"
+
+data-ph-th="ภาษาอังกฤษหรือตัวเลขเท่านั้น (3–20 ตัว)"
+
+data-ph-en="English letters & numbers only (3–20 chars)"
+
+>
+
+
+
+
+
+
+
+<label
+data-th="🖼 อัปโหลดสลิป (ถ้ามี)"
+data-en="🖼 Upload payment slip (optional)">
+</label>
+
+
+
+<input
+type="file"
+id="slip"
+accept="image/*">
+
+
+
+<img id="preview">
+
+
+
+
+
+
+
+<label
+
+data-th="🔢 เลขบัญชีที่ใช้โอน 4 ตัวท้าย (ถ้าไม่มีสลิป)"
+
+data-en="🔢 Last 4 digits (if no slip)">
+</label>
+
+
+
+<input
+
+name="last4"
+
+maxlength="4"
+
+pattern="[0-9]{4}"
+
+data-ph-th="กรอก 4 ตัวท้ายบัญชี"
+
+data-ph-en="Enter last 4 digits"
+
+>
+
+
+
+
+
+
+
+<button
+id="sendBtn"
+
+data-th="✅ แจ้งชำระเงิน"
+
+data-en="✅ Submit Payment">
+
+</button>
+
+
+
+</form>
+
 
 <div class="contact-box">
 
@@ -520,31 +1140,13 @@ slip.addEventListener("change", e => {
   reader.readAsDataURL(file);
 });
 
-let selectedPackage = "";
-
-function selectPackage(card, name){
-
-  document.querySelectorAll(".price-card")
-  .forEach(x=>x.classList.remove("active"));
-
-  card.classList.add("active");
-
-  selectedPackage = name;
-
-  document.getElementById("package").value = name;
-}
-  
 payForm.addEventListener("submit", async e => {
   e.preventDefault();
   const f = e.target;
   const username = f.username.value.trim();
-  if(!selectedPackage){
-  alert("กรุณาเลือก Package");
-  return;
-}
 const profileLink = `https://www.torrentdd.net/userdetails.php?username=${username}`;
 const last4 = f.last4.value.trim();
-const package = selectedPackage;
+const package = f.package.options[f.package.selectedIndex].text;
 const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
 
   // Ensure either a slip or last 4 digits are provided
@@ -724,4 +1326,5 @@ applyLang();
 </script>
 
 </body>
-</html>
+
+</head>
