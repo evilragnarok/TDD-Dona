@@ -6,8 +6,6 @@
 <title>💎 Buy VIP / Coin TorrentDD</title>
 <link rel="icon" type="image/png" href="https://s2.imgbb.ws/file/storage-sv2/jG4wV.png">
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
 /* ============================================
    ROOT VARIABLES
@@ -331,7 +329,7 @@ body.dark .price-card.active {
 }
 
 .price-card .icon {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   display: block;
   margin-bottom: 4px;
 }
@@ -476,6 +474,68 @@ body.dark .price-card .price {
 }
 
 /* ============================================
+   QR CODE SECTION
+============================================ */
+.qr-section {
+  margin-top: 18px;
+  padding: 16px;
+  background: rgba(46,204,113,0.04);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+}
+
+body.dark .qr-section {
+  background: rgba(5,150,105,0.06);
+}
+
+.qr-section .qr-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+}
+
+.qr-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.qr-item {
+  text-align: center;
+  flex: 1;
+  min-width: 120px;
+  max-width: 180px;
+}
+
+.qr-item img {
+  width: 100%;
+  max-width: 150px;
+  border-radius: 12px;
+  background: white;
+  padding: 6px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+body.dark .qr-item img {
+  background: #1e293b;
+  border-color: rgba(255,255,255,0.05);
+}
+
+.qr-item .qr-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ============================================
    CONTACT BOX
 ============================================ */
 .contact-box {
@@ -512,10 +572,12 @@ body.dark .price-card .price {
 }
 
 .contact-box .qr-img {
-  max-width: 180px;
+  max-width: 160px;
   border-radius: 14px;
   margin-top: 8px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  background: white;
+  padding: 4px;
 }
 
 .contact-box .hours {
@@ -542,6 +604,8 @@ body.dark .contact-box .hours {
   .payment-box h2 { font-size: 1.3rem; }
   .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
   .payment-details .row { font-size: 0.82rem; }
+  .qr-grid { gap: 12px; }
+  .qr-item { min-width: 100px; max-width: 140px; }
 }
 
 @media (max-width: 480px) {
@@ -553,13 +617,15 @@ body.dark .contact-box .hours {
   .price-card { padding: 10px 4px; }
   .price-card .name { font-size: 0.65rem; }
   .price-card .price { font-size: 0.7rem; }
-  .price-card .icon { font-size: 1.2rem; }
+  .price-card .icon { font-size: 1.4rem; }
   .topbar { gap: 6px; }
   .lang-switch button { padding: 4px 10px; font-size: 0.65rem; }
   .payment-details .row { font-size: 0.72rem; flex-direction: column; align-items: flex-start; gap: 2px; }
   .section-title { font-size: 1rem; }
   .submit-btn { font-size: 0.95rem; padding: 14px; }
   .form-group input { padding: 12px 14px; font-size: 0.9rem; }
+  .qr-item { min-width: 80px; max-width: 110px; }
+  .qr-item img { max-width: 100px; }
 }
 </style>
 </head>
@@ -593,21 +659,36 @@ body.dark .contact-box .hours {
       </div>
       <div class="row">
         <span class="label" data-th="💰 บัญชี" data-en="💰 Account">💰 บัญชี</span>
-        <span class="value"><span class="copyable" data-text="9863034460">986-3-03446-0</span> <span style="opacity:0.5;font-size:0.7rem;">📋</span></span>
+        <span class="value"><span class="copyable" data-text="9863034460">986-3-03446-0</span> <span style="opacity:0.5;font-size:0.7rem;"></span></span>
       </div>
       <div class="row">
         <span class="label">📱 PromptPay</span>
-        <span class="value"><span class="copyable" data-text="0910541671">091-054-1671</span> <span style="opacity:0.5;font-size:0.7rem;">📋</span></span>
+        <span class="value"><span class="copyable" data-text="0910541671">091-054-1671</span> <span style="opacity:0.5;font-size:0.7rem;"></span></span>
       </div>
       <div class="row">
         <span class="label">💸 TrueWallet</span>
-        <span class="value"><span class="copyable" data-text="0830439347">083-043-9347</span> <span style="opacity:0.5;font-size:0.7rem;">📋</span></span>
+        <span class="value"><span class="copyable" data-text="0830439347">083-043-9347</span> <span style="opacity:0.5;font-size:0.7rem;"></span></span>
       </div>
       <div class="row">
         <span class="label">📝 ชื่อบัญชี</span>
         <span class="value">Akrapong Pengrod</span>
       </div>
       <div class="divider-icon">✦ ✦ ✦</div>
+    </div>
+  </div>
+
+  <!-- ===== QR CODE SCAN PAY ===== -->
+  <div class="qr-section">
+    <div class="qr-title">📱 <span data-th="สแกนจ่ายผ่าน QR Code" data-en="Scan QR Code to Pay"></span></div>
+    <div class="qr-grid">
+      <div class="qr-item">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0910541671" alt="PromptPay QR">
+        <span class="qr-label">📱 PromptPay</span>
+      </div>
+      <div class="qr-item">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=0830439347" alt="TrueWallet QR">
+        <span class="qr-label">💸 TrueWallet</span>
+      </div>
     </div>
   </div>
 
@@ -622,7 +703,7 @@ body.dark .contact-box .hours {
     <!-- VIP -->
     <div style="margin-top:6px;">
       <div style="font-weight:600;font-size:0.95rem;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
-        🎉 <span data-th="แพ็กเกจ VIP" data-en="VIP Packages"></span>
+        👑 <span data-th="แพ็กเกจ VIP" data-en="VIP Packages"></span>
       </div>
       <div class="pricing-grid">
         <div class="price-card" onclick="selectPackage(this,'VIP 1 เดือน - 200 บาท')">
@@ -658,32 +739,32 @@ body.dark .contact-box .hours {
     <!-- COIN -->
     <div style="margin-top:20px;">
       <div style="font-weight:600;font-size:0.95rem;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
-        🪙 <span data-th="แพ็กเกจ Coin" data-en="Coin Packages"></span>
+        💰 <span data-th="แพ็กเกจ Coin" data-en="Coin Packages"></span>
       </div>
       <div class="pricing-grid">
         <div class="price-card" onclick="selectPackage(this,'Coin 1,200 - 200 บาท')">
-          <span class="icon">🪙</span>
+          <span class="icon">💰</span>
           <span class="name" data-th="Coin 1,200" data-en="Coin 1,200"></span>
           <span class="price">200 ฿</span>
         </div>
         <div class="price-card" onclick="selectPackage(this,'Coin 3,000 - 425 บาท')">
-          <span class="icon">🪙</span>
+          <span class="icon">💰</span>
           <span class="name" data-th="Coin 3,000" data-en="Coin 3,000"></span>
           <span class="price">425 ฿</span>
         </div>
         <div class="price-card" onclick="selectPackage(this,'Coin 5,000 - 750 บาท')">
-          <span class="icon">🪙</span>
+          <span class="icon">💰</span>
           <span class="name" data-th="Coin 5,000" data-en="Coin 5,000"></span>
           <span class="price">750 ฿</span>
         </div>
         <div class="price-card" onclick="selectPackage(this,'Coin 9,000 - 1,250 บาท')">
-          <span class="icon">🪙</span>
+          <span class="icon">💰</span>
           <span class="name" data-th="Coin 9,000" data-en="Coin 9,000"></span>
           <span class="price">1,250 ฿</span>
           <span class="tag">⭐ แนะนำ</span>
         </div>
         <div class="price-card" onclick="selectPackage(this,'Coin 15,000 - 2,050 บาท')">
-          <span class="icon">🪙</span>
+          <span class="icon">💰</span>
           <span class="name" data-th="Coin 15,000" data-en="Coin 15,000"></span>
           <span class="price">2,050 ฿</span>
         </div>
@@ -693,7 +774,7 @@ body.dark .contact-box .hours {
     <!-- DONATION -->
     <div style="margin-top:20px;">
       <div style="font-weight:600;font-size:0.9rem;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
-        🙏 <span data-th="สนับสนุน (ไม่ได้รับ VIP/Coin)" data-en="Donation (no VIP/Coin)"></span>
+        ❤️ <span data-th="สนับสนุน (ไม่ได้รับ VIP/Coin)" data-en="Donation (no VIP/Coin)"></span>
       </div>
       <div class="pricing-grid" style="grid-template-columns:1fr;">
         <div class="price-card donate" onclick="selectPackage(this,'Donation Support')">
