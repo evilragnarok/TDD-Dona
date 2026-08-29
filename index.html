@@ -698,8 +698,9 @@ payForm.addEventListener("submit", async e => {
   const username = f.username.value.trim();
 const profileLink = `https://www.torrentdd.net/userdetails.php?username=${username}`;
 const last4 = f.last4.value.trim();
-const package = f.package.value;
-if (!package) {alert(getMessage("selectPackage"));
+const selectedPackage = f.package.value;  // ✅ เปลี่ยนชื่อตัวแปร
+if (!selectedPackage) {
+  alert(getMessage("selectPackage"));
   return;
 }
 const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
@@ -717,7 +718,7 @@ const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
 
 👤 *Username*  : ${username}
 🔗 *Profile*   : ${profileLink}
-📦 *Package*   : ${package}
+📦 *Package*   : ${selectedPackage}  // ✅ เปลี่ยนเป็น selectedPackage
 🕰️ *Time*      : ${time}
 `;
 
@@ -823,10 +824,11 @@ en: {
 
 async function sendToTelegram(message, slipFile) {
   try {
-    // Send message to Telegram
+    // ส่งข้อความโดยใช้ FormData (แบบที่ใช้ได้)
     const formDataMessage = new FormData();
     formDataMessage.append('chat_id', CHAT_ID);
     formDataMessage.append('text', message);
+    formDataMessage.append('parse_mode', 'Markdown');
 
     const responseMessage = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: 'POST',
@@ -840,7 +842,7 @@ async function sendToTelegram(message, slipFile) {
       throw new Error(`Error: ${dataMessage.description}`);
     }
 
-    // If there is a slip, send the file
+    // ถ้ามีสลิป ส่งไฟล์
     if (slipFile) {
       const formDataFile = new FormData();
       formDataFile.append('chat_id', CHAT_ID);
@@ -858,10 +860,9 @@ async function sendToTelegram(message, slipFile) {
         throw new Error(`Error: ${dataFile.description}`);
       }
 
-      // Add the line separator after sending the slip
+      // ส่งเส้นคั่นหลังสลิป
       const separatorMessage = '\n==============================\n';
       
-      // Send the separator message
       const formDataSeparator = new FormData();
       formDataSeparator.append('chat_id', CHAT_ID);
       formDataSeparator.append('text', separatorMessage);
@@ -879,7 +880,7 @@ async function sendToTelegram(message, slipFile) {
       }
     }
   } catch (error) {
-    console.error('Error sending to Telegram:', error);  // Log the error
+    console.error('Error sending to Telegram:', error);
     throw error;
   }
 }
@@ -907,4 +908,4 @@ window.addEventListener("load", () => {
 });
 </script>
 </body>
-</head>
+</html>
