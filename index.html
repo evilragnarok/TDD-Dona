@@ -3,718 +3,918 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>
-Buy VIP / Coin TorrentDD
-</title>
-<link rel="icon" type="image/png"
-href="https://s2.imgbb.ws/file/storage-sv2/jG4wV.png">
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>💎 Buy VIP / Coin TorrentDD</title>
+<link rel="icon" type="image/png" href="https://s2.imgbb.ws/file/storage-sv2/jG4wV.png">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <style>
-/* =====================
-   ORIGINAL THEME
-===================== */
+/* ============================================
+   ROOT VARIABLES
+============================================ */
 :root {
---bg:#e6f7f0;
---card:#ffffff;
---text:#1f2937;
---muted:#6b7280;
---main:#2ecc71;
---dark:#27ae60;
---border:#d1d5db;
+  --bg: #e6f7f0;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --main: #2ecc71;
+  --dark: #27ae60;
+  --border: #d1d5db;
+  --shadow: 0 20px 60px rgba(0,0,0,0.12);
+  --radius: 28px;
+  --gradient: linear-gradient(135deg, #2ecc71 0%, #1abc9c 100%);
+  --glow: 0 0 30px rgba(46,204,113,0.3);
 }
 
 body.dark {
---bg:#0f172a;
---card:#111827;
---text:#e5e7eb;
---muted:#9ca3af;
---border:#1f2937;
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --border: #334155;
+  --shadow: 0 20px 60px rgba(0,0,0,0.4);
+  --gradient: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+  --glow: 0 0 30px rgba(5,150,105,0.3);
 }
 
-* {box-sizing:border-box;}
+/* ============================================
+   BASE
+============================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-margin:0;
-padding:1rem;
-font-family:"Prompt",sans-serif;
-background:
-linear-gradient(135deg,var(--bg),#ffffff);
-color:var(--text);
-transition:.3s;
+  min-height: 100vh;
+  padding: 1.5rem;
+  font-family: 'Prompt', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* ============================================
+   MAIN CONTAINER
+============================================ */
 .box {
-max-width:700px;
-width:100%;
-margin:auto;
-background:var(--card);
-padding:2rem;
-border-radius:26px;
-box-shadow:
-0 25px 45px rgba(0,0,0,.18);
+  max-width: 780px;
+  width: 100%;
+  margin: auto;
+  background: var(--card);
+  padding: 2.2rem 2.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
 }
 
+.box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(46,204,113,0.03) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ============================================
+   TOPBAR
+============================================ */
 .topbar {
-display:flex;
-justify-content:space-between;
-align-items:center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar-left .logo-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .lang-switch {
-display:flex;
-align-items:center;
-background:
-rgba(255,255,255,.65);
-backdrop-filter:blur(8px);
-border-radius:999px;
-padding:4px;
-gap:6px;
-box-shadow:
-0 6px 20px rgba(0,0,0,.15);
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+body.dark .lang-switch {
+  background: rgba(30,41,59,0.6);
+  border-color: rgba(255,255,255,0.05);
 }
 
 .lang-switch button {
-width:auto;
-margin:0;
-border:none;
-background:transparent;
-padding:6px 14px;
-border-radius:999px;
-font-size:.75rem;
-cursor:pointer;
-color:var(--muted);
+  width: auto;
+  margin: 0;
+  border: none;
+  background: transparent;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--muted);
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .lang-switch button.active {
-background:
-linear-gradient(135deg,var(--main),var(--dark));
-color:white;
-box-shadow:
-0 0 12px rgba(46,204,113,.6);
+  background: var(--gradient);
+  color: white;
+  box-shadow: var(--glow);
+}
+
+.lang-switch button:hover:not(.active) {
+  color: var(--text);
 }
 
 .dark-toggle {
-width:55px;
-height:30px;
-background:#e5e7eb;
-border-radius:30px;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-font-size:16px;
-transition:.3s;
-box-shadow:0 4px 12px rgba(0,0,0,.15);}
-body.dark .dark-toggle {background:#1f2937;}
-.dark-toggle:hover {transform:scale(1.08);}
-
-h2 {
-text-align:center;
-color:var(--dark);
+  width: 48px;
+  height: 28px;
+  background: #e5e7eb;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: none;
 }
 
-label {
-display:block;
-margin-top:14px;
-font-weight:500;
+body.dark .dark-toggle {
+  background: #334155;
 }
 
-input {
-width:100%;
-padding:14px;
-margin-top:6px;
-border-radius:16px;
-border:1px solid var(--border);
-background:var(--card);
-color:var(--text);
+.dark-toggle:hover {
+  transform: scale(1.08) rotate(8deg);
 }
 
-button {
-width:100%;
-margin-top:20px;
-padding:16px;
-border:none;
-border-radius:18px;
-background:
-linear-gradient(135deg,var(--main),var(--dark));
-color:#fff;
-font-weight:600;
-cursor:pointer;
-}
-
-button:hover {box-shadow:0 0 18px rgba(46,204,113,.55);}
-
+/* ============================================
+   PAYMENT BOX (HEADER)
+============================================ */
 .payment-box {
-margin-top:22px;
-background:#f0fdf4;
-padding:16px;
-border-left:
-6px solid var(--main);
-border-radius:18px;
-font-size:.9rem;
+  background: var(--gradient);
+  padding: 1.8rem 2rem;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  color: white;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-body.dark .payment-box {background:#022c22;}
-   
-#preview {
-width:100%;
-margin-top:14px;
-border-radius:18px;
-display:none;
-border:
-1px dashed var(--border);
+.payment-box::after {
+  content: '✦';
+  position: absolute;
+  top: -20px;
+  right: -10px;
+  font-size: 120px;
+  opacity: 0.08;
+  transform: rotate(15deg);
 }
 
-.contact-box {
-margin-top:14px;
-text-align:center;
-font-size:.85rem;
+.payment-box h2 {
+  color: white !important;
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.1);
 }
 
-.contact-box a {
-color:var(--dark);
-font-weight:500;
+.payment-box .subtitle {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  font-weight: 300;
 }
 
-.contact-box div {
-font-size:.9rem;
-color:var(--muted);
-margin-top:12px;
-text-align:center;
+/* ============================================
+   PAYMENT DETAILS
+============================================ */
+.payment-details {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
+  margin-top: 14px;
+  border: 1px solid rgba(255,255,255,0.15);
 }
 
-/* =====================
-   NEW PRICING CARD
-===================== */
-.package-title {
-margin-top:18px;
-margin-bottom:10px;
-font-weight:600;
-color:var(--dark);
+.payment-details .row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.92rem;
 }
 
+.payment-details .row .label {
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+.payment-details .row .value {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.payment-details .copyable {
+  cursor: pointer;
+  background: rgba(255,255,255,0.15);
+  padding: 3px 12px;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.payment-details .copyable:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.02);
+}
+
+.divider-icon {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 4px 0;
+  opacity: 0.6;
+  letter-spacing: 6px;
+}
+
+/* ============================================
+   SECTION TITLES
+============================================ */
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 24px 0 14px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title .badge {
+  font-size: 0.65rem;
+  background: var(--gradient);
+  color: white;
+  padding: 2px 12px;
+  border-radius: 30px;
+  font-weight: 500;
+}
+
+/* ============================================
+   PRICING GRID
+============================================ */
 .pricing-grid {
-display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(110px,1fr));
-gap:10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
 }
 
 .price-card {
-background:var(--card);
-border:1px solid var(--border);
-border-radius:16px;
-padding:12px 6px;
-text-align:center;
-cursor:pointer;
-transition:.2s;
-position:relative;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 14px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
 .price-card:hover {
-transform:translateY(-3px);
-box-shadow:0 8px 18px rgba(0,0,0,.08);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  border-color: var(--main);
 }
 
 .price-card.active {
-border:2px solid var(--main);
-box-shadow:0 0 15px rgba(46,204,113,.5);
+  border-color: var(--main);
+  box-shadow: 0 0 0 3px rgba(46,204,113,0.2), 0 12px 30px rgba(46,204,113,0.12);
+  background: rgba(46,204,113,0.04);
 }
 
-.price-card b {
-display:block;
-font-size:13px;
+body.dark .price-card.active {
+  background: rgba(5,150,105,0.08);
 }
 
-.price-card span {
-display:block;
-margin-top:5px;
-font-size:13px;
-font-weight:600;
-color:var(--dark);
+.price-card .icon {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: 4px;
 }
 
-.price-card.popular {border-color:#2ecc71;}
-.price-card.popular::before {
-content:"HOT";
-position:absolute;
-top:-9px;
-right:10px;
-font-size:10px;
-background:#2ecc71;
-color:white;
-padding:2px 8px;
-border-radius:20px;
+.price-card .name {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text);
 }
 
-.price-card.donate {border-color:#f59e0b;}
-button:disabled {
-background:#9ca3af;
-cursor:not-allowed;
-box-shadow:none;
-opacity:.7;
+.price-card .price {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--dark);
 }
-button:disabled:hover {
-box-shadow:none;
+
+body.dark .price-card .price {
+  color: #34d399;
 }
-@media(max-width:768px){
 
-.box {padding:1.5rem;}
+.price-card .tag {
+  position: absolute;
+  top: -8px;
+  right: -4px;
+  font-size: 0.55rem;
+  background: var(--gradient);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
 
-h2 {font-size:1.25rem;}
+.price-card.donate {
+  border-color: #f59e0b;
+  background: rgba(245,158,11,0.04);
+}
 
-button {padding:14px;}}
-@media(max-width:480px){
-.box {padding:1rem;}
-h2 {font-size:1rem;}
-.price-card b {font-size:12px;}
-.price-card span {font-size:12px;}}
+.price-card.donate .price {
+  color: #f59e0b;
+}
 
+.price-card.donate.active {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245,158,11,0.2), 0 12px 30px rgba(245,158,11,0.1);
+}
+
+/* ============================================
+   FORM
+============================================ */
+.form-group {
+  margin-top: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  font-size: 0.92rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.form-group label .required {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 2px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--main);
+  box-shadow: 0 0 0 4px rgba(46,204,113,0.1);
+}
+
+.form-group input::placeholder {
+  color: var(--muted);
+  opacity: 0.6;
+}
+
+#preview {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  margin-top: 10px;
+  border-radius: 14px;
+  display: none;
+  border: 2px dashed var(--border);
+  padding: 8px;
+  background: var(--card);
+}
+
+/* ============================================
+   SUBMIT BUTTON
+============================================ */
+.submit-btn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 18px;
+  border: none;
+  border-radius: 16px;
+  background: var(--gradient);
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: var(--glow);
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(46,204,113,0.35);
+}
+
+.submit-btn:disabled {
+  background: var(--muted);
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.5;
+}
+
+.submit-btn:disabled:hover {
+  transform: none;
+}
+
+/* ============================================
+   CONTACT BOX
+============================================ */
+.contact-box {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 2px solid var(--border);
+  text-align: center;
+}
+
+.contact-box .contact-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.contact-box .contact-item {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 10px;
+  line-height: 1.7;
+}
+
+.contact-box a {
+  color: var(--dark);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-box a:hover {
+  color: var(--main);
+  text-decoration: underline;
+}
+
+.contact-box .qr-img {
+  max-width: 180px;
+  border-radius: 14px;
+  margin-top: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.contact-box .hours {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: rgba(46,204,113,0.05);
+  border-radius: 14px;
+  border-left: 4px solid var(--main);
+}
+
+body.dark .contact-box .hours {
+  background: rgba(5,150,105,0.08);
+}
+
+/* ============================================
+   RESPONSIVE
+============================================ */
+@media (max-width: 768px) {
+  body { padding: 1rem; }
+  .box { padding: 1.5rem; }
+  .payment-box { padding: 1.4rem 1.2rem; }
+  .payment-box h2 { font-size: 1.3rem; }
+  .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
+  .payment-details .row { font-size: 0.82rem; }
+}
+
+@media (max-width: 480px) {
+  body { padding: 0.6rem; }
+  .box { padding: 1rem; border-radius: 20px; }
+  .payment-box { padding: 1rem; border-radius: 14px; }
+  .payment-box h2 { font-size: 1.1rem; }
+  .pricing-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .price-card { padding: 10px 4px; }
+  .price-card .name { font-size: 0.65rem; }
+  .price-card .price { font-size: 0.7rem; }
+  .price-card .icon { font-size: 1.2rem; }
+  .topbar { gap: 6px; }
+  .lang-switch button { padding: 4px 10px; font-size: 0.65rem; }
+  .payment-details .row { font-size: 0.72rem; flex-direction: column; align-items: flex-start; gap: 2px; }
+  .section-title { font-size: 1rem; }
+  .submit-btn { font-size: 0.95rem; padding: 14px; }
+  .form-group input { padding: 12px 14px; font-size: 0.9rem; }
+}
 </style>
-
+</head>
 <body>
+
 <div class="box">
-<div class="topbar">
-<div class="lang-switch">
-<button id="btnTH" onclick="setLang('th')">
-🇹🇭
-</button>
-<button id="btnEN" onclick="setLang('en')">
-🇺🇸
-</button>
-</div>
 
-<div id="darkToggle" class="dark-toggle" onclick="toggleDark()">
-🌙
-</div>
-</div>
+  <!-- ===== TOPBAR ===== -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <span class="logo-text">🎬 TorrentDD</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <div class="lang-switch">
+        <button id="btnTH" onclick="setLang('th')">🇹🇭 ไทย</button>
+        <button id="btnEN" onclick="setLang('en')">🇺🇸 EN</button>
+      </div>
+      <div id="darkToggle" class="dark-toggle" onclick="toggleDark()">🌙</div>
+    </div>
+  </div>
 
-<div class="payment-box">
+  <!-- ===== PAYMENT HEADER ===== -->
+  <div class="payment-box">
+    <h2 data-th="💎 ซื้อ VIP / Coin TorrentDD" data-en="💎 Buy VIP / Coin TorrentDD"></h2>
+    <div class="subtitle">⚡ เติมเต็มประสบการณ์การรับชมของคุณ</div>
 
-<h2
-data-th="💎 ซื้อ VIP / Coin TorrentDD"
-data-en="💎 Buy VIP / Coin TorrentDD">
-</h2>
+    <div class="payment-details">
+      <div class="row">
+        <span class="label">🏦 ธนาคาร</span>
+        <span class="value">Krungthai Bank</span>
+      </div>
+      <div class="row">
+        <span class="label" data-th="💰 บัญชี" data-en="💰 Account">💰 บัญชี</span>
+        <span class="value"><span class="copyable" data-text="9863034460">986-3-03446-0</span> <span style="opacity:0.5;font-size:0.7rem;">📋</span></span>
+      </div>
+      <div class="row">
+        <span class="label">📱 PromptPay</span>
+        <span class="value"><span class="copyable" data-text="0910541671">091-054-1671</span> <span style="opacity:0.5;font-size:0.7rem;">📋</span></span>
+      </div>
+      <div class="row">
+        <span class="label">💸 TrueWallet</span>
+        <span class="value"><span class="copyable" data-text="0830439347">083-043-9347</span> <span style="opacity:0.5;font-size:0.7rem;">📋</span></span>
+      </div>
+      <div class="row">
+        <span class="label">📝 ชื่อบัญชี</span>
+        <span class="value">Akrapong Pengrod</span>
+      </div>
+      <div class="divider-icon">✦ ✦ ✦</div>
+    </div>
+  </div>
 
-<div style="text-align:center;margin-bottom:10px">
+  <!-- ===== SECTION: เลือกแพ็กเกจ ===== -->
+  <div class="section-title">
+    📦 <span data-th="เลือกแพ็กเกจ" data-en="Select Package"></span>
+    <span class="badge">⭐</span>
+  </div>
 
-<img
-src="https://s2.imgbb.ws/file/storage-sv2/jG4rJ.png"
-style="
-width:100%;
-max-width:400px;
-border-radius:15px;
-">
+  <form id="payForm">
 
-<br>
-˚₊‧꒰ა ♪💿♪ ໒꒱ ‧₊˚
-<br><br>
-<b>💳 Bank:</b>
-Krungthai Bank
-<br>
-<b data-th="🏦 Account:"
-data-en="🏦 Account:">
-🏦 Account:
-</b>
-<span class="copyable"
-data-text="9863034460">
-986-3-03446-0 📋
-</span>
-<br>
-<b data-th="📱 PromptPay:"
-data-en="📱 PromptPay:">
-📱 PromptPay:
-</b>
-<span class="copyable"
-data-text="0910541671">
-0910541671 📋
-</span>
-<br>
-<b data-th="💸 TrueWallet:"
-data-en="💸 TrueWallet:">
-💸 TrueWallet:
-</b>
-<span class="copyable"
-data-text="0830439347">
-0830439347 📋
-</span>
-<br>
-<b>📝 Name:</b>
-Akrapong Pengrod
-<br>
-˚₊‧꒰ა ♪💿♪ ໒꒱ ‧₊˚
-</div>
-</div>
+    <!-- VIP -->
+    <div style="margin-top:6px;">
+      <div style="font-weight:600;font-size:0.95rem;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+        🎉 <span data-th="แพ็กเกจ VIP" data-en="VIP Packages"></span>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card" onclick="selectPackage(this,'VIP 1 เดือน - 200 บาท')">
+          <span class="icon">👑</span>
+          <span class="name" data-th="VIP 1 เดือน" data-en="VIP 1 Month"></span>
+          <span class="price">200 ฿</span>
+        </div>
+        <div class="price-card" onclick="selectPackage(this,'VIP 3 เดือน - 425 บาท')">
+          <span class="icon">👑</span>
+          <span class="name" data-th="VIP 3 เดือน" data-en="VIP 3 Months"></span>
+          <span class="price">425 ฿</span>
+          <span class="tag">🔥 ประหยัด</span>
+        </div>
+        <div class="price-card" onclick="selectPackage(this,'VIP 6 เดือน - 750 บาท')">
+          <span class="icon">👑</span>
+          <span class="name" data-th="VIP 6 เดือน" data-en="VIP 6 Months"></span>
+          <span class="price">750 ฿</span>
+        </div>
+        <div class="price-card" onclick="selectPackage(this,'VIP 1 ปี - 1,250 บาท')">
+          <span class="icon">👑</span>
+          <span class="name" data-th="VIP 1 ปี" data-en="VIP 1 Year"></span>
+          <span class="price">1,250 ฿</span>
+          <span class="tag">⭐ แนะนำ</span>
+        </div>
+        <div class="price-card" onclick="selectPackage(this,'VIP 2 ปี - 2,050 บาท')">
+          <span class="icon">👑</span>
+          <span class="name" data-th="VIP 2 ปี" data-en="VIP 2 Years"></span>
+          <span class="price">2,050 ฿</span>
+        </div>
+      </div>
+    </div>
 
-<h2
-data-th="💎 แจ้งโอน และ ดูราคาแพ็กเกจ"
-data-en="💎 Notify Transfer and View Package Prices">
-</h2>
+    <!-- COIN -->
+    <div style="margin-top:20px;">
+      <div style="font-weight:600;font-size:0.95rem;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+        🪙 <span data-th="แพ็กเกจ Coin" data-en="Coin Packages"></span>
+      </div>
+      <div class="pricing-grid">
+        <div class="price-card" onclick="selectPackage(this,'Coin 1,200 - 200 บาท')">
+          <span class="icon">🪙</span>
+          <span class="name" data-th="Coin 1,200" data-en="Coin 1,200"></span>
+          <span class="price">200 ฿</span>
+        </div>
+        <div class="price-card" onclick="selectPackage(this,'Coin 3,000 - 425 บาท')">
+          <span class="icon">🪙</span>
+          <span class="name" data-th="Coin 3,000" data-en="Coin 3,000"></span>
+          <span class="price">425 ฿</span>
+        </div>
+        <div class="price-card" onclick="selectPackage(this,'Coin 5,000 - 750 บาท')">
+          <span class="icon">🪙</span>
+          <span class="name" data-th="Coin 5,000" data-en="Coin 5,000"></span>
+          <span class="price">750 ฿</span>
+        </div>
+        <div class="price-card" onclick="selectPackage(this,'Coin 9,000 - 1,250 บาท')">
+          <span class="icon">🪙</span>
+          <span class="name" data-th="Coin 9,000" data-en="Coin 9,000"></span>
+          <span class="price">1,250 ฿</span>
+          <span class="tag">⭐ แนะนำ</span>
+        </div>
+        <div class="price-card" onclick="selectPackage(this,'Coin 15,000 - 2,050 บาท')">
+          <span class="icon">🪙</span>
+          <span class="name" data-th="Coin 15,000" data-en="Coin 15,000"></span>
+          <span class="price">2,050 ฿</span>
+        </div>
+      </div>
+    </div>
 
-<form id="payForm">
+    <!-- DONATION -->
+    <div style="margin-top:20px;">
+      <div style="font-weight:600;font-size:0.9rem;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+        🙏 <span data-th="สนับสนุน (ไม่ได้รับ VIP/Coin)" data-en="Donation (no VIP/Coin)"></span>
+      </div>
+      <div class="pricing-grid" style="grid-template-columns:1fr;">
+        <div class="price-card donate" onclick="selectPackage(this,'Donation Support')">
+          <span class="icon">❤️</span>
+          <span class="name" data-th="บริจาคช่วยค่าโหลดหนัง ซีรี่ย์" data-en="Help cover hosting costs"></span>
+          <span class="price" data-th="สนับสนุน (ไม่ได้รับ VIP/Coin)" data-en="Support (no VIP/Coin)"></span>
+        </div>
+      </div>
+    </div>
 
-<label
-data-th="📦 เลือกแพ็กเกจ"
-data-en="📦 Select Package">
-</label>
+    <!-- Hidden -->
+    <input type="hidden" name="package" id="package" value="" required>
 
-<!-- ================= VIP ================= -->
-<div class="package-title"
-data-th="🎉 แพ็กเกจ ซื้อ VIP"
-data-en="🎉 VIP purchase package">
-</div>
+    <!-- ===== FORM FIELDS ===== -->
+    <div class="form-group">
+      <label>👤 <span data-th="ชื่อผู้ใช้ TorrentDD" data-en="TorrentDD Username"></span> <span class="required">*</span></label>
+      <input name="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_-]{3,20}"
+             data-ph-th="ป้อนชื่อผู้ใช้ (ภาษาอังกฤษ, ตัวเลข, _ , -)" 
+             data-ph-en="Enter username (letters, numbers, _, -)">
+    </div>
 
-<div class="pricing-grid">
+    <div class="form-group">
+      <label>🖼 <span data-th="อัปโหลดสลิป (ถ้ามี)" data-en="Upload Slip (optional)"></span></label>
+      <input type="file" id="slip" accept="image/*">
+      <img id="preview">
+    </div>
 
-<div class="price-card"
-onclick="selectPackage(this,'VIP 1 เดือน - 200 บาท')">
+    <div class="form-group">
+      <label>🔢 <span data-th="เลข 4 ตัวท้ายบัญชี (ถ้าไม่มีสลิป)" data-en="Last 4 Digits (if no slip)"></span></label>
+      <input name="last4" maxlength="4" pattern="[0-9]{4}"
+             data-ph-th="กรอก 4 ตัวท้าย" 
+             data-ph-en="Enter last 4 digits">
+    </div>
 
-<b
-data-th="VIP 1 เดือน"
-data-en="VIP 1 Month">
-</b>
+    <!-- ===== SUBMIT ===== -->
+    <button id="sendBtn" class="submit-btn" disabled>
+      <span>✅</span> 
+      <span data-th="แจ้งชำระเงิน" data-en="Submit Payment"></span>
+      <span>➜</span>
+    </button>
 
-<span
-data-th="200 บาท"
-data-en="200 THB">
-</span>
-</div>
+  </form>
 
-<div class="price-card"
-onclick="selectPackage(this,'VIP 3 เดือน - 425 บาท')">
+  <!-- ===== CONTACT ===== -->
+  <div class="contact-box">
+    <div class="contact-title">📩 <span data-th="ช่องทางติดต่อ" data-en="Contact Information"></span></div>
 
-<b
-data-th="VIP 3 เดือน"
-data-en="VIP 3 Months">
-</b>
+    <div class="contact-item" 
+         data-en='📌 <a href="https://www.torrentdd.net/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a> (TorrentDD Inbox)'
+         data-th='📌 <a href="https://www.torrentdd.net/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a> (Inbox บนเว็บ)'>
+    </div>
 
-<span
-data-th="425 บาท"
-data-en="425 THB">
-</span>
-</div>
+    <div class="contact-item">
+      <div data-en="💬 LINE OpenChat (for key issues)" data-th="💬 กลุ่ม LINE (ติดต่อกรณียังไม่ได้รับ Key)"></div>
+      <img class="qr-img" src="https://s2.imgbb.ws/file/storage-sv2/FKSuk.jpg" alt="LINE QR">
+    </div>
 
-<div class="price-card"
-onclick="selectPackage(this,'VIP 6 เดือน - 750 บาท')">
-
-<b
-data-th="VIP 6 เดือน"
-data-en="VIP 6 Months">
-</b>
-
-<span
-data-th="750 บาท"
-data-en="750 THB">
-</span>
-</div>
-
-<div class="price-card"
-onclick="selectPackage(this,'VIP 1 ปี - 1,250 บาท')">
-
-<b
-data-th="VIP 1 ปี"
-data-en="VIP 1 Year">
-</b>
-
-<span
-data-th="1,250 บาท"
-data-en="1,250 THB">
-</span>
-</div>
-
-<div class="price-card"
-onclick="selectPackage(this,'VIP 2 ปี - 2,050 บาท')">
-
-<b
-data-th="VIP 2 ปี"
-data-en="VIP 2 Years">
-</b>
-
-<span
-data-th="2,050 บาท"
-data-en="2,050 THB">
-</span>
-</div>
-</div>
-
-<!-- ================= COIN ================= -->
-<div class="package-title"
-data-th="💰 แพ็กเกจ ซื้อ Coin"
-data-en="💰 Coin purchase package">
-</div>
-
-<div class="pricing-grid">
-<div class="price-card"
-onclick="selectPackage(this,'Coin 1,200 - 200 บาท')">
-
-<b
-data-th="Coin 1,200"
-data-en="Coin 1,200">
-</b>
-
-<span
-data-th="200 บาท"
-data-en="200 THB">
-</span>
-</div>
-   
-<div class="price-card"
-onclick="selectPackage(this,'Coin 3,000 - 425 บาท')">
-
-<b
-data-th="Coin 3,000"
-data-en="Coin 3,000">
-</b>
-
-<span
-data-th="425 บาท"
-data-en="425 THB">
-</span>
-</div>
-
-<div class="price-card"
-onclick="selectPackage(this,'Coin 5,000 - 750 บาท')">
-
-<b
-data-th="Coin 5,000"
-data-en="Coin 5,000">
-</b>
-
-<span
-data-th="750 บาท"
-data-en="750 THB">
-</span>
-</div>
-
-<div class="price-card"
-onclick="selectPackage(this,'Coin 9,000 - 1,250 บาท')">
-
-<b
-data-th="Coin 9,000"
-data-en="Coin 9,000">
-</b>
-
-<span
-data-th="1,250 บาท"
-data-en="1,250 THB">
-</span>
-</div>
-
-<div class="price-card"
-onclick="selectPackage(this,'Coin 15,000 - 2,050 บาท')">
-
-<b
-data-th="Coin 15,000"
-data-en="Coin 15,000">
-</b>
-
-<span
-data-th="2,050 บาท"
-data-en="2,050 THB">
-</span>
-</div>
-</div>
-
-<!-- ================= DONATION ================= -->
-<div class="package-title"
-data-th="🙏 สนับสนุน ช่วยค่าโหลดหนัง ซีรี่ย์ (หากกดจะไม่ได้ VIP หรือ Coin)"
-data-en="🙏 Donation Help cover the costs of hosting movies and series (clicking this does not grant VIP status or coins)">
-</div>
-
-<div class="pricing-grid">
-<div class="price-card donate"
-onclick="selectPackage(this,'Donation Support')">
-
-<b
-data-th="❤️ บริจาค ช่วยค่าโหลดหนัง ซีรี่ย์"
-data-en="❤️ Donation Help cover the costs of hosting movies and series">
-</b>
-
-<span
-data-th="สนับสนุน (หากกดจะไม่ได้ VIP หรือ Coin)"
-data-en="Support (clicking this does not grant VIP status or coins)">
-</span>
+    <div class="hours">
+      <span data-th="🕐 เวลาทำการ: 08:00 - 00:00 น. (ตามเวลาไทย)" 
+            data-en="🕐 Working Hours: 08:00 - 00:00 (Thailand Time)"></span><br>
+      <span data-th="⏰ หากอยู่จะส่งให้ทันที นอกเวลาส่งในวันถัดไป" 
+            data-en="⏰ If available, sent immediately; otherwise next business day"></span>
+    </div>
+  </div>
 
 </div>
-</div>
-   
-<input
-type="hidden"
-name="package"
-id="package"
-value=""
-required>
 
-<label
-data-th="👤 User In TorrentDD"
-data-en="👤 TorrentDD Username">
-</label>
-
-<input
-name="username"
-required
-minlength="3"
-maxlength="20"
-pattern="[A-Za-z0-9_-]{3,20}"
-data-ph-th="ภาษาอังกฤษ ตัวเลข _ และ - เท่านั้น (3–20 ตัว)"
-data-ph-en="English letters, numbers, _ and - only (3–20 chars)"
->
-
-<label
-data-th="🖼 อัปโหลดสลิป (ถ้ามี)"
-data-en="🖼 Upload payment slip (optional)">
-</label>
-
-<input
-type="file"
-id="slip"
-accept="image/*">
-<img id="preview">
-
-<label
-data-th="🔢 เลขบัญชีที่ใช้โอน 4 ตัวท้าย (ถ้าไม่มีสลิป)"
-data-en="🔢 Last 4 digits (if no slip)">
-</label>
-
-<input
-name="last4"
-maxlength="4"
-pattern="[0-9]{4}"
-data-ph-th="กรอก 4 ตัวท้ายบัญชี"
-data-ph-en="Enter last 4 digits"
->
-
-<button
-id="sendBtn"
-disabled
-data-th="✅ แจ้งชำระเงิน"
-data-en="✅ Submit Payment">
-</button>
-
-</form>
-<div class="contact-box">
-<div 
-    data-en="<h3>📩 Contact Information</h3>"
-    data-th="<h3>📩 ช่องทางติดต่อ</h3>">
-</div>
-
-<div 
-    data-en='📩 Contact TorrentDD Website : <a href="https://www.torrentdd.net/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a>'
-    data-th='📩 ช่องทางติดต่อของเว็บไซร์ TorrentDD : <a href="https://www.torrentdd.net/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a>'>
-</div>
-
-<div 
-    data-en='📩 The LINE group is open for contact if you haven&#39;t received your code key yet. <br>
-    <img src="https://s2.imgbb.ws/file/storage-sv2/FKSuk.jpg" alt="Line Open Chat QR">'
-    data-th='📩 กลุ่มไลน์ เปิด ใช้เพื่อติดต่อถ้ายังไม่ได้ Code Key <br>
-    <img src="https://s2.imgbb.ws/file/storage-sv2/FKSuk.jpg" alt="Line Open Chat QR">'>
-</div>
-
-<div 
-    data-th="🕰️ เวลาทำการ: 8:00 น. - 00:00 น. (เวลาไทย)<br>
-    ⏰ หลังเวลา 00:01 น. - 7:59 น. หากอยู่ จะส่งให้ทันที<br>
-    ⏰ ถ้าไม่อยู่ จะส่งให้ในเวลาทำการ"
-    data-en="🕰️ Working Hours: 8:00 AM - 00:00 AM (Thailand Time)<br>
-    ⏰ After 00:01 AM - 7:59 AM, if you are available, we will send it to you.<br>
-    If not, we will process it during working hours.<br>
-    ⏰ We will send it to you. If not, we will process it during working hours.">
-</div>
-
-</div>
 <script>
-// Bot Telegram Configuration
+// ============================================
+// CONFIG
+// ============================================
 const BOT_TOKEN = "8265712317:AAET88mDq8GFJSN9zRys1wJ4AwPQ7hmtYbI";
 const CHAT_ID = "6678480860";
 
-// Language and Dark Mode
 let lang = localStorage.lang || "th";
 let dark = localStorage.dark === "1";
 let slipFile = null;
 
+// ============================================
+// LANGUAGE
+// ============================================
 function applyLang() {
   document.querySelectorAll("[data-th]").forEach(el => {
     el.innerHTML = el.dataset[lang];
   });
-  document.querySelectorAll("option[data-th]").forEach(opt => {
-    opt.text = opt.dataset[lang];
-  });
   document.querySelectorAll("[data-ph-th]").forEach(el => {
     el.placeholder = lang === "th" ? el.dataset.phTh : el.dataset.phEn;
   });
-  document.querySelectorAll("[data-title-th]").forEach(el => {
-    el.title = lang === "th" ? el.dataset.titleTh : el.dataset.titleEn;
+  document.querySelectorAll(".copyable").forEach(el => {
+    el.title = lang === "th" ? "คลิกเพื่อคัดลอก" : "Click to copy";
   });
-  btnTH.classList.toggle("active", lang === "th");
-  btnEN.classList.toggle("active", lang === "en");
+  document.getElementById("btnTH").classList.toggle("active", lang === "th");
+  document.getElementById("btnEN").classList.toggle("active", lang === "en");
   localStorage.lang = lang;
 }
 
-function setLang(l) {
-  lang = l;
-  applyLang();
-}
+function setLang(l) { lang = l; applyLang(); }
 
+// ============================================
+// DARK MODE
+// ============================================
 function toggleDark() {
   dark = !dark;
-  document.body.classList.toggle(
-    "dark",
-    dark
-  );
-  localStorage.dark =
-    dark ? "1" : "0";
-  const btn =
-  document.getElementById("darkToggle");
-  if(btn){
-    btn.innerHTML =
-    dark ? "☀️" : "🌙";
-  }}
+  document.body.classList.toggle("dark", dark);
+  localStorage.dark = dark ? "1" : "0";
+  const btn = document.getElementById("darkToggle");
+  if (btn) btn.innerHTML = dark ? "☀️" : "🌙";
+}
 
+// ============================================
+// SELECT PACKAGE
+// ============================================
 function selectPackage(card, value) {
-  // ล้างตัวเก่า
-  document.querySelectorAll(".price-card")
-    .forEach(c => c.classList.remove("active"));
-  // เพิ่ม Active
+  document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
   card.classList.add("active");
-  // เก็บ Package
   document.getElementById("package").value = value;
-  // เปิดปุ่มส่ง
   document.getElementById("sendBtn").disabled = false;
 }
-   
-slip.addEventListener("change", e => {
+
+// ============================================
+// SLIP PREVIEW
+// ============================================
+document.getElementById("slip").addEventListener("change", e => {
   const file = e.target.files[0];
   if (!file) return;
   slipFile = file;
   const reader = new FileReader();
   reader.onload = () => {
-    preview.src = reader.result;
-    preview.style.display = "block";
+    document.getElementById("preview").src = reader.result;
+    document.getElementById("preview").style.display = "block";
   };
   reader.readAsDataURL(file);
 });
 
-payForm.addEventListener("submit", async e => {
+// ============================================
+// COPYABLE
+// ============================================
+document.querySelectorAll(".copyable").forEach(el => {
+  el.addEventListener("click", () => {
+    const text = el.dataset.text;
+    navigator.clipboard.writeText(text).then(() => {
+      alert((lang === "th" ? "✅ คัดลอกแล้ว: " : "✅ Copied: ") + text);
+    });
+  });
+});
+
+// ============================================
+// GET MESSAGE
+// ============================================
+function getMessage(key) {
+  const msgs = {
+    th: {
+      pleaseUploadOrEnter: "⚠️ กรุณาอัปโหลดสลิป หรือกรอกเลข 4 ตัวท้าย",
+      selectPackage: "⚠️ กรุณาเลือกแพ็กเกจก่อน",
+      submittedSuccess: "✅ ส่งข้อมูลสำเร็จ!\n\n⏳ รอ 2-5 นาที รับ Key ที่ Inbox\n\n🔄 กด OK เพื่อไปที่ Inbox",
+      error: "❌ เกิดข้อผิดพลาด ลองอีกครั้ง"
+    },
+    en: {
+      pleaseUploadOrEnter: "⚠️ Please upload slip or enter last 4 digits",
+      selectPackage: "⚠️ Please select a package first",
+      submittedSuccess: "✅ Submitted!\n\n⏳ Wait 2-5 min for Key in Inbox\n\n🔄 Click OK to go to Inbox",
+      error: "❌ Error occurred, please try again"
+    }
+  };
+  return msgs[lang][key];
+}
+
+// ============================================
+// SEND TO TELEGRAM
+// ============================================
+async function sendToTelegram(message, slipFile) {
+  try {
+    const formData = new FormData();
+    formData.append('chat_id', CHAT_ID);
+    formData.append('text', message);
+    formData.append('parse_mode', 'HTML');
+
+    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      body: formData,
+    });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.description);
+
+    if (slipFile) {
+      const fd = new FormData();
+      fd.append('chat_id', CHAT_ID);
+      fd.append('document', slipFile);
+      const r2 = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
+        method: 'POST',
+        body: fd,
+      });
+      const d2 = await r2.json();
+      if (!d2.ok) throw new Error(d2.description);
+    }
+  } catch (err) {
+    console.error(err);
+    throw err;
+  }
+}
+
+// ============================================
+// FORM SUBMIT
+// ============================================
+document.getElementById("payForm").addEventListener("submit", async e => {
   e.preventDefault();
   const f = e.target;
   const username = f.username.value.trim();
-const profileLink = `https://www.torrentdd.net/userdetails.php?username=${username}`;
-const last4 = f.last4.value.trim();
-const selectedPackage = f.package.value;
-if (!selectedPackage) {
-  alert(getMessage("selectPackage"));
-  return;
-}
-const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
+  const last4 = f.last4.value.trim();
+  const selectedPackage = f.package.value;
 
-  // Ensure either a slip or last 4 digits are provided
-  if (!slipFile && !last4) {
-    alert(getMessage("pleaseUploadOrEnter"));
-    return;
-  }
+  if (!selectedPackage) { alert(getMessage("selectPackage")); return; }
+  if (!slipFile && !last4) { alert(getMessage("pleaseUploadOrEnter")); return; }
 
-  let message = `
-╔═════════════════════╗ 
-💎 NEW VIP PAYMENT REQUEST 💎 
-╚═════════════════════╝  
+  const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
+  const profileLink = `https://www.torrentdd.net/userdetails.php?username=${username}`;
+
+  let msg = `
+╔══════════════════════════╗
+💎 NEW VIP PAYMENT REQUEST 💎
+╚══════════════════════════╝
 
 👤 Username  : ${username}
 🔗 Profile   : ${profileLink}
@@ -723,185 +923,41 @@ const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
 `;
 
   if (slipFile) {
-    message += `📎 Payment Slip Attached`;
+    msg += `📎 Slip Attached`;
   } else {
-    message += `🔢 Last 4 Digits : ${last4}`;
-    message += "\n══════════════════════";
+    msg += `🔢 Last 4 Digits : ${last4}`;
   }
 
-  // Show the "submitted" alert immediately
   alert(getMessage("submittedSuccess"));
 
   try {
-  // Send the payment information to Telegram
-  await sendToTelegram(message, slipFile);
-
-  // ไปที่หน้า Inbox
-  window.location.href = "https://www.torrentdd.net/inbox.php";
-
-  // Reset the form and page after a short delay
-  setTimeout(() => {
-    payForm.reset();
-    preview.style.display = "none";
-    slipFile = null;
-    document.getElementById("sendBtn").disabled = true;
-    document.querySelectorAll(".price-card")
-     .forEach(card=>{
-    card.classList.remove("active");
-});
-    document.getElementById("package").value="";
-    applyLang();
-    document.body.classList.toggle("dark", dark);
-  }, 1000);
-
-} catch (error) {
-  alert(getMessage("error"));
-}
-  
-});
-
-// Function to get alert messages based on language
-const messages = {
-  th: {
-    tooltip: "คลิกเพื่อคัดลอก",
-    copied: "คัดลอกเรียบร้อย: "
-  },
-  en: {
-    tooltip: "Click to copy",
-    copied: "Copied: "
+    await sendToTelegram(msg, slipFile);
+    window.location.href = "https://www.torrentdd.net/inbox.php";
+    setTimeout(() => {
+      f.reset();
+      document.getElementById("preview").style.display = "none";
+      slipFile = null;
+      document.getElementById("sendBtn").disabled = true;
+      document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
+      document.getElementById("package").value = "";
+      applyLang();
+    }, 1000);
+  } catch (err) {
+    alert(getMessage("error"));
   }
-};
-
-document.querySelectorAll('.copyable').forEach(el => {
-  el.style.cursor = 'pointer';
-  
-  // อัปเดต tooltip ตามภาษา
-  el.title = messages[lang].tooltip;
-
-  el.addEventListener('click', () => {
-    const text = el.dataset.text;
-    navigator.clipboard.writeText(text).then(() => {
-      alert(messages[lang].copied + text + " 📋");
-    }).catch(err => {
-      console.error('Failed to copy: ', err);
-    });
-  });
 });
 
-// ถ้าเปลี่ยนภาษา ให้เรียกอัปเดต tooltip ใหม่
-function updateCopyTooltips() {
-  document.querySelectorAll('.copyable').forEach(el => {
-    el.title = messages[lang].tooltip;
-  });
-}
-
-function copyText(text) {
-  navigator.clipboard.writeText(text).then(() => {
-    alert("คัดลอกแล้ว: " + text);
-  });
-}
-  
-function getMessage(key) {
-  const messages = {
-    th: {
-  pleaseUploadOrEnter: "กรุณาอัปโหลดสลิป หรือ กรอกเลข 4 ตัวท้าย",
-  selectPackage: "กรุณาเลือก Package ก่อน",
-  submittedSuccess: "ข้อมูลของคุณได้ถูกส่งเรียบร้อยแล้ว !!!\n\nกรุณารอ 2-5 นาทีเพื่อรับ Key เพื่อนำไปเติมในช่อง VIP ของเว็บ\nระบบจะทำการส่งไปที่ช่อง Inbox ของเว็บเพื่อตรวจสอบ Key ที่ทีมงานส่งให้\n\nกด OK เพื่อไปที่หน้า Inbox",
-  error: "เกิดข้อผิดพลาดในการส่งข้อมูล"
-},
-en: {
-  pleaseUploadOrEnter: "Please upload the slip or enter the last 4 digits",
-  selectPackage: "Please select a Package first",
-  submittedSuccess: "Your information has been submitted successfully !!!\n\nPlease wait 2-5 minutes to receive your Key to use in the VIP section.\nThe system will send it to your Inbox so you can check the Key sent by the team.\n\nClick OK to go to the Inbox page",
-  error: "Error submitting data"
-}
-  };
-  return messages[lang][key];
-}
-
-async function sendToTelegram(message, slipFile) {
-  try {
-    // ส่งข้อความโดยใช้ HTML parse_mode เพื่อให้แสดง _ และ - ได้ครบ
-    const formDataMessage = new FormData();
-    formDataMessage.append('chat_id', CHAT_ID);
-    formDataMessage.append('text', message);
-    formDataMessage.append('parse_mode', 'HTML');
-
-    const responseMessage = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      method: 'POST',
-      body: formDataMessage,
-    });
-
-    const dataMessage = await responseMessage.json();
-    console.log('Telegram response (message):', dataMessage);
-    
-    if (!dataMessage.ok) {
-      throw new Error(`Error: ${dataMessage.description}`);
-    }
-
-    // ถ้ามีสลิป ส่งไฟล์
-    if (slipFile) {
-      const formDataFile = new FormData();
-      formDataFile.append('chat_id', CHAT_ID);
-      formDataFile.append('document', slipFile);
-
-      const responseFile = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
-        method: 'POST',
-        body: formDataFile,
-      });
-
-      const dataFile = await responseFile.json();
-      console.log('Telegram response (file):', dataFile);
-
-      if (!dataFile.ok) {
-        throw new Error(`Error: ${dataFile.description}`);
-      }
-
-      // ส่งเส้นคั่นหลังสลิป
-      const separatorMessage = '==============================';
-      
-      const formDataSeparator = new FormData();
-      formDataSeparator.append('chat_id', CHAT_ID);
-      formDataSeparator.append('text', separatorMessage);
-
-      const responseSeparator = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        body: formDataSeparator,
-      });
-
-      const dataSeparator = await responseSeparator.json();
-      console.log('Telegram response (separator):', dataSeparator);
-
-      if (!dataSeparator.ok) {
-        throw new Error(`Error: ${dataSeparator.description}`);
-      }
-    }
-  } catch (error) {
-    console.error('Error sending to Telegram:', error);
-    throw error;
-  }
-}
-
+// ============================================
+// INIT
+// ============================================
 document.body.classList.toggle("dark", dark);
-const darkBtn =
-document.getElementById("darkToggle");
-if(darkBtn){
-darkBtn.innerHTML =
-dark ? "☀️" : "🌙";
-}
+document.getElementById("darkToggle").innerHTML = dark ? "☀️" : "🌙";
 applyLang();
 
-// ล้าง package หลังเปิดหน้าใหม่
 window.addEventListener("load", () => {
-
   document.getElementById("payForm").reset();
-
   document.getElementById("package").value = "";
-
-  document.querySelectorAll(".price-card")
-    .forEach(card => {
-      card.classList.remove("active");
-    });
+  document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
 });
 </script>
 </body>
