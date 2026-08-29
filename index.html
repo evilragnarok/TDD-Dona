@@ -698,7 +698,7 @@ payForm.addEventListener("submit", async e => {
   const username = f.username.value.trim();
 const profileLink = `https://www.torrentdd.net/userdetails.php?username=${username}`;
 const last4 = f.last4.value.trim();
-const selectedPackage = f.package.value;  // ✅ เปลี่ยนชื่อตัวแปร
+const selectedPackage = f.package.value;
 if (!selectedPackage) {
   alert(getMessage("selectPackage"));
   return;
@@ -716,17 +716,17 @@ const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
 💎 NEW VIP PAYMENT REQUEST 💎 
 ╚═════════════════════╝  
 
-👤 *Username*  : ${username}
-🔗 *Profile*   : ${profileLink}
-📦 *Package*   : ${selectedPackage}  // ✅ เปลี่ยนเป็น selectedPackage
-🕰️ *Time*      : ${time}
+👤 Username  : ${username}
+🔗 Profile   : ${profileLink}
+📦 Package   : ${selectedPackage}
+🕰️ Time      : ${time}
 `;
 
   if (slipFile) {
-    message += `📎 *Payment Slip Attached*`;
+    message += `📎 Payment Slip Attached`;
   } else {
-    message += `🔢 *Last 4 Digits* : ${last4}`;
-    message += "\n══════════════════════"; // Add line only if slip is uploaded
+    message += `🔢 Last 4 Digits : ${last4}`;
+    message += "\n══════════════════════";
   }
 
   // Show the "submitted" alert immediately
@@ -736,7 +736,7 @@ const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
   // Send the payment information to Telegram
   await sendToTelegram(message, slipFile);
 
-  // 👉 เพิ่มบรรทัดนี้
+  // ไปที่หน้า Inbox
   window.location.href = "https://www.torrentdd.net/inbox.php";
 
   // Reset the form and page after a short delay
@@ -795,9 +795,6 @@ function updateCopyTooltips() {
   });
 }
 
-// เรียกตอนเปลี่ยนภาษา
-// ตัวอย่าง: setLang('en'); updateCopyTooltips();
-
 function copyText(text) {
   navigator.clipboard.writeText(text).then(() => {
     alert("คัดลอกแล้ว: " + text);
@@ -824,11 +821,11 @@ en: {
 
 async function sendToTelegram(message, slipFile) {
   try {
-    // ส่งข้อความโดยใช้ FormData (แบบที่ใช้ได้)
+    // ส่งข้อความโดยใช้ HTML parse_mode เพื่อให้แสดง _ และ - ได้ครบ
     const formDataMessage = new FormData();
     formDataMessage.append('chat_id', CHAT_ID);
     formDataMessage.append('text', message);
-    formDataMessage.append('parse_mode', 'Markdown');
+    formDataMessage.append('parse_mode', 'HTML');
 
     const responseMessage = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
       method: 'POST',
@@ -861,7 +858,7 @@ async function sendToTelegram(message, slipFile) {
       }
 
       // ส่งเส้นคั่นหลังสลิป
-      const separatorMessage = '\n==============================\n';
+      const separatorMessage = '==============================';
       
       const formDataSeparator = new FormData();
       formDataSeparator.append('chat_id', CHAT_ID);
