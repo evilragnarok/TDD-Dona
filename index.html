@@ -270,7 +270,7 @@ body.dark .dark-toggle {
 }
 
 /* ============================================
-   QR CODE SECTION
+   QR CODE SECTION (ใหญ่ขึ้น)
 ============================================ */
 .qr-section {
   margin: 18px 0 6px 0;
@@ -333,19 +333,19 @@ body.dark .qr-section {
   opacity: 0.7;
 }
 
-/* QR Image */
+/* QR Image - ใหญ่ขึ้น */
 .qr-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px;
+  padding: 8px;
 }
 
 .qr-image-wrapper {
   position: relative;
   display: inline-block;
-  padding: 12px;
-  border-radius: 20px;
+  padding: 16px;
+  border-radius: 24px;
   background: white;
   box-shadow: 0 8px 30px rgba(0,0,0,0.08);
   transition: all 0.4s ease;
@@ -370,25 +370,26 @@ body.dark .qr-image-wrapper:hover {
 
 .qr-image-wrapper .qr-glow {
   position: absolute;
-  inset: -6px;
-  border-radius: 24px;
+  inset: -8px;
+  border-radius: 28px;
   background: var(--gradient);
   opacity: 0;
   z-index: -1;
   transition: all 0.4s ease;
-  filter: blur(16px);
+  filter: blur(20px);
 }
 
 .qr-image-wrapper:hover .qr-glow {
   opacity: 0.3;
 }
 
+/* ✅ ขยาย QR Code ให้ใหญ่ขึ้น */
 .qr-image-wrapper img {
   display: block;
   width: 100%;
-  max-width: 240px;
+  max-width: 400px;
   height: auto;
-  border-radius: 14px;
+  border-radius: 16px;
 }
 
 .qr-label-below {
@@ -677,7 +678,8 @@ body.dark .contact-box .hours {
   .payment-box h2 { font-size: 1.3rem; }
   .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
   .payment-details .row { font-size: 0.82rem; }
-  .qr-image-wrapper img { max-width: 200px; }
+  .qr-image-wrapper img { max-width: 320px; }
+  .qr-image-wrapper { padding: 14px; }
 }
 
 @media (max-width: 480px) {
@@ -697,8 +699,8 @@ body.dark .contact-box .hours {
   .submit-btn { font-size: 0.95rem; padding: 14px; }
   .form-group input { padding: 12px 14px; font-size: 0.9rem; }
   .qr-section { padding: 16px 12px; }
-  .qr-image-wrapper img { max-width: 160px; }
-  .qr-image-wrapper { padding: 8px; }
+  .qr-image-wrapper img { max-width: 260px; }
+  .qr-image-wrapper { padding: 10px; }
 }
 </style>
 </head>
@@ -750,7 +752,7 @@ body.dark .contact-box .hours {
     </div>
   </div>
 
-  <!-- ===== QR CODE SCAN PAY ===== -->
+  <!-- ===== QR CODE SCAN PAY (ใหญ่ขึ้น) ===== -->
   <div class="qr-section">
     <div class="qr-header">
       <div class="qr-title">
