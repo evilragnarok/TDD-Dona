@@ -1,1128 +1,1377 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>💎 Buy VIP / Coin TorrentDD</title>
-<link rel="icon" type="image/png" href="https://s2.imgbb.ws/file/storage-sv2/jG4wV.png">
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-/* ============================================
-   ROOT VARIABLES
-============================================ */
-:root {
-  --bg: #e6f7f0;
-  --card: #ffffff;
-  --text: #1f2937;
-  --muted: #6b7280;
-  --main: #2ecc71;
-  --dark: #27ae60;
-  --border: #d1d5db;
-  --shadow: 0 20px 60px rgba(0,0,0,0.12);
-  --radius: 28px;
-  --gradient: linear-gradient(135deg, #2ecc71 0%, #1abc9c 100%);
-  --glow: 0 0 30px rgba(46,204,113,0.3);
-}
-
-body.dark {
-  --bg: #0f172a;
-  --card: #1e293b;
-  --text: #e5e7eb;
-  --muted: #94a3b8;
-  --border: #334155;
-  --shadow: 0 20px 60px rgba(0,0,0,0.4);
-  --gradient: linear-gradient(135deg, #059669 0%, #0d9488 100%);
-  --glow: 0 0 30px rgba(5,150,105,0.3);
-}
-
-/* ============================================
-   BASE
-============================================ */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  min-height: 100vh;
-  padding: 1.5rem;
-  font-family: 'Prompt', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  transition: all 0.4s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ============================================
-   MAIN CONTAINER
-============================================ */
-.box {
-  max-width: 780px;
-  width: 100%;
-  margin: auto;
-  background: var(--card);
-  padding: 2.2rem 2.5rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.box::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(46,204,113,0.03) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-/* ============================================
-   TOPBAR
-============================================ */
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.topbar-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.topbar-left .logo-text {
-  font-size: 1.1rem;
-  font-weight: 700;
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.lang-switch {
-  display: flex;
-  align-items: center;
-  background: rgba(255,255,255,0.5);
-  backdrop-filter: blur(12px);
-  border-radius: 999px;
-  padding: 4px;
-  gap: 4px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  border: 1px solid rgba(255,255,255,0.2);
-}
-
-body.dark .lang-switch {
-  background: rgba(30,41,59,0.6);
-  border-color: rgba(255,255,255,0.05);
-}
-
-.lang-switch button {
-  width: auto;
-  margin: 0;
-  border: none;
-  background: transparent;
-  padding: 6px 16px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  color: var(--muted);
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.lang-switch button.active {
-  background: var(--gradient);
-  color: white;
-  box-shadow: var(--glow);
-}
-
-.lang-switch button:hover:not(.active) {
-  color: var(--text);
-}
-
-.dark-toggle {
-  width: 48px;
-  height: 28px;
-  background: #e5e7eb;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 15px;
-  transition: all 0.4s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  border: none;
-}
-
-body.dark .dark-toggle {
-  background: #334155;
-}
-
-.dark-toggle:hover {
-  transform: scale(1.08) rotate(8deg);
-}
-
-/* ============================================
-   PAYMENT BOX (HEADER)
-============================================ */
-.payment-box {
-  background: var(--gradient);
-  padding: 1.8rem 2rem;
-  border-radius: 20px;
-  margin-bottom: 24px;
-  color: white;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.payment-box::after {
-  content: '✦';
-  position: absolute;
-  top: -20px;
-  right: -10px;
-  font-size: 120px;
-  opacity: 0.08;
-  transform: rotate(15deg);
-}
-
-.payment-box h2 {
-  color: white !important;
-  font-size: 1.6rem;
-  margin-bottom: 4px;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.1);
-}
-
-.payment-box .subtitle {
-  font-size: 0.9rem;
-  opacity: 0.85;
-  font-weight: 300;
-}
-
-/* ============================================
-   PAYMENT DETAILS
-============================================ */
-.payment-details {
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 1.2rem 1.5rem;
-  margin-top: 14px;
-  border: 1px solid rgba(255,255,255,0.15);
-}
-
-.payment-details .row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6px 0;
-  flex-wrap: wrap;
-  gap: 6px;
-  font-size: 0.92rem;
-}
-
-.payment-details .row .label {
-  opacity: 0.8;
-  font-weight: 400;
-}
-
-.payment-details .row .value {
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.payment-details .copyable {
-  cursor: pointer;
-  background: rgba(255,255,255,0.15);
-  padding: 3px 12px;
-  border-radius: 30px;
-  transition: all 0.3s ease;
-  font-weight: 600;
-}
-
-.payment-details .copyable:hover {
-  background: rgba(255,255,255,0.25);
-  transform: scale(1.02);
-}
-
-.divider-icon {
-  text-align: center;
-  font-size: 1.2rem;
-  padding: 4px 0;
-  opacity: 0.6;
-  letter-spacing: 6px;
-}
-
-/* ============================================
-   QR CODE SECTION (ใหญ่ขึ้น)
-============================================ */
-.qr-section {
-  margin: 18px 0 6px 0;
-  padding: 24px 20px;
-  background: var(--card);
-  border-radius: 20px;
-  border: 2px solid var(--border);
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.04);
-  text-align: center;
-}
-
-.qr-section::before {
-  content: '✦';
-  position: absolute;
-  top: -30px;
-  right: -10px;
-  font-size: 80px;
-  opacity: 0.03;
-  transform: rotate(20deg);
-}
-
-body.dark .qr-section {
-  border-color: rgba(255,255,255,0.06);
-}
-
-.qr-section .qr-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.qr-section .qr-title {
-  font-weight: 700;
-  font-size: 1rem;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.qr-section .qr-title .badge-qr {
-  font-size: 0.6rem;
-  background: var(--gradient);
-  color: white;
-  padding: 2px 12px;
-  border-radius: 30px;
-  font-weight: 600;
-}
-
-.qr-section .qr-subtitle {
-  font-size: 0.75rem;
-  color: var(--muted);
-  font-weight: 400;
-  opacity: 0.7;
-}
-
-/* QR Image - ใหญ่ขึ้น */
-.qr-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-}
-
-.qr-image-wrapper {
-  position: relative;
-  display: inline-block;
-  padding: 16px;
-  border-radius: 24px;
-  background: white;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-  transition: all 0.4s ease;
-  border: 2px solid var(--border);
-}
-
-body.dark .qr-image-wrapper {
-  background: #1e293b;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-  border-color: rgba(255,255,255,0.06);
-}
-
-.qr-image-wrapper:hover {
-  transform: scale(1.02);
-  border-color: var(--main);
-  box-shadow: 0 12px 40px rgba(46,204,113,0.15);
-}
-
-body.dark .qr-image-wrapper:hover {
-  box-shadow: 0 12px 40px rgba(5,150,105,0.2);
-}
-
-.qr-image-wrapper .qr-glow {
-  position: absolute;
-  inset: -8px;
-  border-radius: 28px;
-  background: var(--gradient);
-  opacity: 0;
-  z-index: -1;
-  transition: all 0.4s ease;
-  filter: blur(20px);
-}
-
-.qr-image-wrapper:hover .qr-glow {
-  opacity: 0.3;
-}
-
-/* ✅ ขยาย QR Code ให้ใหญ่ขึ้น */
-.qr-image-wrapper img {
-  display: block;
-  width: 100%;
-  max-width: 400px;
-  height: auto;
-  border-radius: 16px;
-}
-
-.qr-label-below {
-  display: block;
-  margin-top: 14px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--muted);
-}
-
-.qr-label-below strong {
-  color: var(--text);
-  font-weight: 600;
-}
-
-/* ============================================
-   SECTION TITLES
-============================================ */
-.section-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--text);
-  margin: 24px 0 14px 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.section-title .badge {
-  font-size: 0.65rem;
-  background: var(--gradient);
-  color: white;
-  padding: 2px 12px;
-  border-radius: 30px;
-  font-weight: 500;
-}
-
-/* ============================================
-   PRICING GRID
-============================================ */
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 10px;
-}
-
-.price-card {
-  background: var(--card);
-  border: 2px solid var(--border);
-  border-radius: 16px;
-  padding: 14px 8px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-
-.price-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-  border-color: var(--main);
-}
-
-.price-card.active {
-  border-color: var(--main);
-  box-shadow: 0 0 0 3px rgba(46,204,113,0.2), 0 12px 30px rgba(46,204,113,0.12);
-  background: rgba(46,204,113,0.04);
-}
-
-body.dark .price-card.active {
-  background: rgba(5,150,105,0.08);
-}
-
-.price-card .icon {
-  font-size: 1.8rem;
-  display: block;
-  margin-bottom: 4px;
-}
-
-.price-card .name {
-  display: block;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.price-card .price {
-  display: block;
-  margin-top: 4px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--dark);
-}
-
-body.dark .price-card .price {
-  color: #34d399;
-}
-
-.price-card .tag {
-  position: absolute;
-  top: -8px;
-  right: -4px;
-  font-size: 0.55rem;
-  background: var(--gradient);
-  color: white;
-  padding: 2px 10px;
-  border-radius: 20px;
-  font-weight: 600;
-}
-
-.price-card.donate {
-  border-color: #f59e0b;
-  background: rgba(245,158,11,0.04);
-}
-
-.price-card.donate .price {
-  color: #f59e0b;
-}
-
-.price-card.donate.active {
-  border-color: #f59e0b;
-  box-shadow: 0 0 0 3px rgba(245,158,11,0.2), 0 12px 30px rgba(245,158,11,0.1);
-}
-
-/* ============================================
-   FORM
-============================================ */
-.form-group {
-  margin-top: 18px;
-}
-
-.form-group label {
-  display: block;
-  font-weight: 500;
-  font-size: 0.92rem;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-
-.form-group label .required {
-  color: #ef4444;
-  margin-left: 2px;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 14px 18px;
-  border-radius: 14px;
-  border: 2px solid var(--border);
-  background: var(--card);
-  color: var(--text);
-  font-size: 1rem;
-  font-family: inherit;
-  transition: all 0.3s ease;
-}
-
-.form-group input:focus {
-  outline: none;
-  border-color: var(--main);
-  box-shadow: 0 0 0 4px rgba(46,204,113,0.1);
-}
-
-.form-group input::placeholder {
-  color: var(--muted);
-  opacity: 0.6;
-}
-
-#preview {
-  width: 100%;
-  max-height: 200px;
-  object-fit: contain;
-  margin-top: 10px;
-  border-radius: 14px;
-  display: none;
-  border: 2px dashed var(--border);
-  padding: 8px;
-  background: var(--card);
-}
-
-/* ============================================
-   SUBMIT BUTTON
-============================================ */
-.submit-btn {
-  width: 100%;
-  margin-top: 24px;
-  padding: 18px;
-  border: none;
-  border-radius: 16px;
-  background: var(--gradient);
-  color: white;
-  font-weight: 700;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.4s ease;
-  font-family: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  box-shadow: var(--glow);
-}
-
-.submit-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(46,204,113,0.35);
-}
-
-.submit-btn:disabled {
-  background: var(--muted);
-  cursor: not-allowed;
-  box-shadow: none;
-  opacity: 0.5;
-}
-
-.submit-btn:disabled:hover {
-  transform: none;
-}
-
-/* ============================================
-   CONTACT BOX
-============================================ */
-.contact-box {
-  margin-top: 28px;
-  padding-top: 24px;
-  border-top: 2px solid var(--border);
-  text-align: center;
-}
-
-.contact-box .contact-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 12px;
-  color: var(--text);
-}
-
-.contact-box .contact-item {
-  font-size: 0.9rem;
-  color: var(--muted);
-  margin-top: 10px;
-  line-height: 1.7;
-}
-
-.contact-box a {
-  color: var(--dark);
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.contact-box a:hover {
-  color: var(--main);
-  text-decoration: underline;
-}
-
-.contact-box .qr-img {
-  max-width: 160px;
-  border-radius: 14px;
-  margin-top: 8px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  background: white;
-  padding: 4px;
-}
-
-.contact-box .hours {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-top: 12px;
-  padding: 12px 16px;
-  background: rgba(46,204,113,0.05);
-  border-radius: 14px;
-  border-left: 4px solid var(--main);
-}
-
-body.dark .contact-box .hours {
-  background: rgba(5,150,105,0.08);
-}
-
-/* ============================================
-   RESPONSIVE
-============================================ */
-@media (max-width: 768px) {
-  body { padding: 1rem; }
-  .box { padding: 1.5rem; }
-  .payment-box { padding: 1.4rem 1.2rem; }
-  .payment-box h2 { font-size: 1.3rem; }
-  .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); }
-  .payment-details .row { font-size: 0.82rem; }
-  .qr-image-wrapper img { max-width: 320px; }
-  .qr-image-wrapper { padding: 14px; }
-}
-
-@media (max-width: 480px) {
-  body { padding: 0.6rem; }
-  .box { padding: 1rem; border-radius: 20px; }
-  .payment-box { padding: 1rem; border-radius: 14px; }
-  .payment-box h2 { font-size: 1.1rem; }
-  .pricing-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .price-card { padding: 10px 4px; }
-  .price-card .name { font-size: 0.65rem; }
-  .price-card .price { font-size: 0.7rem; }
-  .price-card .icon { font-size: 1.4rem; }
-  .topbar { gap: 6px; }
-  .lang-switch button { padding: 4px 10px; font-size: 0.65rem; }
-  .payment-details .row { font-size: 0.72rem; flex-direction: column; align-items: flex-start; gap: 2px; }
-  .section-title { font-size: 1rem; }
-  .submit-btn { font-size: 0.95rem; padding: 14px; }
-  .form-group input { padding: 12px 14px; font-size: 0.9rem; }
-  .qr-section { padding: 16px 12px; }
-  .qr-image-wrapper img { max-width: 260px; }
-  .qr-image-wrapper { padding: 10px; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💎 Buy VIP / Coin TorrentDD</title>
+    <link rel="icon" type="image/png" href="https://s2.imgbb.ws/file/storage-sv2/jG4wV.png">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           ROOT VARIABLES - EMERALD GLASS THEME
+        ============================================ */
+        :root {
+            --bg: #d1fae5; /*  Emerald light background */
+            --bg-glass: rgba(255, 255, 255, 0.4);
+            --card: rgba(255, 255, 255, 0.75);
+            --card-border: rgba(255, 255, 255, 0.25);
+            --text: #064e3b; /* Dark emerald */
+            --muted: #047857;
+            --main: #059669;
+            --dark: #047857;
+            --border: rgba(16, 185, 129, 0.2);
+            --shadow: 0 25px 50px -12px rgba(5, 150, 105, 0.25);
+            --radius: 32px;
+            --gradient: linear-gradient(145deg, #10b981, #059669);
+            --glow: 0 0 30px rgba(5, 150, 105, 0.2);
+            --glass-blur: blur(12px);
+        }
+
+        body.dark {
+            --bg: #042f2e; /* Deep dark emerald */
+            --bg-glass: rgba(15, 23, 42, 0.6);
+            --card: rgba(30, 58, 57, 0.8);
+            --card-border: rgba(255, 255, 255, 0.05);
+            --text: #ccfbf1;
+            --muted: #6ee7b7;
+            --border: rgba(52, 211, 153, 0.15);
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            --gradient: linear-gradient(145deg, #0d9488, #047857);
+            --glow: 0 0 30px rgba(5, 150, 105, 0.15);
+        }
+
+        /* ============================================
+           BASE
+        ============================================ */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            padding: 1.5rem;
+            font-family: 'Prompt', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: radial-gradient(circle at 10% 30%, rgba(16, 185, 129, 0.05) 0%, transparent 60%),
+                radial-gradient(circle at 90% 70%, rgba(5, 150, 105, 0.08) 0%, transparent 50%);
+        }
+
+        /* ============================================
+           MAIN CONTAINER - GLASS CARD
+        ============================================ */
+        .box {
+            max-width: 820px;
+            width: 100%;
+            margin: auto;
+            background: var(--card);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--card-border);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .box::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            left: -30%;
+            width: 80%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        .box::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -20%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(5, 150, 105, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        /* ============================================
+           TOPBAR
+        ============================================ */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .topbar-left .logo-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            background: var(--bg-glass);
+            backdrop-filter: blur(8px);
+            border-radius: 999px;
+            padding: 4px;
+            gap: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        body.dark .lang-switch {
+            background: rgba(15, 23, 42, 0.4);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .lang-switch button {
+            width: auto;
+            margin: 0;
+            border: none;
+            background: transparent;
+            padding: 6px 18px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            color: var(--muted);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch button.active {
+            background: var(--gradient);
+            color: white;
+            box-shadow: var(--glow);
+        }
+
+        .lang-switch button:hover:not(.active) {
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark-toggle {
+            width: 48px;
+            height: 28px;
+            background: var(--bg-glass);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 15px;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+        }
+
+        body.dark .dark-toggle {
+            background: rgba(15, 23, 42, 0.4);
+            border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .dark-toggle:hover {
+            transform: scale(1.08) rotate(6deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ============================================
+           PAYMENT BOX (HEADER) - EMERALD GRADIENT
+        ============================================ */
+        .payment-box {
+            background: var(--gradient);
+            padding: 2rem 2.2rem;
+            border-radius: 24px;
+            margin-bottom: 28px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(5, 150, 105, 0.2);
+        }
+
+        .payment-box::after {
+            content: '✦ ✦ ✦';
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 60px;
+            opacity: 0.06;
+            letter-spacing: 12px;
+            transform: rotate(-8deg);
+        }
+
+        .payment-box h2 {
+            color: white !important;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            letter-spacing: -0.5px;
+        }
+
+        .payment-box .subtitle {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           PAYMENT DETAILS - INSIDE HEADER
+        ============================================ */
+        .payment-details {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            border-radius: 18px;
+            padding: 1.2rem 1.8rem;
+            margin-top: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: left;
+        }
+
+        .payment-details .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            flex-wrap: wrap;
+            gap: 6px;
+            font-size: 0.92rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .payment-details .row:last-child {
+            border-bottom: none;
+        }
+
+        .payment-details .row .label {
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        .payment-details .row .value {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .payment-details .copyable {
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 2px 14px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .payment-details .copyable:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: scale(1.02);
+        }
+
+        .divider-icon {
+            text-align: center;
+            font-size: 1rem;
+            padding: 6px 0 2px;
+            opacity: 0.5;
+            letter-spacing: 8px;
+        }
+
+        /* ============================================
+           QR SECTION - GLASS
+        ============================================ */
+        .qr-section {
+            margin: 20px 0 10px 0;
+            padding: 28px 24px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            border: 1px solid var(--card-border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            text-align: center;
+        }
+
+        body.dark .qr-section {
+            background: rgba(15, 23, 42, 0.3);
+            border-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .qr-section .qr-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .qr-section .qr-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .qr-section .qr-title .badge-qr {
+            font-size: 0.6rem;
+            background: var(--gradient);
+            color: white;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: var(--glow);
+        }
+
+        .qr-section .qr-subtitle {
+            font-size: 0.75rem;
+            color: var(--muted);
+            font-weight: 400;
+            opacity: 0.7;
+            background: var(--bg-glass);
+            padding: 4px 16px;
+            border-radius: 30px;
+        }
+
+        /* ============================================
+           QR FLEX
+        ============================================ */
+        .qr-flex {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+            gap: 24px;
+            margin-top: 10px;
+        }
+
+        .qr-card {
+            flex: 1 1 200px;
+            max-width: 250px;
+            min-width: 170px;
+            background: var(--card);
+            backdrop-filter: blur(4px);
+            border-radius: 24px;
+            padding: 18px 16px 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--card-border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body.dark .qr-card {
+            background: rgba(30, 58, 57, 0.5);
+            border-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .qr-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(5, 150, 105, 0.1);
+            border-color: var(--main);
+        }
+
+        .qr-card .bank-label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .qr-card .bank-label span {
+            background: var(--gradient);
+            color: white;
+            padding: 0 12px;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            font-weight: 600;
+        }
+
+        .qr-card img {
+            width: 190px;
+            height: 190px;
+            object-fit: cover;
+            border-radius: 16px;
+            background: #f0fdf4;
+            padding: 6px;
+            border: 2px solid rgba(16, 185, 129, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        body.dark .qr-card img {
+            background: #042f2e;
+            border-color: rgba(52, 211, 153, 0.1);
+        }
+
+        .qr-card img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 24px rgba(5, 150, 105, 0.12);
+            border-color: var(--main);
+        }
+
+        .qr-card .qr-name {
+            margin-top: 12px;
+            font-size: 0.7rem;
+            color: var(--muted);
+            word-break: break-all;
+            text-align: center;
+            line-height: 1.4;
+            background: var(--bg-glass);
+            padding: 4px 14px;
+            border-radius: 30px;
+            width: 100%;
+            font-weight: 500;
+        }
+
+        body.dark .qr-card .qr-name {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .download-btn {
+            margin-top: 12px;
+            background: var(--gradient);
+            border: none;
+            color: white;
+            font-weight: 700;
+            font-size: 0.7rem;
+            padding: 8px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            letter-spacing: 0.3px;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(5, 150, 105, 0.35);
+        }
+
+        body.dark .download-btn {
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.15);
+        }
+
+        .qr-label-below {
+            display: block;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--muted);
+            background: var(--bg-glass);
+            padding: 6px 18px;
+            border-radius: 30px;
+            backdrop-filter: blur(4px);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .qr-label-below strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        /* ============================================
+           SECTION TITLES
+        ============================================ */
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 28px 0 16px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title .badge {
+            font-size: 0.6rem;
+            background: var(--gradient);
+            color: white;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-weight: 600;
+            box-shadow: var(--glow);
+        }
+
+        /* ============================================
+           PRICING GRID
+        ============================================ */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px;
+        }
+
+        .price-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(4px);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 16px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+        }
+
+        .price-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(5, 150, 105, 0.08);
+            border-color: var(--main);
+        }
+
+        .price-card.active {
+            border-color: var(--main);
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15), 0 12px 30px rgba(5, 150, 105, 0.08);
+            background: rgba(16, 185, 129, 0.06);
+        }
+
+        body.dark .price-card.active {
+            background: rgba(5, 150, 105, 0.08);
+        }
+
+        .price-card .icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .price-card .name {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .price-card .price {
+            display: block;
+            margin-top: 6px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        body.dark .price-card .price {
+            color: #34d399;
+        }
+
+        .price-card .tag {
+            position: absolute;
+            top: -10px;
+            right: -6px;
+            font-size: 0.5rem;
+            background: var(--gradient);
+            color: white;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            box-shadow: var(--glow);
+        }
+
+        .price-card.donate {
+            border-color: #fcd34d;
+            background: rgba(251, 191, 36, 0.04);
+        }
+
+        .price-card.donate .price {
+            color: #f59e0b;
+        }
+
+        .price-card.donate.active {
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15), 0 12px 30px rgba(245, 158, 11, 0.06);
+        }
+
+        /* ============================================
+           FORM
+        ============================================ */
+        .form-group {
+            margin-top: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .form-group label .required {
+            color: #ef4444;
+            margin-left: 2px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 16px;
+            border: 2px solid var(--border);
+            background: var(--bg-glass);
+            backdrop-filter: blur(4px);
+            color: var(--text);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--main);
+            box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.08);
+            background: var(--card);
+        }
+
+        .form-group input::placeholder {
+            color: var(--muted);
+            opacity: 0.5;
+        }
+
+        #preview {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            margin-top: 12px;
+            border-radius: 16px;
+            display: none;
+            border: 2px dashed var(--border);
+            padding: 8px;
+            background: var(--bg-glass);
+        }
+
+        /* ============================================
+           SUBMIT BUTTON
+        ============================================ */
+        .submit-btn {
+            width: 100%;
+            margin-top: 28px;
+            padding: 18px;
+            border: none;
+            border-radius: 20px;
+            background: var(--gradient);
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-family: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            box-shadow: var(--glow);
+            letter-spacing: 0.5px;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px rgba(5, 150, 105, 0.3);
+        }
+
+        .submit-btn:disabled {
+            background: var(--muted);
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: 0.4;
+        }
+
+        .submit-btn:disabled:hover {
+            transform: none;
+        }
+
+        /* ============================================
+           CONTACT BOX
+        ============================================ */
+        .contact-box {
+            margin-top: 32px;
+            padding-top: 28px;
+            border-top: 2px solid var(--border);
+            text-align: center;
+        }
+
+        .contact-box .contact-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .contact-box .contact-item {
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-top: 10px;
+            line-height: 1.8;
+        }
+
+        .contact-box a {
+            color: var(--dark);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        .contact-box a:hover {
+            color: var(--main);
+            border-bottom-color: var(--main);
+        }
+
+        .contact-box .qr-img {
+            max-width: 160px;
+            border-radius: 18px;
+            margin-top: 10px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            background: white;
+            padding: 6px;
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .contact-box .qr-img:hover {
+            transform: scale(1.02);
+            border-color: var(--main);
+        }
+
+        .contact-box .hours {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-top: 16px;
+            padding: 14px 20px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(4px);
+            border-radius: 18px;
+            border-left: 4px solid var(--main);
+        }
+
+        body.dark .contact-box .hours {
+            background: rgba(15, 23, 42, 0.2);
+        }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .box {
+                padding: 1.8rem;
+            }
+            .payment-box {
+                padding: 1.6rem 1.4rem;
+            }
+            .payment-box h2 {
+                font-size: 1.4rem;
+            }
+            .pricing-grid {
+                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            }
+            .payment-details .row {
+                font-size: 0.8rem;
+            }
+            .qr-card {
+                flex: 1 1 150px;
+                max-width: 200px;
+            }
+            .qr-card img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0.6rem;
+            }
+            .box {
+                padding: 1.2rem;
+                border-radius: 24px;
+            }
+            .payment-box {
+                padding: 1.2rem 1rem;
+                border-radius: 18px;
+            }
+            .payment-box h2 {
+                font-size: 1.2rem;
+            }
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+            .price-card {
+                padding: 12px 6px;
+            }
+            .price-card .name {
+                font-size: 0.65rem;
+            }
+            .price-card .price {
+                font-size: 0.75rem;
+            }
+            .price-card .icon {
+                font-size: 1.5rem;
+            }
+            .topbar {
+                gap: 8px;
+            }
+            .lang-switch button {
+                padding: 4px 12px;
+                font-size: 0.65rem;
+            }
+            .payment-details .row {
+                font-size: 0.7rem;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+            }
+            .section-title {
+                font-size: 1rem;
+            }
+            .submit-btn {
+                font-size: 0.95rem;
+                padding: 14px;
+            }
+            .form-group input {
+                padding: 12px 14px;
+                font-size: 0.9rem;
+            }
+            .qr-section {
+                padding: 16px 12px;
+            }
+            .qr-flex {
+                gap: 14px;
+            }
+            .qr-card {
+                flex: 1 1 120px;
+                max-width: 160px;
+                min-width: 100px;
+                padding: 12px 8px;
+            }
+            .qr-card img {
+                width: 120px;
+                height: 120px;
+            }
+            .qr-card .bank-label {
+                font-size: 0.7rem;
+            }
+            .qr-card .qr-name {
+                font-size: 0.55rem;
+            }
+            .download-btn {
+                font-size: 0.55rem;
+                padding: 4px 12px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="box">
+    <div class="box">
 
-  <!-- ===== TOPBAR ===== -->
-  <div class="topbar">
-    <div class="topbar-left">
-      <span class="logo-text">🎬 TorrentDD</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-      <div class="lang-switch">
-        <button id="btnTH" onclick="setLang('th')">🇹🇭 ไทย</button>
-        <button id="btnEN" onclick="setLang('en')">🇺🇸 EN</button>
-      </div>
-      <div id="darkToggle" class="dark-toggle" onclick="toggleDark()">🌙</div>
-    </div>
-  </div>
-
-  <!-- ===== PAYMENT HEADER ===== -->
-  <div class="payment-box">
-    <h2 data-th="💎 ซื้อ VIP / Coin TorrentDD" data-en="💎 Buy VIP / Coin TorrentDD"></h2>
-    <div class="subtitle">⚡ เติมเต็มประสบการณ์การรับชมของคุณ</div>
-
-    <div class="payment-details">
-      <div class="row">
-        <span class="label">🏦 ธนาคาร</span>
-        <span class="value">Krungthai Bank</span>
-      </div>
-      <div class="row">
-        <span class="label" data-th="💰 บัญชี" data-en="💰 Account">💰 บัญชี</span>
-        <span class="value"><span class="copyable" data-text="9863034460">986-3-03446-0</span> <span style="opacity:0.5;font-size:0.7rem;"></span></span>
-      </div>
-      <div class="row">
-        <span class="label">📱 PromptPay</span>
-        <span class="value"><span class="copyable" data-text="0910541671">091-054-1671</span> <span style="opacity:0.5;font-size:0.7rem;"></span></span>
-      </div>
-      <div class="row">
-        <span class="label">💸 TrueWallet</span>
-        <span class="value"><span class="copyable" data-text="0830439347">083-043-9347</span> <span style="opacity:0.5;font-size:0.7rem;"></span></span>
-      </div>
-      <div class="row">
-        <span class="label">📝 ชื่อบัญชี</span>
-        <span class="value">Akrapong Pengrod</span>
-      </div>
-      <div class="divider-icon">✦ ✦ ✦</div>
-    </div>
-  </div>
-
-  <!-- ===== QR CODE SCAN PAY (ใหญ่ขึ้น) ===== -->
-  <div class="qr-section">
-    <div class="qr-header">
-      <div class="qr-title">
-        📱 <span data-th="สแกนจ่ายผ่าน QR Code" data-en="Scan QR Code to Pay"></span>
-        <span class="badge-qr">⚡ สะดวก</span>
-      </div>
-      <span class="qr-subtitle" data-th="เปิดแอปธนาคารแล้วสแกน" data-en="Open banking app and scan">👆 เปิดแอปธนาคารแล้วสแกน</span>
-    </div>
-
-    <div class="qr-wrapper">
-      <div class="qr-image-wrapper">
-        <img src="https://s2.imgbb.ws/file/storage-sv2/jG4rJ.png" alt="QR Code สำหรับชำระเงิน">
-        <div class="qr-glow"></div>
-      </div>
-    </div>
-
-    <span class="qr-label-below">
-      <span data-th="สแกนเพื่อจ่ายผ่าน" data-en="Scan to pay via">สแกนเพื่อจ่ายผ่าน</span>
-      <strong>PromptPay</strong> <span data-th="หรือ" data-en="or">หรือ</span> <strong>TrueWallet</strong>
-    </span>
-  </div>
-
-  <!-- ===== SECTION: เลือกแพ็กเกจ ===== -->
-  <div class="section-title">
-    📦 <span data-th="เลือกแพ็กเกจ" data-en="Select Package"></span>
-    <span class="badge">⭐</span>
-  </div>
-
-  <form id="payForm">
-
-    <!-- VIP -->
-    <div style="margin-top:6px;">
-      <div style="font-weight:600;font-size:0.95rem;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
-        👑 <span data-th="แพ็กเกจ VIP" data-en="VIP Packages"></span>
-      </div>
-      <div class="pricing-grid">
-        <div class="price-card" onclick="selectPackage(this,'VIP 1 เดือน - 200 บาท')">
-          <span class="icon">👑</span>
-          <span class="name" data-th="VIP 1 เดือน" data-en="VIP 1 Month"></span>
-          <span class="price">200 ฿</span>
+        <!-- ===== TOPBAR ===== -->
+        <div class="topbar">
+            <div class="topbar-left">
+                <span class="logo-text">🎬 TorrentDD</span>
+            </div>
+            <div class="topbar-right">
+                <div class="lang-switch">
+                    <button id="btnTH" onclick="setLang('th')">🇹🇭 ไทย</button>
+                    <button id="btnEN" onclick="setLang('en')">🇺🇸 EN</button>
+                </div>
+                <div id="darkToggle" class="dark-toggle" onclick="toggleDark()">🌙</div>
+            </div>
         </div>
-        <div class="price-card" onclick="selectPackage(this,'VIP 3 เดือน - 425 บาท')">
-          <span class="icon">👑</span>
-          <span class="name" data-th="VIP 3 เดือน" data-en="VIP 3 Months"></span>
-          <span class="price">425 ฿</span>
-          <span class="tag">🔥 ประหยัด</span>
+
+        <!-- ===== PAYMENT HEADER ===== -->
+        <div class="payment-box">
+            <h2 data-th="💎 ซื้อ VIP / Coin TorrentDD" data-en="💎 Buy VIP / Coin TorrentDD"></h2>
+            <div class="subtitle">⚡ เติมเต็มประสบการณ์การรับชมของคุณ</div>
+
+            <div class="payment-details">
+                <div class="row">
+                    <span class="label">🏦 ธนาคาร</span>
+                    <span class="value">Krungthai Bank</span>
+                </div>
+                <div class="row">
+                    <span class="label" data-th="💰 บัญชี" data-en="💰 Account">💰 บัญชี</span>
+                    <span class="value"><span class="copyable" data-text="9863034460">986-3-03446-0</span></span>
+                </div>
+                <div class="row">
+                    <span class="label">📱 PromptPay</span>
+                    <span class="value"><span class="copyable" data-text="0910541671">091-054-1671</span></span>
+                </div>
+                <div class="row">
+                    <span class="label">💸 TrueWallet</span>
+                    <span class="value"><span class="copyable" data-text="0830439347">083-043-9347</span></span>
+                </div>
+                <div class="row">
+                    <span class="label">📝 ชื่อบัญชี</span>
+                    <span class="value">Akrapong Pengrod</span>
+                </div>
+                <div class="divider-icon">✦ ✦ ✦</div>
+            </div>
         </div>
-        <div class="price-card" onclick="selectPackage(this,'VIP 6 เดือน - 750 บาท')">
-          <span class="icon">👑</span>
-          <span class="name" data-th="VIP 6 เดือน" data-en="VIP 6 Months"></span>
-          <span class="price">750 ฿</span>
+
+        <!-- ==========================================================
+             QR CODE SECTION
+        ========================================================== -->
+        <div class="qr-section">
+            <div class="qr-header">
+                <div class="qr-title">
+                    📱 <span data-th="สแกนจ่ายผ่าน QR Code" data-en="Scan QR Code to Pay"></span>
+                    <span class="badge-qr">⚡ สะดวก</span>
+                </div>
+                <span class="qr-subtitle" data-th="เปิดแอปธนาคารแล้วสแกน" data-en="Open banking app and scan">👆 เปิดแอปธนาคารแล้วสแกน</span>
+            </div>
+
+            <div class="qr-flex">
+                <!-- PromptPay QR -->
+                <div class="qr-card">
+                    <div class="bank-label">🇹🇭 PromptPay <span>QR</span></div>
+                    <img src="https://pic4u.vip/images/2026/09/02/vo6a8.jpg" alt="QR PromptPay">
+                    <button class="download-btn" onclick="downloadQR('https://pic4u.vip/images/2026/09/02/vokPX.png', 'PromptPay_QR')">
+                        ⬇️ <span data-th="ดาวน์โหลด" data-en="Download"></span>
+                    </button>
+                </div>
+
+                <!-- TrueWallet QR -->
+                <div class="qr-card">
+                    <div class="bank-label">💸 TrueWallet <span>QR</span></div>
+                    <img src="https://pic4u.vip/images/2026/09/02/vop97.png" alt="QR TrueWallet">
+                    <button class="download-btn" onclick="downloadQR('https://pic4u.vip/images/2026/09/02/vogTV.jpg', 'TrueWallet_QR')">
+                        ⬇️ <span data-th="ดาวน์โหลด" data-en="Download"></span>
+                    </button>
+                </div>
+            </div>
+
+            <span class="qr-label-below">
+                <span data-th="สแกนเพื่อจ่ายผ่าน" data-en="Scan to pay via">สแกนเพื่อจ่ายผ่าน</span>
+                <strong>PromptPay</strong> <span data-th="หรือ" data-en="or">หรือ</span> <strong>TrueWallet</strong>
+            </span>
         </div>
-        <div class="price-card" onclick="selectPackage(this,'VIP 1 ปี - 1,250 บาท')">
-          <span class="icon">👑</span>
-          <span class="name" data-th="VIP 1 ปี" data-en="VIP 1 Year"></span>
-          <span class="price">1,250 ฿</span>
-          <span class="tag">⭐ แนะนำ</span>
+
+        <!-- ===== SECTION: เลือกแพ็กเกจ ===== -->
+        <div class="section-title">
+            📦 <span data-th="เลือกแพ็กเกจ" data-en="Select Package"></span>
+            <span class="badge">⭐</span>
         </div>
-        <div class="price-card" onclick="selectPackage(this,'VIP 2 ปี - 2,050 บาท')">
-          <span class="icon">👑</span>
-          <span class="name" data-th="VIP 2 ปี" data-en="VIP 2 Years"></span>
-          <span class="price">2,050 ฿</span>
+
+        <form id="payForm">
+
+            <!-- VIP -->
+            <div style="margin-top:6px;">
+                <div style="font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+                    👑 <span data-th="แพ็กเกจ VIP" data-en="VIP Packages"></span>
+                </div>
+                <div class="pricing-grid">
+                    <div class="price-card" onclick="selectPackage(this,'VIP 1 เดือน - 200 บาท')">
+                        <span class="icon">👑</span>
+                        <span class="name" data-th="VIP 1 เดือน" data-en="VIP 1 Month"></span>
+                        <span class="price">200 ฿</span>
+                    </div>
+                    <div class="price-card" onclick="selectPackage(this,'VIP 3 เดือน - 425 บาท')">
+                        <span class="icon">👑</span>
+                        <span class="name" data-th="VIP 3 เดือน" data-en="VIP 3 Months"></span>
+                        <span class="price">425 ฿</span>
+                        <span class="tag">🔥 ประหยัด</span>
+                    </div>
+                    <div class="price-card" onclick="selectPackage(this,'VIP 6 เดือน - 750 บาท')">
+                        <span class="icon">👑</span>
+                        <span class="name" data-th="VIP 6 เดือน" data-en="VIP 6 Months"></span>
+                        <span class="price">750 ฿</span>
+                    </div>
+                    <div class="price-card" onclick="selectPackage(this,'VIP 1 ปี - 1,250 บาท')">
+                        <span class="icon">👑</span>
+                        <span class="name" data-th="VIP 1 ปี" data-en="VIP 1 Year"></span>
+                        <span class="price">1,250 ฿</span>
+                        <span class="tag">⭐ แนะนำ</span>
+                    </div>
+                    <div class="price-card" onclick="selectPackage(this,'VIP 2 ปี - 2,050 บาท')">
+                        <span class="icon">👑</span>
+                        <span class="name" data-th="VIP 2 ปี" data-en="VIP 2 Years"></span>
+                        <span class="price">2,050 ฿</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COIN -->
+            <div style="margin-top:22px;">
+                <div style="font-weight:700;font-size:0.95rem;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+                    💰 <span data-th="แพ็กเกจ Coin" data-en="Coin Packages"></span>
+                </div>
+                <div class="pricing-grid">
+                    <div class="price-card" onclick="selectPackage(this,'Coin 1,200 - 200 บาท')">
+                        <span class="icon">💰</span>
+                        <span class="name" data-th="Coin 1,200" data-en="Coin 1,200"></span>
+                        <span class="price">200 ฿</span>
+                    </div>
+                    <div class="price-card" onclick="selectPackage(this,'Coin 3,000 - 425 บาท')">
+                        <span class="icon">💰</span>
+                        <span class="name" data-th="Coin 3,000" data-en="Coin 3,000"></span>
+                        <span class="price">425 ฿</span>
+                    </div>
+                    <div class="price-card" onclick="selectPackage(this,'Coin 5,000 - 750 บาท')">
+                        <span class="icon">💰</span>
+                        <span class="name" data-th="Coin 5,000" data-en="Coin 5,000"></span>
+                        <span class="price">750 ฿</span>
+                    </div>
+                    <div class="price-card" onclick="selectPackage(this,'Coin 9,000 - 1,250 บาท')">
+                        <span class="icon">💰</span>
+                        <span class="name" data-th="Coin 9,000" data-en="Coin 9,000"></span>
+                        <span class="price">1,250 ฿</span>
+                        <span class="tag">⭐ แนะนำ</span>
+                    </div>
+                    <div class="price-card" onclick="selectPackage(this,'Coin 15,000 - 2,050 บาท')">
+                        <span class="icon">💰</span>
+                        <span class="name" data-th="Coin 15,000" data-en="Coin 15,000"></span>
+                        <span class="price">2,050 ฿</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DONATION -->
+            <div style="margin-top:22px;">
+                <div style="font-weight:600;font-size:0.9rem;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:8px;">
+                    ❤️ <span data-th="สนับสนุน (ไม่ได้รับ VIP/Coin)" data-en="Donation (no VIP/Coin)"></span>
+                </div>
+                <div class="pricing-grid" style="grid-template-columns:1fr;">
+                    <div class="price-card donate" onclick="selectPackage(this,'Donation Support')">
+                        <span class="icon">❤️</span>
+                        <span class="name" data-th="บริจาคช่วยค่าโหลดหนัง ซีรี่ย์" data-en="Help cover hosting costs"></span>
+                        <span class="price" data-th="สนับสนุน (ไม่ได้รับ VIP/Coin)" data-en="Support (no VIP/Coin)"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hidden -->
+            <input type="hidden" name="package" id="package" value="" required>
+
+            <!-- ===== FORM FIELDS ===== -->
+            <div class="form-group">
+                <label>👤 <span data-th="ชื่อผู้ใช้ TorrentDD" data-en="TorrentDD Username"></span> <span class="required">*</span></label>
+                <input name="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_-]{3,20}"
+                data-ph-th="ป้อนชื่อผู้ใช้ (ภาษาอังกฤษ, ตัวเลข, _ , -)"
+                data-ph-en="Enter username (letters, numbers, _, -)">
+            </div>
+
+            <div class="form-group">
+                <label>🖼 <span data-th="อัปโหลดสลิป (ถ้ามี)" data-en="Upload Slip (optional)"></span></label>
+                <input type="file" id="slip" accept="image/*">
+                <img id="preview">
+            </div>
+
+            <div class="form-group">
+                <label>🔢 <span data-th="เลข 4 ตัวท้ายบัญชี (ถ้าไม่มีสลิป)" data-en="Last 4 Digits (if no slip)"></span></label>
+                <input name="last4" maxlength="4" pattern="[0-9]{4}"
+                data-ph-th="กรอก 4 ตัวท้าย"
+                data-ph-en="Enter last 4 digits">
+            </div>
+
+            <!-- ===== SUBMIT ===== -->
+            <button id="sendBtn" class="submit-btn" disabled>
+                <span>✅</span>
+                <span data-th="แจ้งชำระเงิน" data-en="Submit Payment"></span>
+                <span>➜</span>
+            </button>
+
+        </form>
+
+        <!-- ===== CONTACT ===== -->
+        <div class="contact-box">
+            <div class="contact-title">📩 <span data-th="ช่องทางติดต่อ" data-en="Contact Information"></span></div>
+
+            <div class="contact-item"
+            data-en='📌 <a href="https://www.torrentdd.net/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a> (TorrentDD Inbox)'
+            data-th='📌 <a href="https://www.torrentdd.net/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a> (Inbox บนเว็บ)'>
         </div>
-      </div>
-    </div>
 
-    <!-- COIN -->
-    <div style="margin-top:20px;">
-      <div style="font-weight:600;font-size:0.95rem;color:var(--text);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
-        💰 <span data-th="แพ็กเกจ Coin" data-en="Coin Packages"></span>
-      </div>
-      <div class="pricing-grid">
-        <div class="price-card" onclick="selectPackage(this,'Coin 1,200 - 200 บาท')">
-          <span class="icon">💰</span>
-          <span class="name" data-th="Coin 1,200" data-en="Coin 1,200"></span>
-          <span class="price">200 ฿</span>
+        <div class="contact-item">
+            <div data-en="💬 LINE OpenChat (for key issues)" data-th="💬 กลุ่ม LINE (ติดต่อกรณียังไม่ได้รับ Key)"></div>
+            <img class="qr-img" src="https://s2.imgbb.ws/file/storage-sv2/FKSuk.jpg" alt="LINE QR">
         </div>
-        <div class="price-card" onclick="selectPackage(this,'Coin 3,000 - 425 บาท')">
-          <span class="icon">💰</span>
-          <span class="name" data-th="Coin 3,000" data-en="Coin 3,000"></span>
-          <span class="price">425 ฿</span>
-        </div>
-        <div class="price-card" onclick="selectPackage(this,'Coin 5,000 - 750 บาท')">
-          <span class="icon">💰</span>
-          <span class="name" data-th="Coin 5,000" data-en="Coin 5,000"></span>
-          <span class="price">750 ฿</span>
-        </div>
-        <div class="price-card" onclick="selectPackage(this,'Coin 9,000 - 1,250 บาท')">
-          <span class="icon">💰</span>
-          <span class="name" data-th="Coin 9,000" data-en="Coin 9,000"></span>
-          <span class="price">1,250 ฿</span>
-          <span class="tag">⭐ แนะนำ</span>
-        </div>
-        <div class="price-card" onclick="selectPackage(this,'Coin 15,000 - 2,050 บาท')">
-          <span class="icon">💰</span>
-          <span class="name" data-th="Coin 15,000" data-en="Coin 15,000"></span>
-          <span class="price">2,050 ฿</span>
-        </div>
-      </div>
-    </div>
 
-    <!-- DONATION -->
-    <div style="margin-top:20px;">
-      <div style="font-weight:600;font-size:0.9rem;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
-        ❤️ <span data-th="สนับสนุน (ไม่ได้รับ VIP/Coin)" data-en="Donation (no VIP/Coin)"></span>
-      </div>
-      <div class="pricing-grid" style="grid-template-columns:1fr;">
-        <div class="price-card donate" onclick="selectPackage(this,'Donation Support')">
-          <span class="icon">❤️</span>
-          <span class="name" data-th="บริจาคช่วยค่าโหลดหนัง ซีรี่ย์" data-en="Help cover hosting costs"></span>
-          <span class="price" data-th="สนับสนุน (ไม่ได้รับ VIP/Coin)" data-en="Support (no VIP/Coin)"></span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Hidden -->
-    <input type="hidden" name="package" id="package" value="" required>
-
-    <!-- ===== FORM FIELDS ===== -->
-    <div class="form-group">
-      <label>👤 <span data-th="ชื่อผู้ใช้ TorrentDD" data-en="TorrentDD Username"></span> <span class="required">*</span></label>
-      <input name="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_-]{3,20}"
-             data-ph-th="ป้อนชื่อผู้ใช้ (ภาษาอังกฤษ, ตัวเลข, _ , -)" 
-             data-ph-en="Enter username (letters, numbers, _, -)">
-    </div>
-
-    <div class="form-group">
-      <label>🖼 <span data-th="อัปโหลดสลิป (ถ้ามี)" data-en="Upload Slip (optional)"></span></label>
-      <input type="file" id="slip" accept="image/*">
-      <img id="preview">
-    </div>
-
-    <div class="form-group">
-      <label>🔢 <span data-th="เลข 4 ตัวท้ายบัญชี (ถ้าไม่มีสลิป)" data-en="Last 4 Digits (if no slip)"></span></label>
-      <input name="last4" maxlength="4" pattern="[0-9]{4}"
-             data-ph-th="กรอก 4 ตัวท้าย" 
-             data-ph-en="Enter last 4 digits">
-    </div>
-
-    <!-- ===== SUBMIT ===== -->
-    <button id="sendBtn" class="submit-btn" disabled>
-      <span>✅</span> 
-      <span data-th="แจ้งชำระเงิน" data-en="Submit Payment"></span>
-      <span>➜</span>
-    </button>
-
-  </form>
-
-  <!-- ===== CONTACT ===== -->
-  <div class="contact-box">
-    <div class="contact-title">📩 <span data-th="ช่องทางติดต่อ" data-en="Contact Information"></span></div>
-
-    <div class="contact-item" 
-         data-en='📌 <a href="https://www.torrentdd.net/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a> (TorrentDD Inbox)'
-         data-th='📌 <a href="https://www.torrentdd.net/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a> (Inbox บนเว็บ)'>
-    </div>
-
-    <div class="contact-item">
-      <div data-en="💬 LINE OpenChat (for key issues)" data-th="💬 กลุ่ม LINE (ติดต่อกรณียังไม่ได้รับ Key)"></div>
-      <img class="qr-img" src="https://s2.imgbb.ws/file/storage-sv2/FKSuk.jpg" alt="LINE QR">
-    </div>
-
-    <div class="hours">
-      <span data-th="🕐 เวลาทำการ: 08:00 - 00:00 น. (ตามเวลาไทย)" 
+        <div class="hours">
+            <span data-th="🕐 เวลาทำการ: 08:00 - 00:00 น. (ตามเวลาไทย)"
             data-en="🕐 Working Hours: 08:00 - 00:00 (Thailand Time)"></span><br>
-      <span data-th="⏰ หากอยู่จะส่งให้ทันที นอกเวลาส่งในวันถัดไป" 
+            <span data-th="⏰ หากอยู่จะส่งให้ทันที นอกเวลาส่งในวันถัดไป"
             data-en="⏰ If available, sent immediately; otherwise next business day"></span>
+        </div>
     </div>
-  </div>
 
 </div>
 
 <script>
-// ============================================
-// CONFIG
-// ============================================
-const BOT_TOKEN = "8265712317:AAET88mDq8GFJSN9zRys1wJ4AwPQ7hmtYbI";
-const CHAT_ID = "6678480860";
+    // ============================================
+    // CONFIG
+    // ============================================
+    const BOT_TOKEN = "8265712317:AAET88mDq8GFJSN9zRys1wJ4AwPQ7hmtYbI";
+    const CHAT_ID = "6678480860";
 
-let lang = localStorage.lang || "th";
-let dark = localStorage.dark === "1";
-let slipFile = null;
+    let lang = localStorage.lang || "th";
+    let dark = localStorage.dark === "1";
+    let slipFile = null;
 
-// ============================================
-// LANGUAGE
-// ============================================
-function applyLang() {
-  document.querySelectorAll("[data-th]").forEach(el => {
-    el.innerHTML = el.dataset[lang];
-  });
-  document.querySelectorAll("[data-ph-th]").forEach(el => {
-    el.placeholder = lang === "th" ? el.dataset.phTh : el.dataset.phEn;
-  });
-  document.querySelectorAll(".copyable").forEach(el => {
-    el.title = lang === "th" ? "คลิกเพื่อคัดลอก" : "Click to copy";
-  });
-  document.getElementById("btnTH").classList.toggle("active", lang === "th");
-  document.getElementById("btnEN").classList.toggle("active", lang === "en");
-  localStorage.lang = lang;
-}
-
-function setLang(l) { lang = l; applyLang(); }
-
-// ============================================
-// DARK MODE
-// ============================================
-function toggleDark() {
-  dark = !dark;
-  document.body.classList.toggle("dark", dark);
-  localStorage.dark = dark ? "1" : "0";
-  const btn = document.getElementById("darkToggle");
-  if (btn) btn.innerHTML = dark ? "☀️" : "🌙";
-}
-
-// ============================================
-// SELECT PACKAGE
-// ============================================
-function selectPackage(card, value) {
-  document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
-  card.classList.add("active");
-  document.getElementById("package").value = value;
-  document.getElementById("sendBtn").disabled = false;
-}
-
-// ============================================
-// SLIP PREVIEW
-// ============================================
-document.getElementById("slip").addEventListener("change", e => {
-  const file = e.target.files[0];
-  if (!file) return;
-  slipFile = file;
-  const reader = new FileReader();
-  reader.onload = () => {
-    document.getElementById("preview").src = reader.result;
-    document.getElementById("preview").style.display = "block";
-  };
-  reader.readAsDataURL(file);
-});
-
-// ============================================
-// COPYABLE
-// ============================================
-document.querySelectorAll(".copyable").forEach(el => {
-  el.addEventListener("click", () => {
-    const text = el.dataset.text;
-    navigator.clipboard.writeText(text).then(() => {
-      alert((lang === "th" ? "✅ คัดลอกแล้ว: " : "✅ Copied: ") + text);
-    });
-  });
-});
-
-// ============================================
-// GET MESSAGE
-// ============================================
-function getMessage(key) {
-  const msgs = {
-    th: {
-      pleaseUploadOrEnter: "⚠️ กรุณาอัปโหลดสลิป หรือกรอกเลข 4 ตัวท้าย",
-      selectPackage: "⚠️ กรุณาเลือกแพ็กเกจก่อน",
-      submittedSuccess: "✅ ส่งข้อมูลสำเร็จ!\n\n⏳ รอ 2-5 นาที รับ Key ที่ Inbox\n\n🔄 กด OK เพื่อไปที่ Inbox",
-      error: "❌ เกิดข้อผิดพลาด ลองอีกครั้ง"
-    },
-    en: {
-      pleaseUploadOrEnter: "⚠️ Please upload slip or enter last 4 digits",
-      selectPackage: "⚠️ Please select a package first",
-      submittedSuccess: "✅ Submitted!\n\n⏳ Wait 2-5 min for Key in Inbox\n\n🔄 Click OK to go to Inbox",
-      error: "❌ Error occurred, please try again"
+    // ============================================
+    // LANGUAGE
+    // ============================================
+    function applyLang() {
+        document.querySelectorAll("[data-th]").forEach(el => {
+            el.innerHTML = el.dataset[lang];
+        });
+        document.querySelectorAll("[data-ph-th]").forEach(el => {
+            el.placeholder = lang === "th" ? el.dataset.phTh : el.dataset.phEn;
+        });
+        document.querySelectorAll(".copyable").forEach(el => {
+            el.title = lang === "th" ? "คลิกเพื่อคัดลอก" : "Click to copy";
+        });
+        document.getElementById("btnTH").classList.toggle("active", lang === "th");
+        document.getElementById("btnEN").classList.toggle("active", lang === "en");
+        localStorage.lang = lang;
     }
-  };
-  return msgs[lang][key];
-}
 
-// ============================================
-// SEND TO TELEGRAM
-// ============================================
-async function sendToTelegram(message, slipFile) {
-  try {
-    const formData = new FormData();
-    formData.append('chat_id', CHAT_ID);
-    formData.append('text', message);
-    formData.append('parse_mode', 'HTML');
+    function setLang(l) { lang = l;
+        applyLang(); }
 
-    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-      method: 'POST',
-      body: formData,
-    });
-    const data = await res.json();
-    if (!data.ok) throw new Error(data.description);
-
-    if (slipFile) {
-      const fd = new FormData();
-      fd.append('chat_id', CHAT_ID);
-      fd.append('document', slipFile);
-      const r2 = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
-        method: 'POST',
-        body: fd,
-      });
-      const d2 = await r2.json();
-      if (!d2.ok) throw new Error(d2.description);
+    // ============================================
+    // DARK MODE
+    // ============================================
+    function toggleDark() {
+        dark = !dark;
+        document.body.classList.toggle("dark", dark);
+        localStorage.dark = dark ? "1" : "0";
+        const btn = document.getElementById("darkToggle");
+        if (btn) btn.innerHTML = dark ? "☀️" : "🌙";
     }
-  } catch (err) {
-    console.error(err);
-    throw err;
-  }
-}
 
-// ============================================
-// FORM SUBMIT
-// ============================================
-document.getElementById("payForm").addEventListener("submit", async e => {
-  e.preventDefault();
-  const f = e.target;
-  const username = f.username.value.trim();
-  const last4 = f.last4.value.trim();
-  const selectedPackage = f.package.value;
+    // ============================================
+    // SELECT PACKAGE
+    // ============================================
+    function selectPackage(card, value) {
+        document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
+        card.classList.add("active");
+        document.getElementById("package").value = value;
+        document.getElementById("sendBtn").disabled = false;
+    }
 
-  if (!selectedPackage) { alert(getMessage("selectPackage")); return; }
-  if (!slipFile && !last4) { alert(getMessage("pleaseUploadOrEnter")); return; }
+    // ============================================
+    // SLIP PREVIEW
+    // ============================================
+    document.getElementById("slip").addEventListener("change", e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        slipFile = file;
+        const reader = new FileReader();
+        reader.onload = () => {
+            document.getElementById("preview").src = reader.result;
+            document.getElementById("preview").style.display = "block";
+        };
+        reader.readAsDataURL(file);
+    });
 
-  const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
-  const profileLink = `https://www.torrentdd.net/userdetails.php?username=${username}`;
+    // ============================================
+    // COPYABLE
+    // ============================================
+    document.querySelectorAll(".copyable").forEach(el => {
+        el.addEventListener("click", () => {
+            const text = el.dataset.text;
+            navigator.clipboard.writeText(text).then(() => {
+                alert((lang === "th" ? "✅ คัดลอกแล้ว: " : "✅ Copied: ") + text);
+            });
+        });
+    });
 
-  let msg = `
-╔═════════════════════╗
-💎 NEW VIP PAYMENT REQUEST 💎
-╚═════════════════════╝
+    // ============================================
+    // DOWNLOAD QR CODE
+    // ============================================
+    function downloadQR(url, filename) {
+        fetch(url)
+            .then(res => res.blob())
+            .then(blob => {
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = filename + '.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(link.href);
+            })
+            .catch(() => {
+                window.open(url, '_blank');
+            });
+    }
 
-👤 Username  : ${username}
-🔗 Profile   : ${profileLink}
-📦 Package   : ${selectedPackage}
-🕰️ Time      : ${time}
-`;
+    // ============================================
+    // GET MESSAGE
+    // ============================================
+    function getMessage(key) {
+        const msgs = {
+            th: {
+                pleaseUploadOrEnter: "⚠️ กรุณาอัปโหลดสลิป หรือกรอกเลข 4 ตัวท้าย",
+                selectPackage: "⚠️ กรุณาเลือกแพ็กเกจก่อน",
+                submittedSuccess: "✅ ส่งข้อมูลสำเร็จ!\n\n⏳ รอ 2-5 นาที รับ Key ที่ Inbox\n\n🔄 กด OK เพื่อไปที่ Inbox",
+                error: "❌ เกิดข้อผิดพลาด ลองอีกครั้ง"
+            },
+            en: {
+                pleaseUploadOrEnter: "⚠️ Please upload slip or enter last 4 digits",
+                selectPackage: "⚠️ Please select a package first",
+                submittedSuccess: "✅ Submitted!\n\n⏳ Wait 2-5 min for Key in Inbox\n\n🔄 Click OK to go to Inbox",
+                error: "❌ Error occurred, please try again"
+            }
+        };
+        return msgs[lang][key];
+    }
 
-  if (slipFile) {
-    msg += `📎 Slip Attached`;
-  } else {
-    msg += `🔢 Last 4 Digits : ${last4}`;
-  }
+    // ============================================
+    // SEND TO TELEGRAM
+    // ============================================
+    async function sendToTelegram(message, slipFile) {
+        try {
+            const formData = new FormData();
+            formData.append('chat_id', CHAT_ID);
+            formData.append('text', message);
+            formData.append('parse_mode', 'HTML');
 
-  alert(getMessage("submittedSuccess"));
+            const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                body: formData,
+            });
+            const data = await res.json();
+            if (!data.ok) throw new Error(data.description);
 
-  try {
-    await sendToTelegram(msg, slipFile);
-    window.location.href = "https://www.torrentdd.net/inbox.php";
-    setTimeout(() => {
-      f.reset();
-      document.getElementById("preview").style.display = "none";
-      slipFile = null;
-      document.getElementById("sendBtn").disabled = true;
-      document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
-      document.getElementById("package").value = "";
-      applyLang();
-    }, 1000);
-  } catch (err) {
-    alert(getMessage("error"));
-  }
-});
+            if (slipFile) {
+                const fd = new FormData();
+                fd.append('chat_id', CHAT_ID);
+                fd.append('document', slipFile);
+                const r2 = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
+                    method: 'POST',
+                    body: fd,
+                });
+                const d2 = await r2.json();
+                if (!d2.ok) throw new Error(d2.description);
+            }
+        } catch (err) {
+            console.error(err);
+            throw err;
+        }
+    }
 
-// ============================================
-// INIT
-// ============================================
-document.body.classList.toggle("dark", dark);
-document.getElementById("darkToggle").innerHTML = dark ? "☀️" : "🌙";
-applyLang();
+    // ============================================
+    // FORM SUBMIT
+    // ============================================
+    document.getElementById("payForm").addEventListener("submit", async e => {
+        e.preventDefault();
+        const f = e.target;
+        const username = f.username.value.trim();
+        const last4 = f.last4.value.trim();
+        const selectedPackage = f.package.value;
 
-window.addEventListener("load", () => {
-  document.getElementById("payForm").reset();
-  document.getElementById("package").value = "";
-  document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
-});
+        if (!selectedPackage) { alert(getMessage("selectPackage")); return; }
+        if (!slipFile && !last4) { alert(getMessage("pleaseUploadOrEnter")); return; }
+
+        const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
+        const profileLink = `https://www.torrentdd.net/userdetails.php?username=${username}`;
+
+        let msg = `
+    ╔═════════════════════╗
+    💎 NEW VIP PAYMENT REQUEST 💎
+    ╚═════════════════════╝
+
+    👤 Username  : ${username}
+    🔗 Profile   : ${profileLink}
+    📦 Package   : ${selectedPackage}
+    🕰️ Time      : ${time}
+    `;
+
+        if (slipFile) {
+            msg += `\n📎 Slip Attached`;
+        } else {
+            msg += `\n🔢 Last 4 Digits : ${last4}`;
+        }
+
+        alert(getMessage("submittedSuccess"));
+
+        try {
+            await sendToTelegram(msg, slipFile);
+            window.location.href = "https://www.torrentdd.net/inbox.php";
+            setTimeout(() => {
+                f.reset();
+                document.getElementById("preview").style.display = "none";
+                slipFile = null;
+                document.getElementById("sendBtn").disabled = true;
+                document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
+                document.getElementById("package").value = "";
+                applyLang();
+            }, 1000);
+        } catch (err) {
+            alert(getMessage("error"));
+        }
+    });
+
+    // ============================================
+    // INIT
+    // ============================================
+    document.body.classList.toggle("dark", dark);
+    document.getElementById("darkToggle").innerHTML = dark ? "☀️" : "🌙";
+    applyLang();
+
+    window.addEventListener("load", () => {
+        document.getElementById("payForm").reset();
+        document.getElementById("package").value = "";
+        document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
+    });
 </script>
 </body>
 </html>
