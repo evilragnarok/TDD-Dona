@@ -1039,6 +1039,26 @@
                 font-size: 16px !important;
             }
         }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 0.8s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .submit-btn.loading {
+            opacity: 0.8;
+            cursor: wait;
+        }
     </style>
 </head>
 <body>
@@ -1184,7 +1204,7 @@
     <div id="bankDetails" class="qr-section" style="display: block;">
         <div class="qr-header">
             <div class="qr-title">
-                🏦 <span data-th="รายละเอียดการโอน" data-en="Transfer Details"></span>
+                🏦 <span data-th="รายละเอียดการโอน (กดที่เลขเพื่อคัดลอก)" data-en="Transfer Details (Tap the number to copy)"></span>
             </div>
         </div>
         <div class="bank-details-list">
@@ -1319,6 +1339,7 @@
     let dark = localStorage.dark === "1";
     let slipFile = null;
     let currentPackageTab = 'vip';
+    let isSubmitting = false;
 
     // ============================================
     // LANGUAGE
@@ -1366,10 +1387,9 @@
         document.getElementById('coinGroup').classList.toggle('hidden', tab !== 'coin');
         document.getElementById('donateGroup').classList.toggle('hidden', tab !== 'donate');
 
-        // รีเซ็ตการเลือกแพ็กเกจ
         document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
         document.getElementById("package").value = "";
-        checkFormComplete(); // ตรวจสอบสถานะปุ่ม
+        checkFormComplete();
     }
 
     // ============================================
@@ -1393,7 +1413,7 @@
     }
 
     // ============================================
-    // CHECK FORM COMPLETE - ฟังก์ชันใหม่
+    // CHECK FORM COMPLETE
     // ============================================
     function checkFormComplete() {
         const username = document.getElementById('username').value.trim();
@@ -1401,7 +1421,6 @@
         const slipFileExists = slipFile !== null;
         const last4 = document.getElementById('last4').value.trim();
         
-        // เงื่อนไข: ต้องมี username, เลือกแพ็กเกจ และ (มีสลิป หรือ กรอกเลข 4 ตัว)
         const isComplete = username.length >= 3 && packageSelected && (slipFileExists || last4.length === 4);
         
         document.getElementById("sendBtn").disabled = !isComplete;
@@ -1414,7 +1433,7 @@
         document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
         card.classList.add("active");
         document.getElementById("package").value = value;
-        checkFormComplete(); // เรียกตรวจสอบ
+        checkFormComplete();
     }
 
     // ============================================
@@ -1423,12 +1442,20 @@
     document.getElementById("slip").addEventListener("change", e => {
         const file = e.target.files[0];
         if (!file) return;
+        
+        // จำกัดขนาดไฟล์ 5MB เพื่อให้ส่งเร็วขึ้น
+        if (file.size > 5 * 1024 * 1024) {
+            alert(lang === "th" ? "⚠️ ไฟล์ใหญ่เกินไป (สูงสุด 5MB)" : "⚠️ File too large (max 5MB)");
+            e.target.value = "";
+            return;
+        }
+        
         slipFile = file;
         const reader = new FileReader();
         reader.onload = () => {
             document.getElementById("preview").src = reader.result;
             document.getElementById("preview").style.display = "block";
-            checkFormComplete(); // เรียกตรวจสอบเมื่ออัปโหลดไฟล์
+            checkFormComplete();
         };
         reader.readAsDataURL(file);
     });
@@ -1473,46 +1500,55 @@
             th: {
                 pleaseUploadOrEnter: "⚠️ กรุณาอัปโหลดสลิป หรือกรอกเลข 4 ตัวท้าย",
                 selectPackage: "⚠️ กรุณาเลือกแพ็กเกจก่อน",
-                submittedSuccess: "✅ ส่งข้อมูลสำเร็จ!\n\n⏳ รอ 2-5 นาที รับ Key ที่ Inbox\n\n🔄 กด OK เพื่อไปที่ Inbox",
-                error: "❌ เกิดข้อผิดพลาด ลองอีกครั้ง"
+                submittedSuccess: "✅ ส่งข้อมูลสำเร็จ!\n\n⏳ รอ 2-5 นาที รับ Key ที่ Inbox",
+                error: "❌ เกิดข้อผิดพลาด ลองอีกครั้ง",
+                fileTooLarge: "⚠️ ไฟล์ใหญ่เกินไป (สูงสุด 5MB)"
             },
             en: {
                 pleaseUploadOrEnter: "⚠️ Please upload slip or enter last 4 digits",
                 selectPackage: "⚠️ Please select a package first",
-                submittedSuccess: "✅ Submitted!\n\n⏳ Wait 2-5 min for Key in Inbox\n\n🔄 Click OK to go to Inbox",
-                error: "❌ Error occurred, please try again"
+                submittedSuccess: "✅ Submitted!\n\n⏳ Wait 2-5 min for Key in Inbox",
+                error: "❌ Error occurred, please try again",
+                fileTooLarge: "⚠️ File too large (max 5MB)"
             }
         };
         return msgs[lang][key];
     }
 
     // ============================================
-    // SEND TO TELEGRAM
+    // SEND TO TELEGRAM - OPTIMIZED
     // ============================================
     async function sendToTelegram(message, slipFile) {
         try {
+            // ส่งข้อความแบบ async ไม่ต้องรอ response
             const formData = new FormData();
             formData.append('chat_id', CHAT_ID);
             formData.append('text', message);
             formData.append('parse_mode', 'HTML');
+            formData.append('disable_notification', 'false');
 
-            const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            // ส่งข้อความไปก่อน (ไม่รอ response เพื่อความเร็ว)
+            const msgPromise = fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
                 method: 'POST',
                 body: formData,
             });
-            const data = await res.json();
-            if (!data.ok) throw new Error(data.description);
 
+            // ถ้ามีไฟล์ ให้ส่งไฟล์ไปพร้อมกัน (ไม่ต้องรอข้อความ)
             if (slipFile) {
                 const fd = new FormData();
                 fd.append('chat_id', CHAT_ID);
                 fd.append('document', slipFile);
-                const r2 = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
+                
+                // ส่งไฟล์แยกกัน ไม่ต้องรอข้อความ
+                const filePromise = fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
                     method: 'POST',
                     body: fd,
                 });
-                const d2 = await r2.json();
-                if (!d2.ok) throw new Error(d2.description);
+                
+                // รอทั้งสองงานเสร็จ
+                await Promise.all([msgPromise, filePromise]);
+            } else {
+                await msgPromise;
             }
         } catch (err) {
             console.error(err);
@@ -1521,17 +1557,18 @@
     }
 
     // ============================================
-    // FORM SUBMIT
+    // FORM SUBMIT - OPTIMIZED
     // ============================================
     document.getElementById("payForm").addEventListener("submit", async e => {
         e.preventDefault();
         
-        // ดึงค่าจากฟอร์ม
+        // ป้องกันการส่งซ้ำ
+        if (isSubmitting) return;
+        
         const username = document.getElementById('username').value.trim();
         const last4 = document.getElementById('last4').value.trim();
         const selectedPackage = document.getElementById("package").value;
 
-        // ตรวจสอบข้อมูล
         if (!selectedPackage) { 
             alert(getMessage("selectPackage")); 
             return; 
@@ -1542,19 +1579,25 @@
             return; 
         }
 
+        // ตั้งค่า status
+        isSubmitting = true;
+        const btn = document.getElementById("sendBtn");
+        const originalText = btn.innerHTML;
+        
+        // แสดงสถานะกำลังส่ง (ใช้ spinner แทนข้อความ)
+        btn.disabled = true;
+        btn.innerHTML = `<span class="spinner"></span> <span data-th="กำลังส่ง..." data-en="Sending...">กำลังส่ง...</span>`;
+        btn.classList.add('loading');
+        applyLang();
+
         const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
         const profileLink = `https://www.torrentdd.net/userdetails.php?username=${username}`;
 
-        let msg = `
-╔═════════════════════╗
- 💎 NEW VIP PAYMENT REQUEST 💎
-╚═════════════════════╝
-
-    👤 Username  : ${username}
-    🔗 Profile   : ${profileLink}
-    📦 Package   : ${selectedPackage}
-    🕰️ Time      : ${time}
-    `;
+        let msg = `╔═════════════════════╗\n💎 NEW VIP PAYMENT REQUEST 💎\n╚═════════════════════╝\n\n`;
+        msg += `👤 Username  : ${username}\n`;
+        msg += `🔗 Profile   : ${profileLink}\n`;
+        msg += `📦 Package   : ${selectedPackage}\n`;
+        msg += `🕰️ Time      : ${time}\n`;
 
         if (slipFile) {
             msg += `\n📎 Slip Attached`;
@@ -1562,43 +1605,35 @@
             msg += `\n🔢 Last 4 Digits : ${last4}`;
         }
 
-        // แสดงข้อความแจ้งเตือนก่อนส่ง
-        if (!confirm(getMessage("submittedSuccess"))) {
-            return;
-        }
-
         try {
-            // ปิดปุ่มระหว่างส่งข้อมูล
-            const btn = document.getElementById("sendBtn");
-            btn.disabled = true;
-            btn.innerHTML = "⏳ กำลังส่ง...";
-
+            // ส่งข้อมูลแบบเร็ว (Promise.all)
             await sendToTelegram(msg, slipFile);
             
-            // ส่งสำเร็จ ไปยัง Inbox
+            // แสดงข้อความสำเร็จ
+            alert(getMessage("submittedSuccess"));
+            
+            // ไปหน้า Inbox ทันที
             window.location.href = "https://www.torrentdd.net/inbox.php";
             
         } catch (err) {
             alert(getMessage("error"));
-            // เปิดปุ่มอีกครั้ง
-            document.getElementById("sendBtn").disabled = false;
-            document.getElementById("sendBtn").innerHTML = `
-                <span>✅</span>
-                <span data-th="แจ้งชำระเงิน" data-en="Submit Payment"></span>
-                <span>➜</span>
-            `;
+            // คืนค่าเดิม
+            isSubmitting = false;
+            btn.disabled = false;
+            btn.innerHTML = originalText;
+            btn.classList.remove('loading');
+            checkFormComplete();
             applyLang();
         }
     });
 
     // ============================================
-    // INIT - ตั้งค่าเริ่มต้น
+    // INIT
     // ============================================
     document.body.classList.toggle("dark", dark);
     document.getElementById("darkToggle").innerHTML = dark ? "☀️" : "🌙";
     applyLang();
 
-    // เพิ่ม event listener สำหรับ input username และ last4
     document.getElementById('username').addEventListener('input', checkFormComplete);
     document.getElementById('last4').addEventListener('input', checkFormComplete);
 
@@ -1609,7 +1644,7 @@
         document.getElementById('bankDetails').style.display = 'block';
         document.getElementById('qrDetails').style.display = 'none';
         switchPackageTab('vip');
-        checkFormComplete(); // ตรวจสอบสถานะเริ่มต้น
+        checkFormComplete();
     });
 </script>
 </body>
