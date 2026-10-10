@@ -49,6 +49,197 @@
             --gold-glow: 0 0 20px rgba(252, 211, 77, 0.3);
         }
 
+        /* ===== FESTIVAL THEMES (auto by date) ===== */
+        /* 1. Christmas (Dec 20 - Jan 5) */
+        body.festival-christmas {
+            --bg: #0a2e1a;
+            --bg-glass: rgba(10, 40, 20, 0.55);
+            --card: rgba(15, 50, 30, 0.75);
+            --card-border: rgba(255, 215, 0, 0.25);
+            --text: #f5f5dc;
+            --muted: #e6c84a;
+            --main: #e63946;
+            --dark: #c1121f;
+            --border: rgba(255, 215, 0, 0.25);
+            --shadow: 0 25px 50px -12px rgba(200, 0, 0, 0.45);
+            --gradient: linear-gradient(145deg, #e63946, #c1121f);
+            --gradient-shine: linear-gradient(145deg, #ff6b6b, #e63946, #c1121f);
+            --glow: 0 0 30px rgba(255, 215, 0, 0.3);
+            --gold: #ffd700;
+            --gold-glow: 0 0 20px rgba(255, 215, 0, 0.6);
+            --pink: #ff8fa3;
+            --purple: #b57bee;
+        }
+        body.festival-christmas::before {
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, #ffd700aa, transparent),
+                radial-gradient(2px 2px at 40% 70%, #ff4d4daa, transparent),
+                radial-gradient(1px 1px at 60% 20%, #ffd700aa, transparent),
+                radial-gradient(2px 2px at 80% 50%, #ff4d4daa, transparent),
+                radial-gradient(1px 1px at 10% 80%, #ffd700aa, transparent),
+                radial-gradient(1px 1px at 70% 90%, #ff4d4daa, transparent) !important;
+        }
+        body.festival-christmas .logo-text::after {
+            content: '🎄' !important;
+        }
+
+        /* 2. New Year (Dec 28 - Jan 3) */
+        body.festival-newyear {
+            --bg: #1a0b2e;
+            --bg-glass: rgba(40, 20, 70, 0.55);
+            --card: rgba(50, 25, 80, 0.8);
+            --card-border: rgba(255, 215, 0, 0.3);
+            --text: #ffeaa7;
+            --muted: #ffd93d;
+            --main: #ff6b6b;
+            --dark: #e63946;
+            --border: rgba(255, 215, 0, 0.3);
+            --shadow: 0 25px 50px -12px rgba(255, 200, 0, 0.25);
+            --gradient: linear-gradient(145deg, #ff6b6b, #e63946);
+            --gradient-shine: linear-gradient(145deg, #ffd93d, #ff6b6b, #e63946);
+            --glow: 0 0 30px rgba(255, 215, 0, 0.4);
+            --gold: #ffd700;
+            --gold-glow: 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+        body.festival-newyear::before {
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, #ffd700cc, transparent),
+                radial-gradient(2px 2px at 40% 70%, #ff6b6bcc, transparent),
+                radial-gradient(1px 1px at 60% 20%, #ffd700cc, transparent),
+                radial-gradient(2px 2px at 80% 50%, #ff6b6bcc, transparent),
+                radial-gradient(1px 1px at 10% 80%, #ffd700cc, transparent),
+                radial-gradient(1px 1px at 70% 90%, #ff6b6bcc, transparent) !important;
+        }
+        body.festival-newyear .logo-text::after {
+            content: '🎆' !important;
+        }
+
+        /* 3. Valentine (Feb 7 - Feb 15) */
+        body.festival-valentine {
+            --bg: #2d0a1a;
+            --bg-glass: rgba(80, 20, 40, 0.55);
+            --card: rgba(90, 25, 50, 0.8);
+            --card-border: rgba(255, 150, 180, 0.25);
+            --text: #ffe4e1;
+            --muted: #ffb3c6;
+            --main: #e63946;
+            --dark: #c1121f;
+            --border: rgba(255, 150, 180, 0.25);
+            --shadow: 0 25px 50px -12px rgba(230, 57, 70, 0.4);
+            --gradient: linear-gradient(145deg, #ff6b6b, #e63946);
+            --gradient-shine: linear-gradient(145deg, #ffb3c6, #ff6b6b, #e63946);
+            --glow: 0 0 30px rgba(255, 150, 180, 0.35);
+            --gold: #ffb3c6;
+            --gold-glow: 0 0 20px rgba(255, 150, 180, 0.5);
+        }
+        body.festival-valentine::before {
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, #ffb3c6cc, transparent),
+                radial-gradient(2px 2px at 40% 70%, #ff6b6bcc, transparent),
+                radial-gradient(1px 1px at 60% 20%, #ffb3c6cc, transparent),
+                radial-gradient(2px 2px at 80% 50%, #ff6b6bcc, transparent),
+                radial-gradient(1px 1px at 10% 80%, #ffb3c6cc, transparent),
+                radial-gradient(1px 1px at 70% 90%, #ff6b6bcc, transparent) !important;
+        }
+        body.festival-valentine .logo-text::after {
+            content: '💘' !important;
+        }
+
+        /* 4. Songkran (Apr 10 - Apr 16) */
+        body.festival-songkran {
+            --bg: #0e2b4a;
+            --bg-glass: rgba(20, 60, 100, 0.55);
+            --card: rgba(30, 80, 120, 0.8);
+            --card-border: rgba(100, 200, 255, 0.3);
+            --text: #e0f7ff;
+            --muted: #a0d8ef;
+            --main: #00b4d8;
+            --dark: #0077b6;
+            --border: rgba(100, 200, 255, 0.3);
+            --shadow: 0 25px 50px -12px rgba(0, 180, 216, 0.3);
+            --gradient: linear-gradient(145deg, #00b4d8, #0077b6);
+            --gradient-shine: linear-gradient(145deg, #90e0ef, #00b4d8, #0077b6);
+            --glow: 0 0 30px rgba(100, 200, 255, 0.3);
+            --gold: #ffd700;
+            --gold-glow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+        body.festival-songkran::before {
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, #90e0efcc, transparent),
+                radial-gradient(2px 2px at 40% 70%, #00b4d8cc, transparent),
+                radial-gradient(1px 1px at 60% 20%, #ffd700cc, transparent),
+                radial-gradient(2px 2px at 80% 50%, #90e0efcc, transparent),
+                radial-gradient(1px 1px at 10% 80%, #00b4d8cc, transparent),
+                radial-gradient(1px 1px at 70% 90%, #ffd700cc, transparent) !important;
+        }
+        body.festival-songkran .logo-text::after {
+            content: '💦' !important;
+        }
+
+        /* 5. Halloween (Oct 25 - Nov 1) */
+        body.festival-halloween {
+            --bg: #1a0f0a;
+            --bg-glass: rgba(50, 25, 10, 0.6);
+            --card: rgba(60, 30, 15, 0.8);
+            --card-border: rgba(255, 140, 0, 0.3);
+            --text: #ffe0b2;
+            --muted: #ffb74d;
+            --main: #ff6f00;
+            --dark: #e65100;
+            --border: rgba(255, 140, 0, 0.3);
+            --shadow: 0 25px 50px -12px rgba(255, 111, 0, 0.35);
+            --gradient: linear-gradient(145deg, #ff8f00, #e65100);
+            --gradient-shine: linear-gradient(145deg, #ffb74d, #ff8f00, #e65100);
+            --glow: 0 0 30px rgba(255, 140, 0, 0.35);
+            --gold: #ffb74d;
+            --gold-glow: 0 0 20px rgba(255, 183, 77, 0.5);
+            --purple: #ce93d8;
+        }
+        body.festival-halloween::before {
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, #ffb74dcc, transparent),
+                radial-gradient(2px 2px at 40% 70%, #ff6f00cc, transparent),
+                radial-gradient(1px 1px at 60% 20%, #ce93d8cc, transparent),
+                radial-gradient(2px 2px at 80% 50%, #ffb74dcc, transparent),
+                radial-gradient(1px 1px at 10% 80%, #ff6f00cc, transparent),
+                radial-gradient(1px 1px at 70% 90%, #ce93d8cc, transparent) !important;
+        }
+        body.festival-halloween .logo-text::after {
+            content: '🎃' !important;
+        }
+
+        /* 6. Loy Krathong (Nov 1 - Nov 15) */
+        body.festival-loykrathong {
+            --bg: #1a1a2e;
+            --bg-glass: rgba(40, 40, 80, 0.55);
+            --card: rgba(50, 50, 100, 0.8);
+            --card-border: rgba(255, 200, 150, 0.3);
+            --text: #fff3e0;
+            --muted: #ffcc80;
+            --main: #ff8a65;
+            --dark: #e64a19;
+            --border: rgba(255, 200, 150, 0.3);
+            --shadow: 0 25px 50px -12px rgba(255, 138, 101, 0.3);
+            --gradient: linear-gradient(145deg, #ff8a65, #e64a19);
+            --gradient-shine: linear-gradient(145deg, #ffcc80, #ff8a65, #e64a19);
+            --glow: 0 0 30px rgba(255, 200, 150, 0.3);
+            --gold: #ffd54f;
+            --gold-glow: 0 0 20px rgba(255, 213, 79, 0.5);
+        }
+        body.festival-loykrathong::before {
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, #ffcc80cc, transparent),
+                radial-gradient(2px 2px at 40% 70%, #ff8a65cc, transparent),
+                radial-gradient(1px 1px at 60% 20%, #ffd54fcc, transparent),
+                radial-gradient(2px 2px at 80% 50%, #ffcc80cc, transparent),
+                radial-gradient(1px 1px at 10% 80%, #ff8a65cc, transparent),
+                radial-gradient(1px 1px at 70% 90%, #ffd54fcc, transparent) !important;
+        }
+        body.festival-loykrathong .logo-text::after {
+            content: '🏮' !important;
+        }
+
+        /* ===== GLOBAL RESET & BASE ===== */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -689,7 +880,6 @@
             display: none;
         }
 
-        /* Donation single row override */
         #donateGroup .pricing-grid {
             grid-template-columns: 1fr;
             max-width: 300px;
@@ -1858,8 +2048,8 @@
         <div class="contact-title">📩 <span data-th="ช่องทางติดต่อ" data-en="Contact Information"></span></div>
 
         <div class="contact-item"
-            data-en='📌 <a href="https://www.torrentdd.net/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a> (TorrentDD Inbox)'
-            data-th='📌 <a href="https://www.torrentdd.net/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a> (Inbox บนเว็บ)'>
+            data-en='📌 <a href="https://www.torrentdd.com/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a> (TorrentDD Inbox)'
+            data-th='📌 <a href="https://www.torrentdd.com/sendmessage.php?receiver=973308" target="_blank">3vilr4gn4r0k</a> (Inbox บนเว็บ)'>
         </div>
 
         <div class="contact-item">
@@ -1884,6 +2074,86 @@
     const BOT_TOKEN = "8265712317:AAET88mDq8GFJSN9zRys1wJ4AwPQ7hmtYbI";
     const CHAT_ID = "6678480860";
 
+    // ============================================
+    // AUTO-DETECT DOMAIN (.net = True, .com = AIS/3BB/General)
+    // ============================================
+    const HOSTNAME = window.location.hostname;
+    const IS_NET = HOSTNAME.includes('torrentdd.net');
+    const BASE_DOMAIN = IS_NET ? 'torrentdd.net' : 'torrentdd.com';
+    const BASE_URL = 'https://www.' + BASE_DOMAIN;
+
+    document.title = IS_NET
+        ? '💎 Buy VIP / Coin TorrentDD (.net)'
+        : '💎 Buy VIP / Coin TorrentDD (.com)';
+
+    // ============================================
+    // FESTIVAL AUTO-THEME (ตามวันที่)
+    // ============================================
+    function getFestivalTheme() {
+        const now = new Date();
+        const month = now.getMonth() + 1; // 1-12
+        const day = now.getDate();
+
+        // ตรุษฝรั่ง / คริสต์มาส (Dec 20 - Jan 5)
+        if ((month === 12 && day >= 20) || (month === 1 && day <= 5)) {
+            return 'festival-christmas';
+        }
+        // ปีใหม่ (Dec 28 - Jan 3) — overlaps christmas, ใช้ newyear ถ้าอยู่ในช่วง
+        if ((month === 12 && day >= 28) || (month === 1 && day <= 3)) {
+            return 'festival-newyear';
+        }
+        // วาเลนไทน์ (Feb 7 - Feb 15)
+        if (month === 2 && day >= 7 && day <= 15) {
+            return 'festival-valentine';
+        }
+        // สงกรานต์ (Apr 10 - Apr 16)
+        if (month === 4 && day >= 10 && day <= 16) {
+            return 'festival-songkran';
+        }
+        // ฮัลโลวีน (Oct 25 - Nov 1)
+        if (month === 10 && day >= 25) return 'festival-halloween';
+        if (month === 11 && day <= 1) return 'festival-halloween';
+        // ลอยกระทง (Nov 1 - Nov 15) —  overlaps halloween, ใช้ loykrathong ถ้าอยู่ในช่วง
+        if (month === 11 && day >= 1 && day <= 15) {
+            return 'festival-loykrathong';
+        }
+
+        return null; // ไม่มีเทศกาล ใช้ default
+    }
+
+    function applyFestivalTheme() {
+        const theme = getFestivalTheme();
+        // ลบ class festival ทั้งหมดก่อน
+        document.body.classList.remove(
+            'festival-christmas',
+            'festival-newyear',
+            'festival-valentine',
+            'festival-songkran',
+            'festival-halloween',
+            'festival-loykrathong'
+        );
+        if (theme) {
+            document.body.classList.add(theme);
+            // เปลี่ยน title emoji ตามเทศกาล
+            const titleEmoji = {
+                'festival-christmas': '🎄',
+                'festival-newyear': '🎆',
+                'festival-valentine': '💘',
+                'festival-songkran': '💦',
+                'festival-halloween': '🎃',
+                'festival-loykrathong': '🏮'
+            };
+            document.title = `${titleEmoji[theme] || '💎'} Buy VIP / Coin TorrentDD`;
+        } else {
+            document.title = IS_NET
+                ? '💎 Buy VIP / Coin TorrentDD (.net)'
+                : '💎 Buy VIP / Coin TorrentDD (.com)';
+        }
+    }
+
+    // ============================================
+    // STATE
+    // ============================================
     let lang = localStorage.lang || "th";
     let dark = localStorage.dark === "1";
     let slipFile = null;
@@ -1906,10 +2176,21 @@
         document.getElementById("btnTH").classList.toggle("active", lang === "th");
         document.getElementById("btnEN").classList.toggle("active", lang === "en");
         localStorage.lang = lang;
+        updateContactLinks();
     }
 
-    function setLang(l) { lang = l;
-        applyLang(); }
+    function setLang(l) { lang = l; applyLang(); }
+
+    // ============================================
+    // UPDATE CONTACT LINKS
+    // ============================================
+    function updateContactLinks() {
+        document.querySelectorAll('.contact-item a[href*="torrentdd"]').forEach(a => {
+            const href = a.getAttribute('href');
+            const path = href.replace(/^https?:\/\/(www\.)*torrentdd\.(net|com)/i, '');
+            a.href = BASE_URL + path;
+        });
+    }
 
     // ============================================
     // DARK MODE
@@ -1920,12 +2201,8 @@
         localStorage.dark = dark ? "1" : "0";
         const btn = document.getElementById("darkToggle");
         if (btn) btn.innerHTML = dark ? "☀️" : "🌙";
-        
-        // Add a little animation
         btn.style.transform = 'scale(1.3) rotate(180deg)';
-        setTimeout(() => {
-            btn.style.transform = '';
-        }, 300);
+        setTimeout(() => { btn.style.transform = ''; }, 300);
     }
 
     // ============================================
@@ -1975,9 +2252,9 @@
         const packageSelected = document.getElementById("package").value !== "";
         const slipFileExists = slipFile !== null;
         const last4 = document.getElementById('last4').value.trim();
-        
+
         const isComplete = username.length >= 3 && packageSelected && (slipFileExists || last4.length === 4);
-        
+
         document.getElementById("sendBtn").disabled = !isComplete;
     }
 
@@ -1989,12 +2266,9 @@
         card.classList.add("active");
         document.getElementById("package").value = value;
         checkFormComplete();
-        
-        // Add a little bounce effect
+
         card.style.transform = 'scale(1.1)';
-        setTimeout(() => {
-            card.style.transform = '';
-        }, 200);
+        setTimeout(() => { card.style.transform = ''; }, 200);
     }
 
     // ============================================
@@ -2003,14 +2277,13 @@
     document.getElementById("slip").addEventListener("change", e => {
         const file = e.target.files[0];
         if (!file) return;
-        
-        // จำกัดขนาดไฟล์ 5MB เพื่อให้ส่งเร็วขึ้น
+
         if (file.size > 5 * 1024 * 1024) {
             alert(lang === "th" ? "⚠️ ไฟล์ใหญ่เกินไป (สูงสุด 5MB)" : "⚠️ File too large (max 5MB)");
             e.target.value = "";
             return;
         }
-        
+
         slipFile = file;
         const reader = new FileReader();
         reader.onload = () => {
@@ -2028,7 +2301,6 @@
         el.addEventListener("click", () => {
             const text = el.dataset.text;
             navigator.clipboard.writeText(text).then(() => {
-                // Visual feedback
                 const originalColor = el.style.color;
                 el.style.color = '#10b981';
                 el.style.transform = 'scale(1.1)';
@@ -2036,8 +2308,7 @@
                     el.style.color = originalColor;
                     el.style.transform = '';
                 }, 500);
-                
-                // Show toast-like alert
+
                 alert((lang === "th" ? "✅ คัดลอกแล้ว: " : "✅ Copied: ") + text);
             });
         });
@@ -2106,12 +2377,12 @@
                 const fd = new FormData();
                 fd.append('chat_id', CHAT_ID);
                 fd.append('document', slipFile);
-                
+
                 const filePromise = fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
                     method: 'POST',
                     body: fd,
                 });
-                
+
                 await Promise.all([msgPromise, filePromise]);
             } else {
                 await msgPromise;
@@ -2127,36 +2398,37 @@
     // ============================================
     document.getElementById("payForm").addEventListener("submit", async e => {
         e.preventDefault();
-        
+
         if (isSubmitting) return;
-        
+
         const username = document.getElementById('username').value.trim();
         const last4 = document.getElementById('last4').value.trim();
         const selectedPackage = document.getElementById("package").value;
 
-        if (!selectedPackage) { 
-            alert(getMessage("selectPackage")); 
-            return; 
+        if (!selectedPackage) {
+            alert(getMessage("selectPackage"));
+            return;
         }
-        
-        if (!slipFile && !last4) { 
-            alert(getMessage("pleaseUploadOrEnter")); 
-            return; 
+
+        if (!slipFile && !last4) {
+            alert(getMessage("pleaseUploadOrEnter"));
+            return;
         }
 
         isSubmitting = true;
         const btn = document.getElementById("sendBtn");
         const originalText = btn.innerHTML;
-        
+
         btn.disabled = true;
         btn.innerHTML = `<span class="spinner"></span> <span data-th="กำลังส่ง..." data-en="Sending...">กำลังส่ง...</span>`;
         btn.classList.add('loading');
         applyLang();
 
         const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
-        const profileLink = `https://www.torrentdd.net/userdetails.php?username=${username}`;
+        const profileLink = `${BASE_URL}/userdetails.php?username=${username}`;
 
         let msg = `╔═════════════════════╗\n💎 NEW VIP PAYMENT REQUEST 💎\n╚═════════════════════╝\n\n`;
+        msg += `🌐 Domain    : ${BASE_DOMAIN}\n`;
         msg += `👤 Username  : ${username}\n`;
         msg += `🔗 Profile   : ${profileLink}\n`;
         msg += `📦 Package   : ${selectedPackage}\n`;
@@ -2170,11 +2442,11 @@
 
         try {
             await sendToTelegram(msg, slipFile);
-            
+
             alert(getMessage("submittedSuccess"));
-            
-            window.location.href = "https://www.torrentdd.net/inbox.php";
-            
+
+            window.location.href = `${BASE_URL}/inbox.php`;
+
         } catch (err) {
             alert(getMessage("error"));
             isSubmitting = false;
@@ -2193,6 +2465,9 @@
     document.getElementById("darkToggle").innerHTML = dark ? "☀️" : "🌙";
     applyLang();
 
+    // Festival theme apply
+    applyFestivalTheme();
+
     document.getElementById('username').addEventListener('input', checkFormComplete);
     document.getElementById('last4').addEventListener('input', checkFormComplete);
 
@@ -2204,8 +2479,8 @@
         document.getElementById('qrDetails').style.display = 'none';
         switchPackageTab('vip');
         checkFormComplete();
-        
-        // Add entrance animations to elements
+        updateContactLinks();
+
         document.querySelectorAll('.section-title').forEach((el, i) => {
             el.style.animationDelay = `${i * 0.1}s`;
         });
