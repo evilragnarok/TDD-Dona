@@ -2075,16 +2075,12 @@
     const CHAT_ID = "6678480860";
 
     // ============================================
-    // AUTO-DETECT DOMAIN (.net = True, .com = AIS/3BB/General)
+    // FIXED DOMAIN: torrentdd.net
     // ============================================
-    const HOSTNAME = window.location.hostname;
-    const IS_NET = HOSTNAME.includes('torrentdd.net');
-    const BASE_DOMAIN = IS_NET ? 'torrentdd.net' : 'torrentdd.com';
+    const BASE_DOMAIN = 'torrentdd.net';
     const BASE_URL = 'https://www.' + BASE_DOMAIN;
 
-    document.title = IS_NET
-        ? '💎 Buy VIP / Coin TorrentDD (.net)'
-        : '💎 Buy VIP / Coin TorrentDD (.com)';
+    document.title = '💎 Buy VIP / Coin TorrentDD';
 
     // ============================================
     // FESTIVAL AUTO-THEME (ตามวันที่)
@@ -2145,9 +2141,7 @@
             };
             document.title = `${titleEmoji[theme] || '💎'} Buy VIP / Coin TorrentDD`;
         } else {
-            document.title = IS_NET
-                ? '💎 Buy VIP / Coin TorrentDD (.net)'
-                : '💎 Buy VIP / Coin TorrentDD (.com)';
+            document.title = '💎 Buy VIP / Coin TorrentDD';
         }
     }
 
@@ -2428,7 +2422,6 @@
         const profileLink = `${BASE_URL}/userdetails.php?username=${username}`;
 
         let msg = `╔═════════════════════╗\n💎 NEW VIP PAYMENT REQUEST 💎\n╚═════════════════════╝\n\n`;
-        msg += `🌐 Domain    : ${BASE_DOMAIN}\n`;
         msg += `👤 Username  : ${username}\n`;
         msg += `🔗 Profile   : ${profileLink}\n`;
         msg += `📦 Package   : ${selectedPackage}\n`;
@@ -2445,7 +2438,7 @@
 
             alert(getMessage("submittedSuccess"));
 
-            window.location.href = `${BASE_URL}/inbox.php`;
+            window.location.href = `https://www.torrentdd.com/inbox.php`;
 
         } catch (err) {
             alert(getMessage("error"));
