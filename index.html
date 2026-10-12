@@ -50,7 +50,6 @@
         }
 
         /* ===== FESTIVAL THEMES (auto by date) ===== */
-        /* 1. Christmas (Dec 20 - Jan 5) */
         body.festival-christmas {
             --bg: #0a2e1a;
             --bg-glass: rgba(10, 40, 20, 0.55);
@@ -83,7 +82,6 @@
             content: '🎄' !important;
         }
 
-        /* 2. New Year (Dec 28 - Jan 3) */
         body.festival-newyear {
             --bg: #1a0b2e;
             --bg-glass: rgba(40, 20, 70, 0.55);
@@ -114,7 +112,6 @@
             content: '🎆' !important;
         }
 
-        /* 3. Valentine (Feb 7 - Feb 15) */
         body.festival-valentine {
             --bg: #2d0a1a;
             --bg-glass: rgba(80, 20, 40, 0.55);
@@ -145,7 +142,6 @@
             content: '💘' !important;
         }
 
-        /* 4. Songkran (Apr 10 - Apr 16) */
         body.festival-songkran {
             --bg: #0e2b4a;
             --bg-glass: rgba(20, 60, 100, 0.55);
@@ -176,7 +172,6 @@
             content: '💦' !important;
         }
 
-        /* 5. Halloween (Oct 25 - Nov 1) */
         body.festival-halloween {
             --bg: #1a0f0a;
             --bg-glass: rgba(50, 25, 10, 0.6);
@@ -208,7 +203,6 @@
             content: '🎃' !important;
         }
 
-        /* 6. Loy Krathong (Nov 1 - Nov 15) */
         body.festival-loykrathong {
             --bg: #1a1a2e;
             --bg-glass: rgba(40, 40, 80, 0.55);
@@ -271,7 +265,6 @@
             overflow-x: hidden;
         }
 
-        /* Animated background stars */
         body::before {
             content: '';
             position: fixed;
@@ -298,7 +291,6 @@
             100% { opacity: 0.5; transform: scale(1); }
         }
 
-        /* Floating orbs */
         body::after {
             content: '';
             position: fixed;
@@ -375,7 +367,6 @@
             animation: pulseGlow 8s ease-in-out infinite reverse;
         }
 
-        /* ===== TOPBAR ===== */
         .topbar {
             display: flex;
             justify-content: space-between;
@@ -527,7 +518,6 @@
             transform: scale(0.95);
         }
 
-        /* ===== PAYMENT HEADER ===== */
         .payment-box {
             background: var(--gradient-shine);
             background-size: 300% 300%;
@@ -619,7 +609,6 @@
             z-index: 1;
         }
 
-        /* ===== SECTION TITLE ===== */
         .section-title {
             font-size: clamp(1rem, 2.2vw, 1.3rem);
             font-weight: 700;
@@ -663,7 +652,6 @@
             50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(5, 150, 105, 0.4); }
         }
 
-        /* ===== PACKAGE TABS - SMALLER ===== */
         .package-tabs {
             display: flex;
             gap: clamp(4px, 1vw, 10px);
@@ -728,7 +716,6 @@
             100% { transform: scale(1); }
         }
 
-        /* ===== PRICING GRID - SINGLE ROW ===== */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -886,7 +873,6 @@
             margin: 0 auto;
         }
 
-        /* ===== PAYMENT TABS (Bank / QR) ===== */
         .payment-tabs {
             display: flex;
             gap: clamp(6px, 1.5vw, 14px);
@@ -946,7 +932,6 @@
             animation: tabActivate 0.3s ease;
         }
 
-        /* ===== QR SECTION ===== */
         .qr-section {
             margin: 0 0 10px 0;
             padding: clamp(16px, 3vw, 30px) clamp(14px, 3vw, 28px);
@@ -1184,7 +1169,6 @@
             font-weight: 700;
         }
 
-        /* ===== BANK DETAILS ===== */
         .bank-details-list {
             text-align: left;
             padding: 0 4px;
@@ -1260,7 +1244,6 @@
             right: -22px;
         }
 
-        /* ===== FORM ===== */
         .form-group {
             margin-top: clamp(14px, 2.5vw, 22px);
             animation: fadeIn 0.5s ease both;
@@ -1408,7 +1391,6 @@
             animation: none;
         }
 
-        /* ===== CONTACT ===== */
         .contact-box {
             margin-top: clamp(20px, 4vw, 36px);
             padding-top: clamp(18px, 3vw, 30px);
@@ -1538,7 +1520,6 @@
             display: block;
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .pricing-grid {
                 grid-template-columns: repeat(5, 1fr);
@@ -1754,7 +1735,6 @@
             }
         }
 
-        /* Loading Spinner */
         .spinner {
             display: inline-block;
             width: 20px;
@@ -1774,7 +1754,6 @@
             cursor: wait;
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -1793,7 +1772,6 @@
             background: var(--dark);
         }
 
-        /* Selection */
         ::selection {
             background: rgba(16, 185, 129, 0.2);
             color: var(--text);
@@ -1804,7 +1782,6 @@
 
 <div class="box">
 
-    <!-- ===== TOPBAR ===== -->
     <div class="topbar">
         <div class="topbar-left">
             <span class="logo-text">🎬 TorrentDD Donation By. 3vilr4gn4r0k</span>
@@ -1818,21 +1795,16 @@
         </div>
     </div>
 
-    <!-- ===== HEADER ===== -->
     <div class="payment-box">
         <h2 data-th="💎 ชื่อ VIP / Coin TorrentDD ✨" data-en="💎 VIP / Coin TorrentDD ✨"></h2>
         <div class="subtitle" data-th="⚡ เติมเต็มประสบการณ์การรับชมของคุณ 🌟" data-en="⚡ Enhance your viewing experience 🌟"></div>
     </div>
 
-    <!-- ==========================================================
-         STEP 1: SELECT PACKAGE - TABS
-    ========================================================== -->
     <div class="section-title" style="margin-top:6px;">
         📦 <span data-th="เลือกแพ็กเกจ" data-en="Select Package"></span>
         <span class="badge">⭐</span>
     </div>
 
-    <!-- Package Tabs -->
     <div class="package-tabs">
         <button type="button" class="package-tab active" data-package="vip" onclick="switchPackageTab('vip')">
             👑 <span data-th="VIP" data-en="VIP"></span>
@@ -1845,7 +1817,6 @@
         </button>
     </div>
 
-    <!-- VIP Packages - Single Row -->
     <div id="vipGroup" class="package-group">
         <div class="pricing-grid">
             <div class="price-card" onclick="selectPackage(this,'VIP 1 เดือน - 200 บาท')">
@@ -1879,7 +1850,6 @@
         </div>
     </div>
 
-    <!-- Coin Packages - Single Row -->
     <div id="coinGroup" class="package-group hidden">
         <div class="pricing-grid">
             <div class="price-card" onclick="selectPackage(this,'Coin 1,200 - 200 บาท')">
@@ -1912,7 +1882,6 @@
         </div>
     </div>
 
-    <!-- Donation -->
     <div id="donateGroup" class="package-group hidden">
         <div class="pricing-grid" style="grid-template-columns: 1fr; max-width:300px; margin:0 auto;">
             <div class="price-card donate" onclick="selectPackage(this,'Donation Support')">
@@ -1923,9 +1892,6 @@
         </div>
     </div>
 
-    <!-- ==========================================================
-         STEP 2: PAYMENT METHOD (Bank / QR)
-    ========================================================== -->
     <div class="section-title" style="margin-top:30px;">
         💳 <span data-th="เลือกวิธีชำระเงิน" data-en="Payment Method"></span>
     </div>
@@ -1939,7 +1905,6 @@
         </button>
     </div>
 
-    <!-- ===== BANK DETAILS ===== -->
     <div id="bankDetails" class="qr-section" style="display: block;">
         <div class="qr-header">
             <div class="qr-title">
@@ -1970,7 +1935,6 @@
         </div>
     </div>
 
-    <!-- ===== QR DETAILS ===== -->
     <div id="qrDetails" class="qr-section" style="display: none;">
         <div class="qr-header">
             <div class="qr-title">
@@ -2003,12 +1967,8 @@
         </span>
     </div>
 
-    <!-- Hidden package input -->
     <input type="hidden" name="package" id="package" value="" required />
 
-    <!-- ==========================================================
-         STEP 3: NOTIFY FORM
-    ========================================================== -->
     <div class="section-title" style="margin-top:30px;">
         📝 <span data-th="แจ้งการโอนเงิน" data-en="Notify Payment"></span>
     </div>
@@ -2043,7 +2003,6 @@
 
     </form>
 
-    <!-- ===== CONTACT ===== -->
     <div class="contact-box">
         <div class="contact-title">📩 <span data-th="ช่องทางติดต่อ" data-en="Contact Information"></span></div>
 
@@ -2075,51 +2034,84 @@
     const CHAT_ID = "6678480860";
 
     // ============================================
-    // FIXED DOMAIN: torrentdd.net
+    // DYNAMIC DOMAIN (ตาม IP / ISP)
     // ============================================
-    const BASE_DOMAIN = 'torrentdd.net';
-    const BASE_URL = 'https://www.' + BASE_DOMAIN;
+    const DOMAIN_NET = 'torrentdd.net';
+    const DOMAIN_COM = 'torrentdd.com';
+    const BASE_URL_NET = 'https://www.' + DOMAIN_NET;
+    const BASE_URL_COM = 'https://www.' + DOMAIN_COM;
+
+    // ค่าเริ่มต้น (จะถูก override โดย detectISPAndSetDomain)
+    let CURRENT_DOMAIN = DOMAIN_NET;
+    let BASE_URL = BASE_URL_NET;
+
+    // ============================================
+    // ตรวจสอบ ISP จาก IP แล้วสลับโดเมน
+    // ============================================
+    async function detectISPAndSetDomain() {
+        try {
+            const res = await fetch('https://ipapi.co/json/', { cache: 'no-store' });
+            if (!res.ok) throw new Error('ipapi error');
+            const data = await res.json();
+            const isp = ((data.org || '') + ' ' + (data.asn || '')).toUpperCase();
+
+            let useCom = false;
+
+            // ค่าย AIS หรือ 3BB → ใช้ .com
+            if (/\b(AIS|ADVANCED INFO SERVICE|ADVANCED WIRELESS|3BB|TRIPLE T|JAS|JASMINE)\b/.test(isp)) {
+                useCom = true;
+            }
+            // ค่าย True หรือ Dtac → ใช้ .net
+            else if (/\b(TRUE|TRUEMOVE|DTAC|TOT|CAT)\b/.test(isp)) {
+                useCom = false;
+            }
+            // ถ้าไม่ match ให้ default เป็น .net
+            else {
+                useCom = false;
+            }
+
+            if (useCom) {
+                CURRENT_DOMAIN = DOMAIN_COM;
+                BASE_URL = BASE_URL_COM;
+            } else {
+                CURRENT_DOMAIN = DOMAIN_NET;
+                BASE_URL = BASE_URL_NET;
+            }
+
+            console.log(`[ISP Detect] ISP: ${isp} → Domain: ${CURRENT_DOMAIN}`);
+
+            // อัปเดต contact links ที่มีอยู่
+            updateContactLinks();
+
+        } catch (err) {
+            console.warn('[ISP Detect] Failed, fallback to .net', err);
+            CURRENT_DOMAIN = DOMAIN_NET;
+            BASE_URL = BASE_URL_NET;
+        }
+    }
 
     document.title = '💎 Buy VIP / Coin TorrentDD';
 
     // ============================================
-    // FESTIVAL AUTO-THEME (ตามวันที่)
+    // FESTIVAL AUTO-THEME
     // ============================================
     function getFestivalTheme() {
         const now = new Date();
-        const month = now.getMonth() + 1; // 1-12
+        const month = now.getMonth() + 1;
         const day = now.getDate();
 
-        // ตรุษฝรั่ง / คริสต์มาส (Dec 20 - Jan 5)
-        if ((month === 12 && day >= 20) || (month === 1 && day <= 5)) {
-            return 'festival-christmas';
-        }
-        // ปีใหม่ (Dec 28 - Jan 3) — overlaps christmas, ใช้ newyear ถ้าอยู่ในช่วง
-        if ((month === 12 && day >= 28) || (month === 1 && day <= 3)) {
-            return 'festival-newyear';
-        }
-        // วาเลนไทน์ (Feb 7 - Feb 15)
-        if (month === 2 && day >= 7 && day <= 15) {
-            return 'festival-valentine';
-        }
-        // สงกรานต์ (Apr 10 - Apr 16)
-        if (month === 4 && day >= 10 && day <= 16) {
-            return 'festival-songkran';
-        }
-        // ฮัลโลวีน (Oct 25 - Nov 1)
+        if ((month === 12 && day >= 20) || (month === 1 && day <= 5)) return 'festival-christmas';
+        if ((month === 12 && day >= 28) || (month === 1 && day <= 3)) return 'festival-newyear';
+        if (month === 2 && day >= 7 && day <= 15) return 'festival-valentine';
+        if (month === 4 && day >= 10 && day <= 16) return 'festival-songkran';
         if (month === 10 && day >= 25) return 'festival-halloween';
         if (month === 11 && day <= 1) return 'festival-halloween';
-        // ลอยกระทง (Nov 1 - Nov 15) —  overlaps halloween, ใช้ loykrathong ถ้าอยู่ในช่วง
-        if (month === 11 && day >= 1 && day <= 15) {
-            return 'festival-loykrathong';
-        }
-
-        return null; // ไม่มีเทศกาล ใช้ default
+        if (month === 11 && day >= 1 && day <= 15) return 'festival-loykrathong';
+        return null;
     }
 
     function applyFestivalTheme() {
         const theme = getFestivalTheme();
-        // ลบ class festival ทั้งหมดก่อน
         document.body.classList.remove(
             'festival-christmas',
             'festival-newyear',
@@ -2130,7 +2122,6 @@
         );
         if (theme) {
             document.body.classList.add(theme);
-            // เปลี่ยน title emoji ตามเทศกาล
             const titleEmoji = {
                 'festival-christmas': '🎄',
                 'festival-newyear': '🎆',
@@ -2176,11 +2167,12 @@
     function setLang(l) { lang = l; applyLang(); }
 
     // ============================================
-    // UPDATE CONTACT LINKS
+    // UPDATE CONTACT LINKS (ใช้ BASE_URL ที่ตรวจได้)
     // ============================================
     function updateContactLinks() {
         document.querySelectorAll('.contact-item a[href*="torrentdd"]').forEach(a => {
             const href = a.getAttribute('href');
+            // ดึง path จาก href เดิม
             const path = href.replace(/^https?:\/\/(www\.)*torrentdd\.(net|com)/i, '');
             a.href = BASE_URL + path;
         });
@@ -2352,7 +2344,7 @@
     }
 
     // ============================================
-    // SEND TO TELEGRAM - OPTIMIZED
+    // SEND TO TELEGRAM
     // ============================================
     async function sendToTelegram(message, slipFile) {
         try {
@@ -2388,7 +2380,7 @@
     }
 
     // ============================================
-    // FORM SUBMIT - OPTIMIZED
+    // FORM SUBMIT
     // ============================================
     document.getElementById("payForm").addEventListener("submit", async e => {
         e.preventDefault();
@@ -2419,8 +2411,11 @@
         applyLang();
 
         const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
-        const profileLink = `${BASE_URL}/userdetails.php?username=${username}`;
 
+        // ✅ Profile link ใช้ .net เสมอ ตาม requirement
+        const profileLink = `${BASE_URL_NET}/userdetails.php?username=${username}`;
+
+        // ✅ ไม่มีบรรทัด 🌐 Domain แล้ว
         let msg = `╔═════════════════════╗\n💎 NEW VIP PAYMENT REQUEST 💎\n╚═════════════════════╝\n\n`;
         msg += `👤 Username  : ${username}\n`;
         msg += `🔗 Profile   : ${profileLink}\n`;
@@ -2438,6 +2433,7 @@
 
             alert(getMessage("submittedSuccess"));
 
+            // ✅ redirect ไป inbox ของ .net เสมอ ตาม requirement
             window.location.href = `https://www.torrentdd.com/inbox.php`;
 
         } catch (err) {
@@ -2456,10 +2452,13 @@
     // ============================================
     document.body.classList.toggle("dark", dark);
     document.getElementById("darkToggle").innerHTML = dark ? "☀️" : "🌙";
-    applyLang();
 
-    // Festival theme apply
+    // ✅ เริ่มต้น: apply lang, festival theme, แล้วค่อย detect ISP
+    applyLang();
     applyFestivalTheme();
+
+    // ✅ ตรวจ ISP แล้วอัปเดต domain + contact links
+    detectISPAndSetDomain();
 
     document.getElementById('username').addEventListener('input', checkFormComplete);
     document.getElementById('last4').addEventListener('input', checkFormComplete);
