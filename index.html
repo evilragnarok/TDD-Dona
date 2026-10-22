@@ -1287,6 +1287,11 @@
             transform: translateY(-2px);
         }
 
+        .form-group input.invalid {
+            border-color: #ef4444;
+            box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.08);
+        }
+
         .form-group input::placeholder {
             color: var(--muted);
             opacity: 0.5;
@@ -1493,6 +1498,42 @@
         @keyframes pendingPulse {
             0%, 100% { opacity: 0.5; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.15); }
+        }
+
+        /* ===== STATUS BADGE (ยังไม่ทำ / ทำแล้ว) ===== */
+        .status-item .status-badge {
+            font-size: clamp(0.5rem, 0.8vw, 0.6rem);
+            font-weight: 700;
+            padding: 2px clamp(6px, 1vw, 10px);
+            border-radius: 20px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+            letter-spacing: 0.2px;
+        }
+
+        .status-item.pending .status-badge {
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.25);
+        }
+
+        body.dark .status-item.pending .status-badge {
+            background: rgba(248, 113, 113, 0.15);
+            color: #fca5a5;
+            border-color: rgba(248, 113, 113, 0.3);
+        }
+
+        .status-item.done .status-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--main);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+        }
+
+        body.dark .status-item.done .status-badge {
+            background: rgba(52, 211, 153, 0.18);
+            color: #6ee7b7;
+            border-color: rgba(52, 211, 153, 0.35);
         }
 
         /* ===== SUBMIT AREA (hidden until complete) ===== */
@@ -2106,21 +2147,25 @@
             <div class="status-item pending" id="statusPackage">
                 <span class="status-icon">📦</span>
                 <span class="status-text" data-th="เลือกแพ็กเกจ" data-en="Select package"></span>
+                <span class="status-badge" data-th="ยังไม่ทำ" data-en="Not done">ยังไม่ทำ</span>
                 <span class="status-check">✅</span>
             </div>
             <div class="status-item pending" id="statusUsername">
                 <span class="status-icon">👤</span>
                 <span class="status-text" data-th="กรอกชื่อผู้ใช้" data-en="Enter username"></span>
+                <span class="status-badge" data-th="ยังไม่ทำ" data-en="Not done">ยังไม่ทำ</span>
                 <span class="status-check">✅</span>
             </div>
             <div class="status-item pending" id="statusPayment">
                 <span class="status-icon">🧾</span>
                 <span class="status-text" data-th="แนบสลิป/เลข 4 ตัวท้าย" data-en="Slip / Last 4 digits"></span>
+                <span class="status-badge" data-th="ยังไม่ทำ" data-en="Not done">ยังไม่ทำ</span>
                 <span class="status-check">✅</span>
             </div>
             <div class="status-item pending" id="statusConfirm">
                 <span class="status-icon">✍️</span>
                 <span class="status-text" data-th="กรุณากดปุ่มเพื่อยืนยันแจ้งโอน" data-en="Click button to confirm"></span>
+                <span class="status-badge" data-th="ยังไม่ทำ" data-en="Not done">ยังไม่ทำ</span>
                 <span class="status-check">✅</span>
             </div>
         </div>
@@ -2199,6 +2244,9 @@
 
     let CURRENT_DOMAIN = DOMAIN_NET;
     let BASE_URL = BASE_URL_NET;
+
+    // Username: English letters, numbers, underscore, hyphen only (3-20 chars)
+    const USERNAME_REGEX = /^[A-Za-z0-9_-]{3,20}$/;
 
     // ============================================
     // ตรวจสอบ ISP จาก IP แล้วสลับโดเมน
@@ -2390,48 +2438,63 @@
         const last4 = document.getElementById('last4').value.trim();
 
         const packageOK = packageSelected;
-        const usernameOK = username.length >= 3;
+        const usernameOK = USERNAME_REGEX.test(username);
         const paymentOK = slipFileExists || last4.length === 4;
 
-        // Package status
-        const elPackage = document.getElementById('statusPackage');
-        elPackage.classList.toggle('done', packageOK);
-        elPackage.classList.toggle('pending', !packageOK);
-        elPackage.querySelector('.status-text').innerHTML = packageOK
-            ? (lang === 'th' ? 'เลือกแพ็กเกจแล้ว' : 'Package selected')
-            : (lang === 'th' ? 'เลือกแพ็กเกจ' : 'Select package');
-
-        // Username status
-        const elUsername = document.getElementById('statusUsername');
-        elUsername.classList.toggle('done', usernameOK);
-        elUsername.classList.toggle('pending', !usernameOK);
-        elUsername.querySelector('.status-text').innerHTML = usernameOK
-            ? (lang === 'th' ? 'กรอกชื่อผู้ใช้แล้ว' : 'Username entered')
-            : (lang === 'th' ? 'กรอกชื่อผู้ใช้' : 'Enter username');
-
-        // Payment status
-        const elPayment = document.getElementById('statusPayment');
-        elPayment.classList.toggle('done', paymentOK);
-        elPayment.classList.toggle('pending', !paymentOK);
-        if (paymentOK) {
-            elPayment.querySelector('.status-text').innerHTML = slipFileExists
-                ? (lang === 'th' ? 'แนบสลิปแล้ว' : 'Slip attached')
-                : (lang === 'th' ? 'กรอกเลข 4 ตัวท้ายแล้ว' : 'Last 4 digits entered');
-        } else {
-            elPayment.querySelector('.status-text').innerHTML = lang === 'th'
-                ? 'แนบสลิป/เลข 4 ตัวท้าย'
-                : 'Slip / Last 4 digits';
+        // Helper to set a status item
+        function setStatusItem(id, ok, doneTextTh, doneTextEn, pendingTextTh, pendingTextEn) {
+            const el = document.getElementById(id);
+            el.classList.toggle('done', ok);
+            el.classList.toggle('pending', !ok);
+            el.querySelector('.status-text').innerHTML = ok
+                ? (lang === 'th' ? doneTextTh : doneTextEn)
+                : (lang === 'th' ? pendingTextTh : pendingTextEn);
+            const badge = el.querySelector('.status-badge');
+            if (badge) {
+                badge.innerHTML = ok
+                    ? (lang === 'th' ? 'ทำแล้ว' : 'Done')
+                    : (lang === 'th' ? 'ยังไม่ทำ' : 'Not done');
+            }
         }
 
+        // Package status
+        setStatusItem(
+            'statusPackage',
+            packageOK,
+            'เลือกแพ็กเกจแล้ว', 'Package selected',
+            'เลือกแพ็กเกจ', 'Select package'
+        );
+
+        // Username status
+        setStatusItem(
+            'statusUsername',
+            usernameOK,
+            'กรอกชื่อผู้ใช้แล้ว', 'Username entered',
+            'กรอกชื่อผู้ใช้', 'Enter username'
+        );
+
+        // Payment status
+        let payDoneTh = 'แนบสลิปแล้ว';
+        let payDoneEn = 'Slip attached';
+        if (!slipFileExists && last4.length === 4) {
+            payDoneTh = 'กรอกเลข 4 ตัวท้ายแล้ว';
+            payDoneEn = 'Last 4 digits entered';
+        }
+        setStatusItem(
+            'statusPayment',
+            paymentOK,
+            payDoneTh, payDoneEn,
+            'แนบสลิป/เลข 4 ตัวท้าย', 'Slip / Last 4 digits'
+        );
+
         // Confirm status (only done when all previous steps are done)
-        const elConfirm = document.getElementById('statusConfirm');
         const allOK = packageOK && usernameOK && paymentOK;
-        
-        elConfirm.classList.toggle('done', allOK);
-        elConfirm.classList.toggle('pending', !allOK);
-        elConfirm.querySelector('.status-text').innerHTML = allOK
-            ? (lang === 'th' ? 'พร้อมยืนยันแจ้งโอน' : 'Ready to confirm')
-            : (lang === 'th' ? 'กรุณากดปุ่มเพื่อยืนยันแจ้งโอน' : 'Click button to confirm');
+        setStatusItem(
+            'statusConfirm',
+            allOK,
+            'พร้อมยืนยันแจ้งโอน', 'Ready to confirm',
+            'กรุณากดปุ่มเพื่อยืนยันแจ้งโอน', 'Click button to confirm'
+        );
 
         // Submit area visibility
         const submitArea = document.getElementById('submitArea');
@@ -2530,6 +2593,7 @@
             th: {
                 pleaseUploadOrEnter: "⚠️ กรุณาอัปโหลดสลิป หรือกรอกเลข 4 ตัวท้าย",
                 selectPackage: "⚠️ กรุณาเลือกแพ็กเกจก่อน",
+                invalidUsername: "⚠️ ชื่อผู้ใช้ต้องเป็นภาษาอังกฤษ ตัวเลข _ หรือ - เท่านั้น (3-20 ตัว)",
                 submittedSuccess: "✅ ส่งข้อมูลสำเร็จ!\n\n⏳ รอ 2-5 นาที รับ Key ที่ Inbox",
                 error: "❌ เกิดข้อผิดพลาด ลองอีกครั้ง",
                 fileTooLarge: "⚠️ ไฟล์ใหญ่เกินไป (สูงสุด 5MB)"
@@ -2537,6 +2601,7 @@
             en: {
                 pleaseUploadOrEnter: "⚠️ Please upload slip or enter last 4 digits",
                 selectPackage: "⚠️ Please select a package first",
+                invalidUsername: "⚠️ Username must be letters, numbers, _ or - only (3-20 chars)",
                 submittedSuccess: "✅ Submitted!\n\n⏳ Wait 2-5 min for Key in Inbox",
                 error: "❌ Error occurred, please try again",
                 fileTooLarge: "⚠️ File too large (max 5MB)"
@@ -2598,6 +2663,12 @@
             return;
         }
 
+        if (!USERNAME_REGEX.test(username)) {
+            alert(getMessage("invalidUsername"));
+            document.getElementById('username').focus();
+            return;
+        }
+
         if (!slipFile && !last4) {
             alert(getMessage("pleaseUploadOrEnter"));
             return;
@@ -2653,12 +2724,30 @@
     applyFestivalTheme();
     detectISPAndSetDomain();
 
-    document.getElementById('username').addEventListener('input', updateStatus);
-    document.getElementById('last4').addEventListener('input', updateStatus);
+    // Username input: strip invalid characters in real time + update status
+    document.getElementById('username').addEventListener('input', function () {
+        const cleaned = this.value.replace(/[^A-Za-z0-9_-]/g, '');
+        if (this.value !== cleaned) {
+            const pos = this.selectionStart - (this.value.length - cleaned.length);
+            this.value = cleaned;
+            this.setSelectionRange(Math.max(0, pos), Math.max(0, pos));
+        }
+        this.classList.toggle('invalid', this.value.length > 0 && !USERNAME_REGEX.test(this.value));
+        updateStatus();
+    });
+
+    document.getElementById('last4').addEventListener('input', function () {
+        // Only digits for last4
+        const cleaned = this.value.replace(/[^0-9]/g, '').slice(0, 4);
+        if (this.value !== cleaned) this.value = cleaned;
+        updateStatus();
+    });
 
     window.addEventListener("load", () => {
         document.getElementById("payForm").reset();
         document.getElementById("package").value = "";
+        slipFile = null;
+        document.getElementById("preview").style.display = 'none';
         document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
         document.getElementById('bankDetails').style.display = 'block';
         document.getElementById('qrDetails').style.display = 'none';
