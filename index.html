@@ -78,9 +78,7 @@
                 radial-gradient(1px 1px at 10% 80%, #ffd700aa, transparent),
                 radial-gradient(1px 1px at 70% 90%, #ff4d4daa, transparent) !important;
         }
-        body.festival-christmas .logo-text::after {
-            content: '🎄' !important;
-        }
+        body.festival-christmas .logo-text::after { content: '🎄' !important; }
 
         body.festival-newyear {
             --bg: #1a0b2e;
@@ -108,9 +106,7 @@
                 radial-gradient(1px 1px at 10% 80%, #ffd700cc, transparent),
                 radial-gradient(1px 1px at 70% 90%, #ff6b6bcc, transparent) !important;
         }
-        body.festival-newyear .logo-text::after {
-            content: '🎆' !important;
-        }
+        body.festival-newyear .logo-text::after { content: '🎆' !important; }
 
         body.festival-valentine {
             --bg: #2d0a1a;
@@ -138,9 +134,7 @@
                 radial-gradient(1px 1px at 10% 80%, #ffb3c6cc, transparent),
                 radial-gradient(1px 1px at 70% 90%, #ff6b6bcc, transparent) !important;
         }
-        body.festival-valentine .logo-text::after {
-            content: '💘' !important;
-        }
+        body.festival-valentine .logo-text::after { content: '💘' !important; }
 
         body.festival-songkran {
             --bg: #0e2b4a;
@@ -168,9 +162,7 @@
                 radial-gradient(1px 1px at 10% 80%, #00b4d8cc, transparent),
                 radial-gradient(1px 1px at 70% 90%, #ffd700cc, transparent) !important;
         }
-        body.festival-songkran .logo-text::after {
-            content: '💦' !important;
-        }
+        body.festival-songkran .logo-text::after { content: '💦' !important; }
 
         body.festival-halloween {
             --bg: #1a0f0a;
@@ -199,9 +191,7 @@
                 radial-gradient(1px 1px at 10% 80%, #ff6f00cc, transparent),
                 radial-gradient(1px 1px at 70% 90%, #ce93d8cc, transparent) !important;
         }
-        body.festival-halloween .logo-text::after {
-            content: '🎃' !important;
-        }
+        body.festival-halloween .logo-text::after { content: '🎃' !important; }
 
         body.festival-loykrathong {
             --bg: #1a1a2e;
@@ -229,9 +219,7 @@
                 radial-gradient(1px 1px at 10% 80%, #ff8a65cc, transparent),
                 radial-gradient(1px 1px at 70% 90%, #ffd54fcc, transparent) !important;
         }
-        body.festival-loykrathong .logo-text::after {
-            content: '🏮' !important;
-        }
+        body.festival-loykrathong .logo-text::after { content: '🏮' !important; }
 
         /* ===== GLOBAL RESET & BASE ===== */
         * {
@@ -1391,6 +1379,137 @@
             animation: none;
         }
 
+        /* ===== STATUS TRACKER (Horizontal Layout) ===== */
+        .status-tracker-wrapper {
+            margin: clamp(14px, 2.5vw, 22px) 0;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .status-tracker-title {
+            font-size: clamp(0.85rem, 1.4vw, 1rem);
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: clamp(8px, 1.5vw, 12px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-tracker {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: clamp(6px, 1.2vw, 12px);
+            justify-content: center;
+        }
+
+        .status-item {
+            flex: 1 1 calc(50% - 12px); /* 2 columns on desktop */
+            display: flex;
+            align-items: center;
+            gap: clamp(6px, 1vw, 10px);
+            padding: clamp(8px, 1.2vw, 12px) clamp(12px, 1.8vw, 18px);
+            border-radius: var(--card-radius);
+            background: var(--bg-glass);
+            border: 2px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+            font-weight: 500;
+            color: var(--muted);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        body.dark .status-item {
+            background: rgba(15, 23, 42, 0.3);
+        }
+
+        .status-item .status-icon {
+            font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+            line-height: 1;
+            flex-shrink: 0;
+            transition: transform 0.4s ease;
+        }
+
+        .status-item .status-text {
+            flex: 1;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .status-item .status-check {
+            font-size: clamp(0.8rem, 1.2vw, 1rem);
+            font-weight: 700;
+            opacity: 0;
+            transform: scale(0);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .status-item.done {
+            background: rgba(16, 185, 129, 0.08);
+            border-color: rgba(16, 185, 129, 0.4);
+            color: var(--text);
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.08);
+        }
+
+        body.dark .status-item.done {
+            background: rgba(5, 150, 105, 0.15);
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+
+        .status-item.done .status-icon {
+            transform: scale(1.1);
+            animation: statusPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes statusPop {
+            0% { transform: scale(0.5) rotate(-20deg); }
+            60% { transform: scale(1.3) rotate(5deg); }
+            100% { transform: scale(1.1) rotate(0); }
+        }
+
+        .status-item.done .status-check {
+            opacity: 1;
+            transform: scale(1);
+            color: var(--main);
+        }
+
+        .status-item.done .status-text {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .status-item.pending .status-icon {
+            animation: pendingPulse 1.5s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes pendingPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.15); }
+        }
+
+        /* ===== SUBMIT AREA (hidden until complete) ===== */
+        .submit-area {
+            display: none;
+            animation: submitReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+
+        .submit-area.visible {
+            display: block;
+        }
+
+        @keyframes submitReveal {
+            from { opacity: 0; transform: translateY(20px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
         .contact-box {
             margin-top: clamp(20px, 4vw, 36px);
             padding-top: clamp(18px, 3vw, 30px);
@@ -1520,6 +1639,7 @@
             display: block;
         }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .pricing-grid {
                 grid-template-columns: repeat(5, 1fr);
@@ -1632,6 +1752,9 @@
                 width: 30px;
                 height: 18px;
                 font-size: 10px;
+            }
+            .status-item {
+                flex: 1 1 100%; /* 1 column on mobile */
             }
         }
 
@@ -1973,6 +2096,36 @@
         📝 <span data-th="แจ้งการโอนเงิน" data-en="Notify Payment"></span>
     </div>
 
+    <!-- ===== STATUS TRACKER (Horizontal Layout with 4 items) ===== -->
+    <div class="status-tracker-wrapper" id="statusTracker">
+        <div class="status-tracker-title">
+            <span>👇</span>
+            <span data-th="กรุณาทำตามขั้นตอนเพื่อแจ้งชำระเงิน" data-en="Please complete the steps below to confirm payment"></span>
+        </div>
+        <div class="status-tracker">
+            <div class="status-item pending" id="statusPackage">
+                <span class="status-icon">📦</span>
+                <span class="status-text" data-th="เลือกแพ็กเกจ" data-en="Select package"></span>
+                <span class="status-check">✅</span>
+            </div>
+            <div class="status-item pending" id="statusUsername">
+                <span class="status-icon">👤</span>
+                <span class="status-text" data-th="กรอกชื่อผู้ใช้" data-en="Enter username"></span>
+                <span class="status-check">✅</span>
+            </div>
+            <div class="status-item pending" id="statusPayment">
+                <span class="status-icon">🧾</span>
+                <span class="status-text" data-th="แนบสลิป/เลข 4 ตัวท้าย" data-en="Slip / Last 4 digits"></span>
+                <span class="status-check">✅</span>
+            </div>
+            <div class="status-item pending" id="statusConfirm">
+                <span class="status-icon">✍️</span>
+                <span class="status-text" data-th="กรุณากดปุ่มเพื่อยืนยันแจ้งโอน" data-en="Click button to confirm"></span>
+                <span class="status-check">✅</span>
+            </div>
+        </div>
+    </div>
+
     <form id="payForm">
 
         <div class="form-group">
@@ -1995,11 +2148,14 @@
                 data-ph-en="Enter last 4 digits" />
         </div>
 
-        <button id="sendBtn" class="submit-btn" disabled>
-            <span>✅</span>
-            <span data-th="แจ้งชำระเงิน" data-en="Submit Payment"></span>
-            <span>➜</span>
-        </button>
+        <!-- ===== SUBMIT AREA (hidden until all steps complete) ===== -->
+        <div class="submit-area" id="submitArea">
+            <button id="sendBtn" class="submit-btn" disabled>
+                <span>✅</span>
+                <span data-th="ยืนยันแจ้งโอน" data-en="Confirm Payment"></span>
+                <span>➜</span>
+            </button>
+        </div>
 
     </form>
 
@@ -2041,7 +2197,6 @@
     const BASE_URL_NET = 'https://www.' + DOMAIN_NET;
     const BASE_URL_COM = 'https://www.' + DOMAIN_COM;
 
-    // ค่าเริ่มต้น (จะถูก override โดย detectISPAndSetDomain)
     let CURRENT_DOMAIN = DOMAIN_NET;
     let BASE_URL = BASE_URL_NET;
 
@@ -2057,15 +2212,12 @@
 
             let useCom = false;
 
-            // ค่าย AIS หรือ 3BB → ใช้ .com
             if (/\b(AIS|ADVANCED INFO SERVICE|ADVANCED WIRELESS|3BB|TRIPLE T|JAS|JASMINE)\b/.test(isp)) {
                 useCom = true;
             }
-            // ค่าย True หรือ Dtac → ใช้ .net
             else if (/\b(TRUE|TRUEMOVE|DTAC|TOT|CAT)\b/.test(isp)) {
                 useCom = false;
             }
-            // ถ้าไม่ match ให้ default เป็น .net
             else {
                 useCom = false;
             }
@@ -2079,8 +2231,6 @@
             }
 
             console.log(`[ISP Detect] ISP: ${isp} → Domain: ${CURRENT_DOMAIN}`);
-
-            // อัปเดต contact links ที่มีอยู่
             updateContactLinks();
 
         } catch (err) {
@@ -2162,17 +2312,17 @@
         document.getElementById("btnEN").classList.toggle("active", lang === "en");
         localStorage.lang = lang;
         updateContactLinks();
+        updateStatus();
     }
 
     function setLang(l) { lang = l; applyLang(); }
 
     // ============================================
-    // UPDATE CONTACT LINKS (ใช้ BASE_URL ที่ตรวจได้)
+    // UPDATE CONTACT LINKS
     // ============================================
     function updateContactLinks() {
         document.querySelectorAll('.contact-item a[href*="torrentdd"]').forEach(a => {
             const href = a.getAttribute('href');
-            // ดึง path จาก href เดิม
             const path = href.replace(/^https?:\/\/(www\.)*torrentdd\.(net|com)/i, '');
             a.href = BASE_URL + path;
         });
@@ -2207,7 +2357,7 @@
 
         document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
         document.getElementById("package").value = "";
-        checkFormComplete();
+        updateStatus();
     }
 
     // ============================================
@@ -2231,17 +2381,69 @@
     }
 
     // ============================================
-    // CHECK FORM COMPLETE
+    // UPDATE STATUS TRACKER
     // ============================================
-    function checkFormComplete() {
+    function updateStatus() {
         const username = document.getElementById('username').value.trim();
         const packageSelected = document.getElementById("package").value !== "";
         const slipFileExists = slipFile !== null;
         const last4 = document.getElementById('last4').value.trim();
 
-        const isComplete = username.length >= 3 && packageSelected && (slipFileExists || last4.length === 4);
+        const packageOK = packageSelected;
+        const usernameOK = username.length >= 3;
+        const paymentOK = slipFileExists || last4.length === 4;
 
-        document.getElementById("sendBtn").disabled = !isComplete;
+        // Package status
+        const elPackage = document.getElementById('statusPackage');
+        elPackage.classList.toggle('done', packageOK);
+        elPackage.classList.toggle('pending', !packageOK);
+        elPackage.querySelector('.status-text').innerHTML = packageOK
+            ? (lang === 'th' ? 'เลือกแพ็กเกจแล้ว' : 'Package selected')
+            : (lang === 'th' ? 'เลือกแพ็กเกจ' : 'Select package');
+
+        // Username status
+        const elUsername = document.getElementById('statusUsername');
+        elUsername.classList.toggle('done', usernameOK);
+        elUsername.classList.toggle('pending', !usernameOK);
+        elUsername.querySelector('.status-text').innerHTML = usernameOK
+            ? (lang === 'th' ? 'กรอกชื่อผู้ใช้แล้ว' : 'Username entered')
+            : (lang === 'th' ? 'กรอกชื่อผู้ใช้' : 'Enter username');
+
+        // Payment status
+        const elPayment = document.getElementById('statusPayment');
+        elPayment.classList.toggle('done', paymentOK);
+        elPayment.classList.toggle('pending', !paymentOK);
+        if (paymentOK) {
+            elPayment.querySelector('.status-text').innerHTML = slipFileExists
+                ? (lang === 'th' ? 'แนบสลิปแล้ว' : 'Slip attached')
+                : (lang === 'th' ? 'กรอกเลข 4 ตัวท้ายแล้ว' : 'Last 4 digits entered');
+        } else {
+            elPayment.querySelector('.status-text').innerHTML = lang === 'th'
+                ? 'แนบสลิป/เลข 4 ตัวท้าย'
+                : 'Slip / Last 4 digits';
+        }
+
+        // Confirm status (only done when all previous steps are done)
+        const elConfirm = document.getElementById('statusConfirm');
+        const allOK = packageOK && usernameOK && paymentOK;
+        
+        elConfirm.classList.toggle('done', allOK);
+        elConfirm.classList.toggle('pending', !allOK);
+        elConfirm.querySelector('.status-text').innerHTML = allOK
+            ? (lang === 'th' ? 'พร้อมยืนยันแจ้งโอน' : 'Ready to confirm')
+            : (lang === 'th' ? 'กรุณากดปุ่มเพื่อยืนยันแจ้งโอน' : 'Click button to confirm');
+
+        // Submit area visibility
+        const submitArea = document.getElementById('submitArea');
+        const sendBtn = document.getElementById('sendBtn');
+
+        if (allOK) {
+            submitArea.classList.add('visible');
+            sendBtn.disabled = false;
+        } else {
+            submitArea.classList.remove('visible');
+            sendBtn.disabled = true;
+        }
     }
 
     // ============================================
@@ -2251,7 +2453,7 @@
         document.querySelectorAll(".price-card").forEach(c => c.classList.remove("active"));
         card.classList.add("active");
         document.getElementById("package").value = value;
-        checkFormComplete();
+        updateStatus();
 
         card.style.transform = 'scale(1.1)';
         setTimeout(() => { card.style.transform = ''; }, 200);
@@ -2275,7 +2477,7 @@
         reader.onload = () => {
             document.getElementById("preview").src = reader.result;
             document.getElementById("preview").style.display = "block";
-            checkFormComplete();
+            updateStatus();
         };
         reader.readAsDataURL(file);
     });
@@ -2411,11 +2613,8 @@
         applyLang();
 
         const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
-
-        // ✅ Profile link ใช้ .net เสมอ ตาม requirement
         const profileLink = `${BASE_URL_NET}/userdetails.php?username=${username}`;
 
-        // ✅ ไม่มีบรรทัด 🌐 Domain แล้ว
         let msg = `╔═════════════════════╗\n💎 NEW VIP PAYMENT REQUEST 💎\n╚═════════════════════╝\n\n`;
         msg += `👤 Username  : ${username}\n`;
         msg += `🔗 Profile   : ${profileLink}\n`;
@@ -2430,10 +2629,7 @@
 
         try {
             await sendToTelegram(msg, slipFile);
-
             alert(getMessage("submittedSuccess"));
-
-            // ✅ redirect ไป inbox ของ .net เสมอ ตาม requirement
             window.location.href = `${BASE_URL}/inbox.php`;
 
         } catch (err) {
@@ -2442,7 +2638,7 @@
             btn.disabled = false;
             btn.innerHTML = originalText;
             btn.classList.remove('loading');
-            checkFormComplete();
+            updateStatus();
             applyLang();
         }
     });
@@ -2453,15 +2649,12 @@
     document.body.classList.toggle("dark", dark);
     document.getElementById("darkToggle").innerHTML = dark ? "☀️" : "🌙";
 
-    // ✅ เริ่มต้น: apply lang, festival theme, แล้วค่อย detect ISP
     applyLang();
     applyFestivalTheme();
-
-    // ✅ ตรวจ ISP แล้วอัปเดต domain + contact links
     detectISPAndSetDomain();
 
-    document.getElementById('username').addEventListener('input', checkFormComplete);
-    document.getElementById('last4').addEventListener('input', checkFormComplete);
+    document.getElementById('username').addEventListener('input', updateStatus);
+    document.getElementById('last4').addEventListener('input', updateStatus);
 
     window.addEventListener("load", () => {
         document.getElementById("payForm").reset();
@@ -2470,7 +2663,7 @@
         document.getElementById('bankDetails').style.display = 'block';
         document.getElementById('qrDetails').style.display = 'none';
         switchPackageTab('vip');
-        checkFormComplete();
+        updateStatus();
         updateContactLinks();
 
         document.querySelectorAll('.section-title').forEach((el, i) => {
