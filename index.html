@@ -201,16 +201,16 @@
         .particle {
             position: absolute;
             bottom: -50px;
-            font-size: 2rem;
             opacity: 0;
             animation: floatUp linear forwards;
             filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+            will-change: transform, opacity;
         }
         @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { transform: translateY(-110vh) rotate(360deg) scale(0.5); opacity: 0; }
+            0% { transform: translateY(0) translateX(0) rotate(0deg) scale(0.8); opacity: 0; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
+            100% { transform: translateY(-110vh) translateX(var(--drift, 0px)) rotate(var(--rotate, 360deg)) scale(1.2); opacity: 0; }
         }
 
         .box {
@@ -666,38 +666,71 @@
         return null;
     }
 
-    function createParticles(theme) {
+    // ===== ระบบสร้าง Particle แบบไม่หยุด =====
+    let particleInterval = null;
+    let isGeneratingParticles = false;
+
+    function startParticles(theme) {
         const container = document.getElementById('particleContainer');
         if (!container) return;
+        
         container.innerHTML = '';
-        if (!theme) return;
+        isGeneratingParticles = true;
+        
+        // ถ้าไม่มีเทศกาล ไม่ต้องสร้าง
+        if (!theme) { isGeneratingParticles = false; return; }
 
         const emojis = {
-            'festival-christmas': ['🎄', '🎅', '❄️', '🎁', '⛄', '🌟'],
-            'festival-newyear': ['🎆', '🎇', '✨', '🥂', '🎉', '🌟'],
-            'festival-valentine': ['💘', '💖', '🌹', '💝', '😍', '💕'],
-            'festival-songkran': ['💦', '🌊', '🔫', '☀️', '🏖️', '💧'],
-            'festival-halloween': ['👻', '🎃', '🦇', '🕷️', '🕸️', '💀'],
-            'festival-loykrathong': ['🏮', '🪔', '🌕', '✨', '💫', '🎇']
+            'festival-christmas': ['🎄', '🎅', '❄️', '🎁', '⛄', '🌟', '🦌', '🔔'],
+            'festival-newyear': ['🎆', '🎇', '✨', '🥂', '🎉', '🌟', '🍾', '🎊'],
+            'festival-valentine': ['💘', '💖', '🌹', '💝', '😍', '💕', '💌', '🫶'],
+            'festival-songkran': ['💦', '🌊', '🔫', '☀️', '🏖️', '💧', '🌴', '🩴'],
+            'festival-halloween': ['👻', '🎃', '🦇', '🕷️', '🕸️', '💀', '🧙', '🧟'],
+            'festival-loykrathong': ['🏮', '🪔', '🌕', '✨', '💫', '🎇', '🍂', '🌙']
         };
 
         const selectedEmojis = emojis[theme] || ['✨'];
-        const particleCount = 20;
 
-        for (let i = 0; i < particleCount; i++) {
+        // ฟังก์ชันสร้าง Emoji 1 ตัว
+        function spawnParticle() {
+            if (!isGeneratingParticles) return;
+            
             const particle = document.createElement('div');
             particle.className = 'particle';
             particle.innerText = selectedEmojis[Math.floor(Math.random() * selectedEmojis.length)];
-            const left = Math.random() * 100;
-            const size = Math.random() * 1.5 + 1;
-            const duration = Math.random() * 10 + 8;
-            const delay = Math.random() * 10;
+            
+            // สุ่มคุณสมบัติ
+            const left = Math.random() * 100; // 0 - 100%
+            const size = Math.random() * 1.8 + 0.8; // 0.8rem - 2.6rem
+            const duration = Math.random() * 12 + 6; // 6s - 18s (ช้า-เร็ว)
+            const drift = (Math.random() - 0.5) * 200; // ลอยซ้าย-ขวา -100px ถึง +100px
+            const rotate = Math.random() > 0.5 ? 360 : -360; // หมุนซ้ายหรือขวา
+            
             particle.style.left = `${left}%`;
             particle.style.fontSize = `${size}rem`;
             particle.style.animationDuration = `${duration}s`;
-            particle.style.animationDelay = `${delay}s`;
+            particle.style.setProperty('--drift', `${drift}px`);
+            particle.style.setProperty('--rotate', `${rotate}deg`);
+            
+            // ลบเมื่อ animation จบ (เพื่อไม่ให้เว็บหนัก)
+            particle.addEventListener('animationend', () => {
+                particle.remove();
+            });
+
             container.appendChild(particle);
+
+            // ตั้งเวลาสุ่มสร้างตัวถัดไป (100ms - 800ms)
+            const nextSpawn = Math.random() * 700 + 100;
+            particleInterval = setTimeout(spawnParticle, nextSpawn);
         }
+
+        // เริ่มสร้าง
+        spawnParticle();
+    }
+
+    function stopParticles() {
+        isGeneratingParticles = false;
+        if (particleInterval) clearTimeout(particleInterval);
     }
 
     // ฟังก์ชันเปลี่ยน UI Text และ Icon ตามเทศกาล
@@ -706,8 +739,7 @@
             packageIcon: '📦', packageText: { th: 'เลือกแพ็กเกจ', en: 'Select Package' },
             paymentIcon: '💳', paymentText: { th: 'เลือกวิธีชำระเงิน', en: 'Payment Method' },
             notifyIcon: '📝', notifyText: { th: 'แจ้งการโอนเงิน', en: 'Notify Payment' },
-            bankIcon: '🏦',
-            qrIcon: '📱',
+            bankIcon: '🏦', qrIcon: '📱',
             usernameLabel: { th: 'ชื่อผู้ใช้ TorrentDD', en: 'TorrentDD Username' },
             slipLabel: { th: 'อัปโหลดสลิป (ถ้ามี)', en: 'Upload Slip (optional)' },
             last4Label: { th: 'เลข 4 ตัวท้ายบัญชี (ถ้าไม่มีสลิป)', en: 'Last 4 Digits (if no slip)' },
@@ -818,7 +850,7 @@
         document.getElementById('titleQrIcon').innerText = config.qrIcon;
 
         // เปลี่ยน Label ในฟอร์ม
-        document.querySelector('#usernameGroup .label-icon').innerText = config.packageIcon; // ใช้ icon แพ็กเกจหรือจะแยกก็ได้
+        document.querySelector('#usernameGroup .label-icon').innerText = config.packageIcon;
         document.querySelector('#usernameGroup .label-text').innerText = config.usernameLabel[lang];
         document.querySelectorAll('.form-group')[1].querySelector('.label-icon').innerText = config.statusPackageIcon;
         document.querySelectorAll('.form-group')[1].querySelector('.label-text').innerText = config.slipLabel[lang];
@@ -861,7 +893,8 @@
         } else {
             document.title = '💎 Buy VIP / Coin TorrentDD';
         }
-        createParticles(theme);
+        stopParticles();
+        startParticles(theme);
         applyFestivalUI(theme);
     }
 
@@ -876,7 +909,7 @@
     let currentTheme = null;
 
     function applyLang() {
-        currentTheme = getFestivalTheme(); // รีเฟรชเทศกาล
+        currentTheme = getFestivalTheme();
         
         document.querySelectorAll("[data-th]").forEach(el => { el.innerHTML = el.dataset[lang]; });
         document.querySelectorAll("[data-ph-th]").forEach(el => { el.placeholder = lang === "th" ? el.dataset.phTh : el.dataset.phEn; });
@@ -885,7 +918,7 @@
         document.getElementById("btnEN").classList.toggle("active", lang === "en");
         localStorage.lang = lang;
         
-        applyFestivalUI(currentTheme); // อัปเดต Text ตามภาษาและเทศกาล
+        applyFestivalUI(currentTheme);
         updateContactLinks();
         updateStatus();
     }
@@ -1104,7 +1137,7 @@
     // Init
     document.body.classList.toggle("dark", dark);
     document.getElementById("darkToggle").innerHTML = dark ? "☀️" : "🌙";
-    applyLang(); // จะไปเรียก applyFestivalUI ให้เอง
+    applyLang();
     applyFestivalTheme();
     detectISPAndSetDomain();
 
