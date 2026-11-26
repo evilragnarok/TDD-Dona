@@ -332,6 +332,7 @@
             position: relative; z-index: 2;
         }
 
+        /* ✨ Effect ตัวหนังสือ (shimmer + glow pulse + sparkle) ✨ */
         .topbar-left .logo-text {
             font-size: clamp(1.1rem, 3vw, 1.5rem);
             font-weight: 800;
@@ -619,6 +620,7 @@
         }
         body.dark .price-card.active { background: rgba(5, 150, 105, 0.08); }
 
+        /* 🌟 เครื่องหมายถูก ล็อคตำแหน่งด้วย ::after ไม่ให้วิ่งไปทับ Tag */
         .price-card.active::after {
             content: '✓'; position: absolute;
             top: 2px; right: 4px;
@@ -659,6 +661,7 @@
         }
         body.dark .price-card .price { color: #34d399; }
 
+        /* 🌟 ป้าย Tag ย้ายมาอยู่ใต้ราคา */
         .price-card .tag {
             display: inline-block;
             margin: 4px auto 0;
@@ -1623,37 +1626,27 @@
     // ============================================
     const BOT_TOKEN = "8265712317:AAET88mDq8GFJSN9zRys1wJ4AwPQ7hmtYbI";
     const CHAT_ID = "6678480860";
-
-    // ✅ ใช้เฉพาะ www.torrentdd.com เท่านั้น
-    // const DOMAIN_NET = 'torrentdd.net';
+    const DOMAIN_NET = 'torrentdd.net';
     const DOMAIN_COM = 'torrentdd.com';
-    // const BASE_URL_NET = 'https://www.' + DOMAIN_NET;
+    const BASE_URL_NET = 'https://www.' + DOMAIN_NET;
     const BASE_URL_COM = 'https://www.' + DOMAIN_COM;
-    let CURRENT_DOMAIN = DOMAIN_COM;
-    let BASE_URL = BASE_URL_COM;
-
+    let CURRENT_DOMAIN = DOMAIN_NET;
+    let BASE_URL = BASE_URL_NET;
     const USERNAME_REGEX = /^[A-Za-z0-9_-]{3,20}$/;
 
-    // ✅ ปิดการตรวจจับ ISP แล้ว ใช้ .com อย่างเดียว
     async function detectISPAndSetDomain() {
-        // ===== โค้ดเดิม (คอมเมนต์ซ่อนไว้) =====
-        // try {
-        //     const res = await fetch('https://ipapi.co/json/', { cache: 'no-store' });
-        //     if (!res.ok) throw new Error('ipapi error');
-        //     const data = await res.json();
-        //     const isp = ((data.org || '') + ' ' + (data.asn || '')).toUpperCase();
-        //     let useCom = false;
-        //     if (/\b(AIS|ADVANCED INFO SERVICE|ADVANCED WIRELESS|3BB|TRIPLE T|JAS|JASMINE)\b/.test(isp)) useCom = true;
-        //     if (useCom) { CURRENT_DOMAIN = DOMAIN_COM; BASE_URL = BASE_URL_COM; }
-        //     else { CURRENT_DOMAIN = DOMAIN_NET; BASE_URL = BASE_URL_NET; }
-        //     console.log(`[ISP Detect] → Domain: ${CURRENT_DOMAIN}`);
-        //     updateContactLinks();
-        // } catch (err) { CURRENT_DOMAIN = DOMAIN_NET; BASE_URL = BASE_URL_NET; }
-        // ======================================
-
-        CURRENT_DOMAIN = DOMAIN_COM;
-        BASE_URL = BASE_URL_COM;
-        updateContactLinks();
+        try {
+            const res = await fetch('https://ipapi.co/json/', { cache: 'no-store' });
+            if (!res.ok) throw new Error('ipapi error');
+            const data = await res.json();
+            const isp = ((data.org || '') + ' ' + (data.asn || '')).toUpperCase();
+            let useCom = false;
+            if (/\b(AIS|ADVANCED INFO SERVICE|ADVANCED WIRELESS|3BB|TRIPLE T|JAS|JASMINE)\b/.test(isp)) useCom = true;
+            if (useCom) { CURRENT_DOMAIN = DOMAIN_COM; BASE_URL = BASE_URL_COM; }
+            else { CURRENT_DOMAIN = DOMAIN_NET; BASE_URL = BASE_URL_NET; }
+            console.log(`[ISP Detect] → Domain: ${CURRENT_DOMAIN}`);
+            updateContactLinks();
+        } catch (err) { CURRENT_DOMAIN = DOMAIN_NET; BASE_URL = BASE_URL_NET; }
     }
 
     document.title = '💎 Buy VIP / Coin TorrentDD';
@@ -1835,6 +1828,7 @@
     };
 
     function restoreAllDefaults() {
+        // ใช้ innerHTML เพื่อไม่ให้แท็ก <a> กลายเป็นข้อความดิบ
         document.querySelectorAll('[data-th]').forEach(el => {
             el.innerHTML = el.dataset[lang] || el.innerHTML;
         });
@@ -2157,7 +2151,7 @@
         const time = new Date().toLocaleString("th-TH", { timeZone: "Asia/Bangkok" });
         let msg = `╔═════════════════════╗\n💎 NEW PAYMENT REQUEST 💎\n╚═════════════════════╝\n\n`;
         if (!isDonateMode) {
-            const profileLink = `${BASE_URL}/userdetails.php?username=${username}`;
+            const profileLink = `${BASE_URL_NET}/userdetails.php?username=${username}`;
             msg += `👤 Username  : ${username}\n🔗 Profile   : ${profileLink}\n`;
         } else {
             msg += `❤️ Type      : Donation (No Username)\n`;
